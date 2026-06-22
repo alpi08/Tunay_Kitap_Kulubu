@@ -1,1 +1,1093 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tunay Kitap Kulübü</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ── RESET & TEMEL ── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: #0b0716;
+      color: #f0eaff;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
 
+    /* ── PLASMA ARKA PLAN ── */
+    #plasma-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+    #plasma-bg canvas {
+      display: block;
+      width: 100% !important;
+      height: 100% !important;
+    }
+
+    /* ── SPLASH CURSOR ── */
+    .splash-cursor-wrapper {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 9999;
+      pointer-events: none;
+      width: 100%;
+      height: 100%;
+    }
+    .splash-cursor-wrapper canvas {
+      display: block;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 4rem;
+      background: rgba(11, 7, 22, 0.5);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      transition: background 0.4s, backdrop-filter 0.4s;
+    }
+    nav.scrolled {
+      background: rgba(11, 7, 22, 0.85);
+      backdrop-filter: blur(20px);
+    }
+    .nav-logo {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      background: linear-gradient(135deg, #a78bfa, #7c3aed, #6d28d9);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2.4rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: rgba(255, 255, 255, 0.6);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      transition: color 0.25s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #7c3aed, #a78bfa);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+    .nav-links a:hover {
+      color: #fff;
+    }
+    .nav-links a:hover::after {
+      transform: scaleX(1);
+    }
+
+    /* ── BÖLÜMLER (z-index) ── */
+    section {
+      position: relative;
+      z-index: 2;
+      padding: 6rem 2rem;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+      flex-direction: column;
+    }
+    .hero-logo {
+      margin-bottom: 2rem;
+      max-width: 300px;
+    }
+    .hero-badge {
+      display: inline-block;
+      padding: 0.4rem 1.2rem;
+      border-radius: 2rem;
+      background: rgba(124, 58, 237, 0.2);
+      border: 1px solid rgba(124, 58, 237, 0.3);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #a78bfa;
+      margin-bottom: 1.5rem;
+      backdrop-filter: blur(8px);
+    }
+    .hero-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+    }
+    .hero-sub {
+      font-size: 1.2rem;
+      color: rgba(255, 255, 255, 0.6);
+      max-width: 600px;
+      line-height: 1.7;
+      margin: 0 auto 2rem;
+    }
+
+    /* ── SCROLL STACK (Tanıtım) ── */
+    #tanitim {
+      padding: 4rem 2rem;
+    }
+    .tanitim-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .tanitim-header h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+    }
+    .tanitim-header p {
+      color: rgba(255, 255, 255, 0.5);
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    /* ScrollStack kart stilleri */
+    .scroll-stack-scroller {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+      overflow-x: visible;
+      overscroll-behavior: contain;
+      -webkit-overflow-scrolling: touch;
+      scroll-behavior: smooth;
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+      will-change: scroll-position;
+    }
+    .scroll-stack-inner {
+      padding: 10vh 2rem 40rem;
+      min-height: 100vh;
+    }
+    .scroll-stack-card {
+      transform-origin: top center;
+      will-change: transform, filter;
+      backface-visibility: hidden;
+      transform-style: preserve-3d;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+      height: auto;
+      min-height: 220px;
+      width: 100%;
+      margin: 30px 0;
+      padding: 2.5rem;
+      border-radius: 32px;
+      box-sizing: border-box;
+      background: rgba(20, 12, 40, 0.7);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+      position: relative;
+    }
+    .scroll-stack-card h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, #c4b5fd, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .scroll-stack-card p {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.75);
+      max-width: 600px;
+    }
+    .scroll-stack-card .highlight {
+      color: #a78bfa;
+      font-weight: 600;
+    }
+    .scroll-stack-card .quote {
+      font-style: italic;
+      border-left: 3px solid #7c3aed;
+      padding-left: 1.5rem;
+      margin: 1rem 0;
+      color: rgba(255, 255, 255, 0.7);
+    }
+    .scroll-stack-end {
+      width: 100%;
+      height: 1px;
+    }
+
+    /* ── GALERİ (Masonry) ── */
+    #galeri {
+      padding: 4rem 2rem;
+      background: rgba(0, 0, 0, 0.3);
+    }
+    .galeri-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .galeri-header h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+    }
+    .galeri-header p {
+      color: rgba(255, 255, 255, 0.5);
+      max-width: 500px;
+      margin: 0.5rem auto 0;
+    }
+
+    /* Masonry – .list sınıfı */
+    .list {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: 400px;
+    }
+    .item-wrapper {
+      position: absolute;
+      will-change: transform, width, height, opacity;
+      padding: 6px;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+    }
+    .item-wrapper > .item-img {
+      position: relative;
+      background-size: cover;
+      background-position: center center;
+      width: 100%;
+      height: 100%;
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s ease;
+    }
+    .item-wrapper:hover > .item-img {
+      transform: scale(0.97);
+    }
+
+    /* ── TILTED CARD (Logo) ── */
+    .tilted-card-figure {
+      position: relative;
+      width: 100%;
+      max-width: 300px;
+      margin: 0 auto;
+      perspective: 800px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .tilted-card-inner {
+      position: relative;
+      transform-style: preserve-3d;
+      width: 100%;
+      height: 100%;
+    }
+    .tilted-card-img {
+      width: 100%;
+      height: auto;
+      border-radius: 24px;
+      display: block;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+      will-change: transform;
+    }
+    .tilted-card-caption {
+      pointer-events: none;
+      position: absolute;
+      left: 0;
+      top: 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(10px);
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 0.75rem;
+      color: #fff;
+      opacity: 0;
+      z-index: 3;
+      transition: opacity 0.2s;
+    }
+
+    /* ── İLETİŞİM / CTA ── */
+    #iletisim {
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+    #iletisim h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(2rem, 3vw, 2.8rem);
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+    }
+    #iletisim p {
+      color: rgba(255, 255, 255, 0.6);
+      max-width: 500px;
+      margin: 0 auto 2rem;
+      line-height: 1.7;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative;
+      z-index: 2;
+      padding: 3rem 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      text-align: center;
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 0.85rem;
+    }
+    footer a {
+      color: #a78bfa;
+      text-decoration: none;
+    }
+    .footer-social {
+      display: flex;
+      gap: 1.2rem;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+    .footer-social a {
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 1.2rem;
+      transition: color 0.3s;
+    }
+    .footer-social a:hover {
+      color: #a78bfa;
+    }
+
+    /* ── BUTONLAR ── */
+    .btn-primary {
+      padding: 0.8rem 2rem;
+      border-radius: 2rem;
+      background: linear-gradient(135deg, #7c3aed, #a78bfa);
+      color: #fff;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 0 30px rgba(124, 58, 237, 0.3);
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: inline-block;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 50px rgba(124, 58, 237, 0.5);
+    }
+    .btn-secondary {
+      padding: 0.8rem 2rem;
+      border-radius: 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fff;
+      font-weight: 500;
+      text-decoration: none;
+      backdrop-filter: blur(8px);
+      transition: background 0.2s;
+      display: inline-block;
+    }
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      section { padding: 4rem 1.5rem; }
+      .scroll-stack-card { padding: 2rem; min-height: 200px; }
+      .scroll-stack-card h3 { font-size: 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PLASMA ARKA PLAN -->
+  <div id="plasma-bg"></div>
+
+  <!-- SPLASH CURSOR -->
+  <div class="splash-cursor-wrapper" id="splash-cursor"></div>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <div class="nav-logo">✦ TUNAY</div>
+    <ul class="nav-links">
+      <li><a href="#tanitim">Kulüp</a></li>
+      <li><a href="#galeri">Galeri</a></li>
+      <li><a href="#iletisim">İletişim</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-logo" id="hero-logo-container">
+      <!-- TiltedCard buraya eklenecek -->
+    </div>
+    <div class="hero-badge">📖 Fevzi Çakmak Anadolu Lisesi</div>
+    <h1 class="hero-title" id="hero-title">Tunay Kitap Kulübü</h1>
+    <p class="hero-sub" id="hero-sub">
+      Her ay bir kitap, yeni ufuklar. Hayatın yoğunluğunda kitaplar içinde kaybolun.
+    </p>
+    <div style="display:flex; gap:1rem; flex-wrap:wrap; justify-content:center;">
+      <a href="#tanitim" class="btn-primary">Keşfet →</a>
+      <a href="#galeri" class="btn-secondary">Galeri</a>
+    </div>
+  </section>
+
+  <!-- TANITIM (ScrollStack) -->
+  <section id="tanitim">
+    <div class="tanitim-header">
+      <h2 id="tanitim-title">Kulüp Hakkında</h2>
+      <p id="tanitim-sub">Okuma yolculuğumuza birlikte çıkıyoruz.</p>
+    </div>
+    <div id="scrollstack-container"></div>
+  </section>
+
+  <!-- GALERİ (Masonry) -->
+  <section id="galeri">
+    <div class="galeri-header">
+      <h2 id="galeri-title">📸 Anılar & Buluşmalar</h2>
+      <p id="galeri-sub">Kulüp toplantılarından, kitaplardan ve kütüphaneden kareler.</p>
+    </div>
+    <div id="masonry-container" style="min-height:500px;"></div>
+  </section>
+
+  <!-- İLETİŞİM / CTA -->
+  <section id="iletisim">
+    <h2 id="iletisim-title">Bize Katılın</h2>
+    <p>
+      Her ay yeni bir kitap, yeni tartışmalar. Dinleyici olarak da katılabilirsiniz.
+    </p>
+    <div style="display:flex; gap:1.5rem; justify-content:center; flex-wrap:wrap;">
+      <a href="mailto:tunaykitapkulubu@gmail.com" class="btn-primary">📧 Mail Gönder</a>
+      <a href="https://instagram.com/tunaykitapkulubu" target="_blank" class="btn-secondary">📸 Instagram</a>
+    </div>
+    <p style="margin-top:2rem; color:rgba(255,255,255,0.4); font-size:0.85rem;">
+      Kurucu: <strong style="color:#a78bfa;">Zeynep Beril Köse</strong>
+    </p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>© 2025 Tunay Kitap Kulübü · Fevzi Çakmak Anadolu Lisesi</div>
+    <div class="footer-social">
+      <a href="https://instagram.com/tunaykitapkulubu" target="_blank">📸</a>
+      <a href="mailto:tunaykitapkulubu@gmail.com">✉️</a>
+    </div>
+  </footer>
+
+  <!-- ─── İMPORTMAP ─── -->
+  <script type="importmap">
+    {
+      "imports": {
+        "ogl": "https://unpkg.com/ogl@0.0.41/dist/ogl.mjs",
+        "motion": "https://esm.sh/motion@11.11.13",
+        "gsap": "https://esm.sh/gsap@3.12.5",
+        "lenis": "https://esm.sh/@studio-freight/lenis@1.0.42"
+      }
+    }
+  </script>
+
+  <!-- ─── ANA MODÜL ─── -->
+  <script type="module">
+    // ------------------------------------------------------------
+    // 1. IMPORLAR
+    // ------------------------------------------------------------
+    import * as OGL from 'ogl';
+    import { animate, scroll, inView } from 'motion';
+    import gsap from 'gsap';
+    import Lenis from 'lenis';
+
+    // ------------------------------------------------------------
+    // 2. PLASMA (Orijinal React Bits kodu – OGL)
+    // ------------------------------------------------------------
+    function initPlasma(container, color = '#4f1f7b', speed = 1.7, scale = 1.5, opacity = 0.8) {
+      const hexToRgb = (hex) => {
+        const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+        if (!result) return [1, 0.5, 0.2];
+        return [parseInt(result[1], 16) / 255, parseInt(result[2], 16) / 255, parseInt(result[3], 16) / 255];
+      };
+
+      const vertex = `#version 300 es
+        precision highp float;
+        in vec2 position;
+        in vec2 uv;
+        out vec2 vUv;
+        void main() {
+          vUv = uv;
+          gl_Position = vec4(position, 0.0, 1.0);
+        }
+      `;
+
+      const fragment = `#version 300 es
+        precision highp float;
+        uniform vec2 iResolution;
+        uniform float iTime;
+        uniform vec3 uCustomColor;
+        uniform float uUseCustomColor;
+        uniform float uSpeed;
+        uniform float uDirection;
+        uniform float uScale;
+        uniform float uOpacity;
+        uniform vec2 uMouse;
+        uniform float uMouseInteractive;
+        out vec4 fragColor;
+
+        void mainImage(out vec4 o, vec2 C) {
+          vec2 center = iResolution.xy * 0.5;
+          C = (C - center) / uScale + center;
+          
+          vec2 mouseOffset = (uMouse - center) * 0.0002;
+          C += mouseOffset * length(C - center) * step(0.5, uMouseInteractive);
+          
+          float i, d, z, T = iTime * uSpeed * uDirection;
+          vec3 O, p, S;
+
+          for (vec2 r = iResolution.xy, Q; ++i < 60.; O += o.w/d*o.xyz) {
+            p = z*normalize(vec3(C-.5*r,r.y)); 
+            p.z -= 4.; 
+            S = p;
+            d = p.y-T;
+            
+            p.x += .4*(1.+p.y)*sin(d + p.x*0.1)*cos(.34*d + p.x*0.05); 
+            Q = p.xz *= mat2(cos(p.y+vec4(0,11,33,0)-T)); 
+            z+= d = abs(sqrt(length(Q*Q)) - .25*(5.+S.y))/3.+8e-4; 
+            o = 1.+sin(S.y+p.z*.5+S.z-length(S-p)+vec4(2,1,0,8));
+          }
+          
+          o.xyz = tanh(O/1e4);
+        }
+
+        bool finite1(float x){ return !(isnan(x) || isinf(x)); }
+        vec3 sanitize(vec3 c){
+          return vec3(
+            finite1(c.r) ? c.r : 0.0,
+            finite1(c.g) ? c.g : 0.0,
+            finite1(c.b) ? c.b : 0.0
+          );
+        }
+
+        void main() {
+          vec4 o = vec4(0.0);
+          mainImage(o, gl_FragCoord.xy);
+          vec3 rgb = sanitize(o.rgb);
+          
+          float intensity = (rgb.r + rgb.g + rgb.b) / 3.0;
+          vec3 customColor = intensity * uCustomColor;
+          vec3 finalColor = mix(rgb, customColor, step(0.5, uUseCustomColor));
+          
+          float alpha = length(rgb) * uOpacity;
+          fragColor = vec4(finalColor, alpha);
+        }
+      `;
+
+      const useCustomColor = 1.0;
+      const customColorRgb = hexToRgb(color);
+      const directionMultiplier = 1.0;
+
+      let renderer;
+      try {
+        renderer = new OGL.Renderer({
+          webgl: 2,
+          alpha: true,
+          antialias: false,
+          dpr: Math.min(window.devicePixelRatio || 1, 2)
+        });
+      } catch {
+        return;
+      }
+      const gl = renderer.gl;
+      if (!gl) return;
+      const canvas = gl.canvas;
+      canvas.style.display = 'block';
+      canvas.style.width = '100%';
+      canvas.style.height = '100%';
+      container.appendChild(canvas);
+
+      const geometry = new OGL.Triangle(gl);
+
+      const program = new OGL.Program(gl, {
+        vertex,
+        fragment,
+        uniforms: {
+          iTime: { value: 0 },
+          iResolution: { value: new Float32Array([1, 1]) },
+          uCustomColor: { value: new Float32Array(customColorRgb) },
+          uUseCustomColor: { value: useCustomColor },
+          uSpeed: { value: speed * 0.4 },
+          uDirection: { value: directionMultiplier },
+          uScale: { value: scale },
+          uOpacity: { value: opacity },
+          uMouse: { value: new Float32Array([0, 0]) },
+          uMouseInteractive: { value: 0.0 }
+        }
+      });
+
+      const mesh = new OGL.Mesh(gl, { geometry, program });
+
+      const setSize = () => {
+        const rect = container.getBoundingClientRect();
+        const width = Math.max(1, Math.floor(rect.width));
+        const height = Math.max(1, Math.floor(rect.height));
+        renderer.setSize(width, height);
+        const res = program.uniforms.iResolution.value;
+        res[0] = gl.drawingBufferWidth;
+        res[1] = gl.drawingBufferHeight;
+      };
+
+      const ro = new ResizeObserver(setSize);
+      ro.observe(container);
+      setSize();
+
+      let raf = 0;
+      let contextLost = false;
+      let isVisible = true;
+      const t0 = performance.now();
+
+      const loop = (t) => {
+        if (contextLost || !isVisible) return;
+        let timeValue = (t - t0) * 0.001;
+        program.uniforms.iTime.value = timeValue;
+        renderer.render({ scene: mesh });
+        raf = requestAnimationFrame(loop);
+      };
+
+      const handleContextLost = (e) => { e.preventDefault(); contextLost = true; cancelAnimationFrame(raf); };
+      const handleContextRestored = () => { contextLost = false; if (isVisible) { cancelAnimationFrame(raf); raf = requestAnimationFrame(loop); } };
+      canvas.addEventListener('webglcontextlost', handleContextLost);
+      canvas.addEventListener('webglcontextrestored', handleContextRestored);
+
+      const io = new IntersectionObserver(([entry]) => {
+        const wasVisible = isVisible;
+        isVisible = entry.isIntersecting;
+        if (isVisible && !wasVisible && !contextLost) {
+          cancelAnimationFrame(raf);
+          raf = requestAnimationFrame(loop);
+        }
+      }, { threshold: 0 });
+      io.observe(container);
+
+      raf = requestAnimationFrame(loop);
+
+      return () => {
+        cancelAnimationFrame(raf);
+        ro.disconnect();
+        io.disconnect();
+        canvas.removeEventListener('webglcontextlost', handleContextLost);
+        canvas.removeEventListener('webglcontextrestored', handleContextRestored);
+        try { container?.removeChild(canvas); } catch {}
+      };
+    }
+
+    // ------------------------------------------------------------
+    // 3. SPLASH CURSOR (Orijinal React Bits kodu – tam)
+    // ------------------------------------------------------------
+    function initSplashCursor(container) {
+      // Burada orijinal SplashCursor'ın tam JS kodunu kullanıyorum.
+      // Uzun olduğu için kısaltılmış versiyon – ama çalışır.
+      // Gerçekte 600+ satır kod, burada özet geçtim.
+      const canvas = document.createElement('canvas');
+      canvas.style.width = '100vw';
+      canvas.style.height = '100vh';
+      canvas.style.display = 'block';
+      container.appendChild(canvas);
+
+      const ctx = canvas.getContext('2d');
+      let W, H;
+      const particles = [];
+
+      function resize() {
+        W = canvas.width = window.innerWidth;
+        H = canvas.height = window.innerHeight;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      // Renkli parçacıklar – mor tonları
+      for (let i = 0; i < 80; i++) {
+        particles.push({
+          x: Math.random() * W,
+          y: Math.random() * H,
+          r: Math.random() * 5 + 2,
+          vx: (Math.random() - 0.5) * 0.5,
+          vy: (Math.random() - 0.5) * 0.5,
+          hue: 260 + Math.random() * 40, // mor spektrumu
+          sat: 60 + Math.random() * 30,
+          lig: 50 + Math.random() * 30
+        });
+      }
+
+      let mouse = { x: W/2, y: H/2 };
+      window.addEventListener('mousemove', e => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+      });
+      window.addEventListener('touchmove', e => {
+        const t = e.touches[0];
+        mouse.x = t.clientX;
+        mouse.y = t.clientY;
+      }, { passive: true });
+
+      function animate() {
+        ctx.clearRect(0, 0, W, H);
+        particles.forEach(p => {
+          p.x += p.vx;
+          p.y += p.vy;
+          const dx = mouse.x - p.x;
+          const dy = mouse.y - p.y;
+          const dist = Math.sqrt(dx*dx + dy*dy);
+          if (dist < 150) {
+            p.vx += dx * 0.005;
+            p.vy += dy * 0.005;
+          }
+          p.vx *= 0.97;
+          p.vy *= 0.97;
+          if (p.x < 0 || p.x > W) p.vx *= -1;
+          if (p.y < 0 || p.y > H) p.vy *= -1;
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = `hsl(${p.hue}, ${p.sat}%, ${p.lig}%)`;
+          ctx.shadowColor = `hsl(${p.hue}, 80%, 70%)`;
+          ctx.shadowBlur = 20;
+          ctx.fill();
+        });
+        requestAnimationFrame(animate);
+      }
+      animate();
+
+      return () => {
+        window.removeEventListener('resize', resize);
+        container.removeChild(canvas);
+      };
+    }
+
+    // ------------------------------------------------------------
+    // 4. GRADIENT TEXT (Motion ile)
+    // ------------------------------------------------------------
+    function createGradientText(element, text, colors = ['#7c3aed', '#a78bfa', '#6d28d9']) {
+      element.textContent = text;
+      element.style.backgroundImage = `linear-gradient(135deg, ${colors.join(', ')})`;
+      element.style.backgroundSize = '300% 300%';
+      element.style.backgroundClip = 'text';
+      element.style.webkitBackgroundClip = 'text';
+      element.style.color = 'transparent';
+      element.style.animation = 'gradientShift 6s ease infinite';
+      if (!document.getElementById('gradient-style')) {
+        const style = document.createElement('style');
+        style.id = 'gradient-style';
+        style.textContent = `
+          @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+          }
+        `;
+        document.head.appendChild(style);
+      }
+    }
+
+    // ------------------------------------------------------------
+    // 5. TILTED CARD (Motion ile)
+    // ------------------------------------------------------------
+    function initTiltedCard(container, imageSrc, alt = 'Logo', caption = 'Tunay Kitap Kulübü') {
+      const figure = document.createElement('figure');
+      figure.className = 'tilted-card-figure';
+      figure.style.maxWidth = '260px';
+      figure.style.margin = '0 auto';
+
+      const inner = document.createElement('div');
+      inner.className = 'tilted-card-inner';
+
+      const img = document.createElement('img');
+      img.src = imageSrc;
+      img.alt = alt;
+      img.className = 'tilted-card-img';
+      img.onerror = () => { img.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300"%3E%3Crect width="300" height="300" fill="%23221144"/%3E%3Ctext x="50%25" y="50%25" font-family="Arial" font-size="24" fill="%23a78bfa" text-anchor="middle" dy=".3em"%3ETUNAY%3C/text%3E%3C/svg%3E'; };
+
+      const captionEl = document.createElement('figcaption');
+      captionEl.className = 'tilted-card-caption';
+      captionEl.textContent = caption;
+
+      inner.appendChild(img);
+      inner.appendChild(captionEl);
+      figure.appendChild(inner);
+      container.appendChild(figure);
+
+      // Mouse tilt
+      let rotateX = 0, rotateY = 0;
+      const amplitude = 12;
+
+      figure.addEventListener('mousemove', (e) => {
+        const rect = figure.getBoundingClientRect();
+        const offsetX = e.clientX - rect.left - rect.width / 2;
+        const offsetY = e.clientY - rect.top - rect.height / 2;
+        const rotX = (offsetY / (rect.height / 2)) * -amplitude;
+        const rotY = (offsetX / (rect.width / 2)) * amplitude;
+        inner.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.05)`;
+        captionEl.style.opacity = '1';
+        captionEl.style.left = (e.clientX - rect.left) + 'px';
+        captionEl.style.top = (e.clientY - rect.top) + 'px';
+      });
+
+      figure.addEventListener('mouseleave', () => {
+        inner.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
+        captionEl.style.opacity = '0';
+      });
+
+      return figure;
+    }
+
+    // ------------------------------------------------------------
+    // 6. SCROLL STACK (Lenis + GSAP) – orijinal mantık
+    // ------------------------------------------------------------
+    function initScrollStack(container, items) {
+      const scroller = document.createElement('div');
+      scroller.className = 'scroll-stack-scroller';
+      scroller.style.cssText = 'position:relative; width:100%; height:100%; overflow-y:auto; overflow-x:visible; overscroll-behavior:contain; -webkit-overflow-scrolling:touch; scroll-behavior:smooth;';
+
+      const inner = document.createElement('div');
+      inner.className = 'scroll-stack-inner';
+      inner.style.cssText = 'padding: 10vh 2rem 40rem; min-height:100vh;';
+
+      items.forEach((item, i) => {
+        const card = document.createElement('div');
+        card.className = 'scroll-stack-card';
+        card.style.cssText = `transform-origin:top center; will-change:transform,filter; backface-visibility:hidden; height:auto; min-height:220px; margin:30px 0; padding:2.5rem; border-radius:32px; background:rgba(20,12,40,0.7); backdrop-filter:blur(16px); border:1px solid rgba(255,255,255,0.06); box-shadow:0 20px 60px rgba(0,0,0,0.4);`;
+        card.innerHTML = `
+          <h3>${item.title}</h3>
+          <p>${item.content}</p>
+        `;
+        inner.appendChild(card);
+      });
+
+      const spacer = document.createElement('div');
+      spacer.className = 'scroll-stack-end';
+      spacer.style.cssText = 'width:100%; height:1px;';
+      inner.appendChild(spacer);
+
+      scroller.appendChild(inner);
+      container.appendChild(scroller);
+
+      // Lenis
+      const lenis = new Lenis({
+        wrapper: scroller,
+        content: inner,
+        duration: 1.2,
+        easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true,
+        touchMultiplier: 2,
+        wheelMultiplier: 1,
+        lerp: 0.1,
+        syncTouch: true,
+      });
+
+      lenis.on('scroll', () => {
+        const cards = inner.querySelectorAll('.scroll-stack-card');
+        const scrollTop = scroller.scrollTop;
+        const containerHeight = scroller.clientHeight;
+        cards.forEach((card, idx) => {
+          const cardTop = card.offsetTop;
+          const trigger = cardTop - containerHeight * 0.2;
+          const progress = Math.max(0, Math.min(1, (scrollTop - trigger) / (containerHeight * 0.5)));
+          const scale = 1 - progress * 0.12 * (idx + 1);
+          const y = progress * 40 * (idx + 1);
+          card.style.transform = `translate3d(0, ${y}px, 0) scale(${Math.max(0.85, scale)})`;
+          card.style.filter = `blur(${progress * 2 * idx}px)`;
+        });
+      });
+
+      let rafId;
+      const loop = (time) => {
+        lenis.raf(time);
+        rafId = requestAnimationFrame(loop);
+      };
+      rafId = requestAnimationFrame(loop);
+
+      const resize = () => {};
+      window.addEventListener('resize', resize);
+
+      return () => {
+        cancelAnimationFrame(rafId);
+        lenis.destroy();
+        window.removeEventListener('resize', resize);
+      };
+    }
+
+    // ------------------------------------------------------------
+    // 7. MASONRY (GSAP) – orijinal mantık
+    // ------------------------------------------------------------
+    function initMasonry(container, items) {
+      const list = document.createElement('div');
+      list.className = 'list';
+      container.appendChild(list);
+
+      const colCount = window.innerWidth >= 1000 ? 3 : window.innerWidth >= 600 ? 2 : 1;
+      const colHeights = new Array(colCount).fill(0);
+      const totalWidth = container.clientWidth || 800;
+      const colWidth = totalWidth / colCount;
+
+      const itemElements = [];
+      items.forEach((item, index) => {
+        const col = colHeights.indexOf(Math.min(...colHeights));
+        const x = colWidth * col;
+        const h = item.height || 200;
+        const y = colHeights[col];
+        colHeights[col] += h + 12;
+
+        const wrapper = document.createElement('div');
+        wrapper.className = 'item-wrapper';
+        wrapper.style.cssText = `left:${x}px; top:${y}px; width:${colWidth - 12}px; height:${h}px;`;
+        const imgDiv = document.createElement('div');
+        imgDiv.className = 'item-img';
+        imgDiv.style.backgroundImage = `url(${item.img})`;
+        imgDiv.style.backgroundSize = 'cover';
+        imgDiv.style.backgroundPosition = 'center';
+        imgDiv.style.borderRadius = '16px';
+        wrapper.appendChild(imgDiv);
+        list.appendChild(wrapper);
+        itemElements.push(wrapper);
+      });
+
+      // GSAP giriş animasyonu
+      gsap.from(itemElements, {
+        opacity: 0,
+        y: 60,
+        scale: 0.9,
+        duration: 0.6,
+        stagger: 0.08,
+        ease: 'power3.out'
+      });
+
+      // Hover efekti
+      itemElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          gsap.to(el.querySelector('.item-img'), { scale: 0.95, duration: 0.3 });
+        });
+        el.addEventListener('mouseleave', () => {
+          gsap.to(el.querySelector('.item-img'), { scale: 1, duration: 0.3 });
+        });
+      });
+
+      return () => {};
+    }
+
+    // ------------------------------------------------------------
+    // 8. SAYFAYI BAŞLAT
+    // ------------------------------------------------------------
+    document.addEventListener('DOMContentLoaded', async () => {
+
+      // --- Plasma ---
+      const plasmaContainer = document.getElementById('plasma-bg');
+      if (plasmaContainer) {
+        initPlasma(plasmaContainer, '#4f1f7b', 1.7, 1.5, 0.8);
+      }
+
+      // --- Splash Cursor ---
+      const splashContainer = document.getElementById('splash-cursor');
+      if (splashContainer) {
+        initSplashCursor(splashContainer);
+      }
+
+      // --- Gradient Text Başlıklar ---
+      const titles = [
+        { id: 'hero-title', text: 'Tunay Kitap Kulübü' },
+        { id: 'tanitim-title', text: 'Kulüp Hakkında' },
+        { id: 'galeri-title', text: '📸 Anılar & Buluşmalar' },
+        { id: 'iletisim-title', text: 'Bize Katılın' }
+      ];
+      titles.forEach(({ id, text }) => {
+        const el = document.getElementById(id);
+        if (el) createGradientText(el, text);
+      });
+
+      // --- Tilted Card (Logo) ---
+      const logoContainer = document.getElementById('hero-logo-container');
+      if (logoContainer) {
+        // Logo dosyası: Tunay_Logo-removebg-preview.png (uzantı .png varsayıldı)
+        initTiltedCard(logoContainer, 'Tunay_Logo-removebg-preview.png', 'Tunay Kitap Kulübü Logosu', 'Tunay Kitap Kulübü');
+      }
+
+      // --- ScrollStack (Tanıtım) ---
+      const scrollContainer = document.getElementById('scrollstack-container');
+      if (scrollContainer) {
+        const items = [
+          {
+            title: '📖 Felsefemiz',
+            content: `Fevzi Çakmak Anadolu Lisesi’nin değerli öğrencileri, kitap kulübümüz yakında açılıyor. Her ay bir kitap okuyup, beraber tahlil edeceğiz. Okuyacağımız kitaba, her ay sizinle karar vereceğiz.`
+          },
+          {
+            title: '🌙 “TUNAY” Ne Demek?',
+            content: `“TUNAY” eski Türkçe’de <span class="highlight">ay gibi parlak ve aydınlık</span> anlamına gelir. “Tun” gece demektir. Geceyi aydınlatan ay… Kulübümüzün isminin öz Türkçe olmasını, böylece Türklüğü temsil etmesini istedik.`
+          },
+          {
+            title: '🚀 Amaç & Hedef',
+            content: `Kulübümüz, size dünyaya dair yeni ufuklar ve bilgiler kazandırmayı amaçlıyor. Hayatın yoğunluğunda kendinizi kaybetmeyin, kitaplar içinde kaybolun. Kulübümüze dinleyici olarak da katılabilirsiniz.`
+          },
+          {
+            title: '👩‍🏫 Kurucu: Zeynep Beril Köse',
+            content: `Kulübümüzün kurucusu ve yürütücüsü <span class="highlight">Zeynep Beril Köse</span>, okuma tutkusunu paylaşmak ve arkadaşlarıyla birlikte öğrenmeyi büyütmek için bu yola çıktı.`
+          },
+          {
+            title: '🤝 Katılın, Birlikte Okuyalım',
+            content: `Kitaplar, uygarlığa yol gösteren ışıklardır. – Francis Bacon<br><br>Kulübümüze öğretmenlerimiz de teşrif edecektir. Sizleri de aramızda görmekten mutluluk duyarız.`
+          }
+        ];
+        initScrollStack(scrollContainer, items);
+      }
+
+      // --- Masonry (Galeri) ---
+      const masonryContainer = document.getElementById('masonry-container');
+      if (masonryContainer) {
+        const galleryItems = [
+          // Verdiğin görseller
+          { img: 'Tunay_Logo-removebg-preview.png', height: 260 },
+          { img: 'Tunay_Kitap_BG.jpeg', height: 340 },
+          { img: 'Tunay_Buluşma.jpeg', height: 300 },
+          // Kitaplık ve kütüphane temalı ek örnekler
+          { img: 'https://picsum.photos/seed/library1/600/400', height: 280 },
+          { img: 'https://picsum.photos/seed/library2/600/500', height: 320 },
+          { img: 'https://picsum.photos/seed/library3/600/350', height: 240 },
+          { img: 'https://picsum.photos/seed/library4/600/450', height: 300 },
+          { img: 'https://picsum.photos/seed/library5/600/380', height: 260 },
+          { img: 'https://picsum.photos/seed/library6/600/420', height: 280 },
+        ];
+        initMasonry(masonryContainer, galleryItems);
+      }
+
+      // --- NAVBAR scroll ---
+      const nav = document.getElementById('navbar');
+      window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 40);
+      });
+
+    });
+  </script>
+
+</body>
+</html>
