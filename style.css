@@ -15,7 +15,7 @@ body {
   min-height: 100vh;
 }
 
-/* ───────── AURORA ARKA PLAN (CSS taklidi) ───────── */
+/* ───────── AURORA ARKA PLAN ───────── */
 .aurora-bg {
   position: fixed;
   inset: 0;
@@ -60,7 +60,7 @@ body {
   100% { transform: translate(2%, -2%) scale(1.05) rotate(2deg); opacity: 0.7; }
 }
 
-/* ───────── STAGGERED MENU (CSS ile) ───────── */
+/* ───────── STAGGERED MENU ───────── */
 .staggered-menu-wrapper {
   position: fixed;
   top: 0;
@@ -79,11 +79,24 @@ body {
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   pointer-events: auto;
 }
+.sm-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
 .sm-logo-img {
   height: 40px;
   width: auto;
   border-radius: 8px;
   object-fit: contain;
+}
+.sm-logo-text {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, #a78bfa, #7c3aed);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .sm-toggle {
   background: none;
@@ -93,12 +106,19 @@ body {
   cursor: pointer;
   transition: transform 0.3s;
   pointer-events: auto;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .sm-toggle:hover {
   transform: scale(1.1);
 }
-.sm-toggle-text {
-  display: block;
+.sm-toggle-icon,
+.sm-toggle-close {
+  font-size: 2rem;
+  line-height: 1;
 }
 .staggered-menu-panel {
   position: fixed;
@@ -164,6 +184,45 @@ body {
   color: #a78bfa;
 }
 
+/* ───────── TILTED CARD (3D eğimli logo) ───────── */
+#tilted-card {
+  perspective: 800px;
+  max-width: 300px;
+  margin: 0 auto 2rem;
+  cursor: pointer;
+}
+.tilted-card-inner {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.08s ease;
+  width: 100%;
+}
+.tilted-card-img {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  display: block;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+  will-change: transform;
+}
+.tilted-card-caption {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  color: #fff;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 1000;
+  transition: opacity 0.2s;
+  white-space: nowrap;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transform: translate(-50%, -100%);
+  margin-top: -10px;
+}
+
 /* ───────── HERO ───────── */
 #hero {
   min-height: 100vh;
@@ -175,20 +234,6 @@ body {
   padding: 8rem 2rem 4rem;
   position: relative;
   z-index: 2;
-}
-.hero-logo {
-  margin-bottom: 2rem;
-  max-width: 300px;
-}
-.hero-logo-img {
-  width: 100%;
-  height: auto;
-  border-radius: 16px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
-  transition: transform 0.3s;
-}
-.hero-logo-img:hover {
-  transform: scale(1.02);
 }
 .hero-badge {
   display: inline-block;
@@ -289,7 +334,7 @@ section {
   font-weight: 600;
 }
 
-/* ───────── CIRCULAR GALLERY (CSS taklidi) ───────── */
+/* ───────── CIRCULAR GALLERY ───────── */
 #galeri {
   background: rgba(0, 0, 0, 0.3);
   padding: 4rem 2rem;
@@ -320,8 +365,9 @@ section {
   display: flex;
   gap: 20px;
   height: 100%;
-  animation: circularScroll 25s linear infinite;
+  animation: circularScroll 30s linear infinite;
   padding: 10px 0;
+  width: max-content;
 }
 .circular-track:hover {
   animation-play-state: paused;
@@ -466,4 +512,6 @@ footer a {
   .staggered-menu-panel ul li a { font-size: 2rem; }
   .circular-gallery { height: 300px; }
   .circular-item { flex: 0 0 200px; }
+  .sm-logo-text { font-size: 1rem; }
+  .sm-logo-img { height: 32px; }
 }
