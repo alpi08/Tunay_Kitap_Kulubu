@@ -222,21 +222,21 @@ body {
 }
 
 /* ==========================================================================
-   4. KESİN ÇÖZÜMLÜ HERO ALANI (SOLDAN SAĞA AKIŞ & GENİŞ ALANLAR)
+   4. YENİDEN TASARLANAN TAM İSTEDİĞİN HERO ALANI (SOL METİN - SAĞ KART)
    ========================================================================== */
 #hero {
   min-height: 100vh;
   max-width: 1400px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr; /* Sol tarafa (yazılara) daha geniş alan verdik */
+  grid-template-columns: 1.2fr 0.8fr; /* Sol geniş içerik, sağ kart */
   align-items: center;
   justify-content: space-between;
   padding: 140px 8% 80px;
   gap: 60px;
 }
 
-/* SOL TARAF: DÜZGÜN YERLEŞTİRİLMİŞ METİNLER */
+/* SOL ALAN: TAM İSTEDİĞİN ARDI ARDINA SIRALAMA */
 .hero-content-left {
   text-align: left;
   display: flex;
@@ -244,50 +244,55 @@ body {
   align-items: flex-start;
 }
 
+/* 1. SIRADA EN ÜSTTE BÜYÜK BAŞLIK */
+.hero-title {
+  font-size: 4.5rem;
+  font-weight: 900;
+  letter-spacing: -1.5px;
+  line-height: 1.1;
+  margin-bottom: 15px; /* Hemen altına geçmesi için daraltıldı */
+}
+
+/* 2. SIRADA BAŞLIĞIN HEMMEN ALTINDAKİ LİSE ADI */
 .hero-badge {
   background: rgba(124, 58, 237, 0.12);
   border: 1px solid rgba(124, 58, 237, 0.35);
-  padding: 8px 22px;
+  padding: 6px 18px;
   border-radius: 50px;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: 600;
   color: #c084fc;
   letter-spacing: 0.5px;
-  margin-bottom: 30px; /* Tıkış tıkışlığı önlemek için alt boşluğu arttırıldı */
+  margin-bottom: 20px; /* Hemen altındaki açıklamaya yakın olması sağlandı */
+  box-shadow: 0 0 20px rgba(124, 58, 237, 0.1);
 }
 
-.hero-title {
-  font-size: 4.2rem; /* Başlık belirginleştirildi */
-  font-weight: 900;
-  letter-spacing: -1px;
-  line-height: 1.2; /* Satır arası açıldı */
-}
-
+/* 3. SIRADA HEMMEN ALTTAKİ UFAK AÇIKLAMA */
 .hero-sub {
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   color: #94a3b8;
-  margin-top: 30px; /* Üst başlıkla arası açıldı */
-  line-height: 1.7; /* Okunabilirlik için ferahlatıldı */
-  max-width: 600px;
+  line-height: 1.6;
+  max-width: 580px;
+  margin-bottom: 25px; /* Altındaki butonlara yakın durması sağlandı */
 }
 
+/* 4. SIRADA UFACIK ALTTAKİ TUŞLAR */
 .hero-buttons {
-  margin-top: 45px;
   display: flex;
-  gap: 24px;
+  gap: 16px;
 }
 
-/* SAĞ TARAF: BÜYÜK VE SAĞA SABİTLENMİŞ 3D KART */
+/* SAĞ ALAN: GİRİŞ KISMINDA SAĞDA DURAN BÜYÜK KART */
 #tilted-card {
   perspective: 1200px;
   display: flex;
-  justify-content: flex-end; /* Kartı tamamen sağ tarafa yaslar */
+  justify-content: flex-end; /* Kesinlikle sağ tarafa yaslar */
   width: 100%;
 }
 
 .tilted-card-inner {
-  width: 360px; /* Büyükçe gözükmesi sağlandı */
-  height: 360px;
+  width: 380px; /* Büyükçe gözükmesi sağlandı */
+  height: 380px;
   background: rgba(255, 255, 255, 0.02);
   border: 2px solid rgba(167, 139, 250, 0.25);
   border-radius: 45px;
@@ -313,11 +318,11 @@ body {
   filter: drop-shadow(0 20px 30px rgba(0,0,0,0.4));
 }
 
-/* Buton Tasarımları */
+/* Buton Şablonları */
 .btn-primary, .btn-secondary {
-  padding: 16px 38px;
+  padding: 14px 34px;
   border-radius: 50px;
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 600;
   text-decoration: none;
   transition: transform 0.3s, box-shadow 0.3s;
@@ -433,14 +438,14 @@ footer {
 .footer-social a:hover { transform: scale(1.2); }
 
 /* ==========================================================================
-   8. MOBİL UYUMLULUK (ESNEK GEÇİŞLER)
+   8. MOBİL UYUMLULUK SİSTEMİ
    ========================================================================== */
 @media (max-width: 1024px) {
   #hero {
-    grid-template-columns: 1fr; /* Mobilde tek sütun düzenine döner */
+    grid-template-columns: 1fr; /* Mobilde dikey sıraya geçer */
     text-align: center;
-    gap: 50px;
-    padding-top: 160px;
+    gap: 40px;
+    padding-top: 150px;
   }
 
   .hero-content-left {
@@ -449,25 +454,25 @@ footer {
   }
 
   #tilted-card {
-    justify-content: center; /* Mobilde kartı merkeze alır */
+    justify-content: center; /* Mobilde kartı ortalar */
+    order: -1; /* Mobilde kartın yazılardan önce (üstte) görünmesini sağlar */
   }
 
   .tilted-card-inner {
-    width: 300px;
-    height: 300px;
+    width: 280px;
+    height: 280px;
   }
 }
 
 @media (max-width: 768px) {
   .staggered-menu-wrapper { padding: 20px 5%; }
-  .sm-panel-list { gap: 20px; }
-  .sm-panel-list a { font-size: 0.9rem; }
-  .hero-title { font-size: 2.8rem; }
+  .sm-panel-list { gap: 15px; }
+  .sm-panel-list a { font-size: 0.85rem; }
+  .hero-title { font-size: 2.6rem; }
   .hero-buttons { flex-direction: column; width: 100%; }
   .btn-primary, .btn-secondary { width: 100%; text-align: center; }
   .tanitim-header h2, #galeri .galeri-header h2, #iletisim h2 { font-size: 2.2rem; }
-  .scroll-stack-card { padding: 30px; }
-  .circular-item { width: 280px; height: 200px; }
+  .circular-item { width: 260px; height: 200px; }
   .iletisim-buttons { flex-direction: column; width: 100%; }
   footer { flex-direction: column; gap: 25px; text-align: center; }
 }
