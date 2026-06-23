@@ -166,14 +166,14 @@ body {
 }
 
 /* ==========================================================================
-   3. YENİ TEMİZ NAVBAR SİSTEMİ (MENÜ TUŞU KALDIRILDI)
+   3. TEMİZ NAVBAR SİSTEMİ (BUTONSUZ VE FERAH)
    ========================================================================== */
 .staggered-menu-wrapper {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  padding: 20px 5%;
+  padding: 25px 8%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -181,45 +181,34 @@ body {
   opacity: 0;
   transform: translateY(-20px);
   animation: fadeUpIn 0.8s ease forwards 3.4s;
-  background: rgba(5, 5, 21, 0.6);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.staggered-menu-header {
-  display: flex;
-  align-items: center;
+  background: rgba(5, 5, 21, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
 }
 
 .sm-logo-img {
-  height: 50px;
+  height: 55px;
   object-fit: contain;
   filter: drop-shadow(0 0 10px rgba(167, 139, 250, 0.3));
 }
 
-/* Menü Butonu (☰ / ✕) Tamamen Kapatıldı */
 .sm-toggle, .menu-checkbox {
   display: none !important;
 }
 
-/* Menü Linkleri Her Zaman Açık */
-.staggered-menu-panel {
-  display: flex;
-  align-items: center;
-}
-
 .sm-panel-list {
   display: flex;
-  gap: 30px;
+  gap: 40px;
   list-style: none;
 }
 
 .sm-panel-list a {
   color: #94a3b8;
   text-decoration: none;
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 600;
+  letter-spacing: 0.5px;
   transition: color 0.3s, text-shadow 0.3s;
 }
 
@@ -233,21 +222,22 @@ body {
 }
 
 /* ==========================================================================
-   4. YENİ MODERN HERO BÖLÜMÜ (KART BÜYÜTÜLDÜ VE SAĞA ALINDI)
+   4. KESİN ÇÖZÜMLÜ HERO ALANI (SOLDAN SAĞA AKIŞ & GENİŞ ALANLAR)
    ========================================================================== */
 #hero {
   min-height: 100vh;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr; /* Sol tarafa (yazılara) daha geniş alan verdik */
   align-items: center;
-  justify-content: space-between; /* Sol metin, sağ kart düzeni */
-  padding: 140px 5% 80px;
-  gap: 50px;
+  justify-content: space-between;
+  padding: 140px 8% 80px;
+  gap: 60px;
 }
 
+/* SOL TARAF: DÜZGÜN YERLEŞTİRİLMİŞ METİNLER */
 .hero-content-left {
-  flex: 1;
   text-align: left;
   display: flex;
   flex-direction: column;
@@ -255,78 +245,77 @@ body {
 }
 
 .hero-badge {
-  background: rgba(124, 58, 237, 0.15);
-  border: 1px solid rgba(124, 58, 237, 0.4);
-  padding: 8px 20px;
+  background: rgba(124, 58, 237, 0.12);
+  border: 1px solid rgba(124, 58, 237, 0.35);
+  padding: 8px 22px;
   border-radius: 50px;
   font-size: 0.9rem;
   font-weight: 600;
   color: #c084fc;
   letter-spacing: 0.5px;
-  margin-bottom: 25px;
-  box-shadow: 0 0 20px rgba(124, 58, 237, 0.1);
+  margin-bottom: 30px; /* Tıkış tıkışlığı önlemek için alt boşluğu arttırıldı */
 }
 
 .hero-title {
-  font-size: 3.8rem;
+  font-size: 4.2rem; /* Başlık belirginleştirildi */
   font-weight: 900;
   letter-spacing: -1px;
-  line-height: 1.15;
+  line-height: 1.2; /* Satır arası açıldı */
 }
 
 .hero-sub {
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   color: #94a3b8;
-  margin-top: 25px;
-  line-height: 1.6;
-  max-width: 550px;
+  margin-top: 30px; /* Üst başlıkla arası açıldı */
+  line-height: 1.7; /* Okunabilirlik için ferahlatıldı */
+  max-width: 600px;
 }
 
 .hero-buttons {
-  margin-top: 40px;
+  margin-top: 45px;
   display: flex;
-  gap: 20px;
+  gap: 24px;
 }
 
-/* BÜYÜTÜLMÜŞ VE SAĞA TAŞINMIŞ 3D KART */
+/* SAĞ TARAF: BÜYÜK VE SAĞA SABİTLENMİŞ 3D KART */
 #tilted-card {
   perspective: 1200px;
-  flex: 1;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end; /* Kartı tamamen sağ tarafa yaslar */
+  width: 100%;
 }
 
 .tilted-card-inner {
-  width: 320px;  /* Eski boyutu 140px idi, büyükçe yaptık */
-  height: 320px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 2px solid rgba(167, 139, 250, 0.3);
-  border-radius: 40px;
+  width: 360px; /* Büyükçe gözükmesi sağlandı */
+  height: 360px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 2px solid rgba(167, 139, 250, 0.25);
+  border-radius: 45px;
   display: flex;
   align-items: center;
   justify-content: center;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), inset 0 0 30px rgba(167, 139, 250, 0.15);
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6), inset 0 0 30px rgba(167, 139, 250, 0.1);
   transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
   transform-style: preserve-3d;
 }
 
 .tilted-card-inner:hover {
-  transform: rotateY(20deg) rotateX(-15deg) scale(1.05);
+  transform: rotateY(18deg) rotateX(-12deg) scale(1.03);
 }
 
 .tilted-card-img {
-  width: 80%;
-  height: 80%;
+  width: 82%;
+  height: 82%;
   object-fit: contain;
-  transform: translateZ(50px); /* 3D derinliği arttırıldı */
-  filter: drop-shadow(0 15px 25px rgba(0,0,0,0.3));
+  transform: translateZ(60px);
+  filter: drop-shadow(0 20px 30px rgba(0,0,0,0.4));
 }
 
 /* Buton Tasarımları */
 .btn-primary, .btn-secondary {
-  padding: 15px 35px;
+  padding: 16px 38px;
   border-radius: 50px;
   font-size: 1rem;
   font-weight: 600;
@@ -338,23 +327,23 @@ body {
 .btn-primary {
   background: linear-gradient(135deg, #7c3aed 0%, #2563eb 100%);
   color: #fff;
-  box-shadow: 0 10px 25px rgba(124, 58, 237, 0.35);
+  box-shadow: 0 10px 25px rgba(124, 58, 237, 0.3);
 }
 
 .btn-primary:hover {
   transform: translateY(-3px);
-  box-shadow: 0 15px 35px rgba(124, 58, 237, 0.55);
+  box-shadow: 0 15px 35px rgba(124, 58, 237, 0.5);
 }
 
 .btn-secondary {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.02);
   color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .btn-secondary:hover {
   border-color: #a78bfa;
-  background: rgba(167, 139, 250, 0.05);
+  background: rgba(167, 139, 250, 0.04);
   transform: translateY(-3px);
 }
 
@@ -362,96 +351,96 @@ body {
    5. KULÜP HAKKINDA (TANITIM)
    ========================================================================== */
 #tanitim {
-  padding: 100px 5%;
-  max-width: 1200px;
+  padding: 120px 8%;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
 .tanitim-header {
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 70px;
 }
 
-.tanitim-header h2 { font-size: 2.8rem; font-weight: 800; }
-.tanitim-header p { color: #94a3b8; font-size: 1.1rem; margin-top: 10px; }
+.tanitim-header h2 { font-size: 3rem; font-weight: 800; }
+.tanitim-header p { color: #94a3b8; font-size: 1.15rem; margin-top: 15px; }
 
 .scroll-stack-container {
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  gap: 30px;
 }
 
 .scroll-stack-card {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  padding: 40px;
-  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 45px;
+  border-radius: 28px;
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
   transition: transform 0.3s, border-color 0.3s;
 }
 
 .scroll-stack-card:hover {
-  border-color: rgba(167, 139, 250, 0.3);
+  border-color: rgba(167, 139, 250, 0.25);
   transform: translateY(-4px);
 }
 
-.scroll-stack-card h3 { font-size: 1.4rem; margin-bottom: 15px; color: #f8fafc; }
-.scroll-stack-card p { color: #94a3b8; line-height: 1.7; font-size: 1.05rem; }
+.scroll-stack-card h3 { font-size: 1.5rem; margin-bottom: 18px; color: #f8fafc; }
+.scroll-stack-card p { color: #94a3b8; line-height: 1.8; font-size: 1.1rem; }
 .highlight { color: #c084fc; font-weight: 600; }
 
 /* ==========================================================================
    6. SONSUZ AKAN GALERİ BÖLÜMÜ
    ========================================================================== */
-#galeri { padding: 100px 0; overflow: hidden; }
-.galeri-header { text-align: center; padding: 0 5%; margin-bottom: 50px; }
-.galeri-header h2 { font-size: 2.8rem; font-weight: 800; }
-.galeri-header p { color: #94a3b8; margin-top: 10px; }
+#galeri { padding: 120px 0; overflow: hidden; }
+.galeri-header { text-align: center; padding: 0 8%; margin-bottom: 60px; }
+.galeri-header h2 { font-size: 3rem; font-weight: 800; }
+.galeri-header p { color: #94a3b8; margin-top: 15px; }
 
 .circular-gallery-wrap { width: 100%; display: flex; overflow: hidden; padding: 20px 0; }
-.circular-track { display: flex; gap: 20px; width: max-content; animation: scrollInfinite 30s linear infinite; }
+.circular-track { display: flex; gap: 24px; width: max-content; animation: scrollInfinite 35s linear infinite; }
 .circular-track:hover { animation-play-state: paused; }
-.circular-item { width: 320px; height: 220px; border-radius: 20px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.08); }
+.circular-item { width: 340px; height: 240px; border-radius: 24px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.06); }
 .circular-item img { width: 100%; height: 100%; object-fit: cover; }
 
 @keyframes scrollInfinite {
   0% { transform: translateX(0); }
-  100% { transform: translateX(calc(-50% - 10px)); }
+  100% { transform: translateX(calc(-50% - 12px)); }
 }
 
 /* ==========================================================================
    7. İLETİŞİM & FOOTER
    ========================================================================== */
-#iletisim { padding: 100px 5%; text-align: center; max-width: 600px; margin: 0 auto; }
-#iletisim h2 { font-size: 2.8rem; font-weight: 800; }
-#iletisim p { color: #94a3b8; margin-top: 15px; }
-.iletisim-buttons { margin-top: 35px; display: flex; justify-content: center; gap: 20px; }
-.kurucu { margin-top: 40px; color: #64748b; }
+#iletisim { padding: 120px 8%; text-align: center; max-width: 700px; margin: 0 auto; }
+#iletisim h2 { font-size: 3rem; font-weight: 800; }
+#iletisim p { color: #94a3b8; margin-top: 20px; font-size: 1.15rem; }
+.iletisim-buttons { margin-top: 40px; display: flex; justify-content: center; gap: 24px; }
+.kurucu { margin-top: 50px; color: #64748b; }
 .kurucu strong { color: #94a3b8; }
 
 footer {
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  padding: 40px 5%;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  padding: 40px 8%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   color: #475569;
 }
-.footer-social { display: flex; gap: 20px; }
+.footer-social { display: flex; gap: 24px; }
 .footer-social a { text-decoration: none; transition: transform 0.2s; }
 .footer-social a:hover { transform: scale(1.2); }
 
 /* ==========================================================================
-   8. MOBİL RESPONSIVE DÜZENLEMELERİ
+   8. MOBİL UYUMLULUK (ESNEK GEÇİŞLER)
    ========================================================================== */
-@media (max-width: 968px) {
+@media (max-width: 1024px) {
   #hero {
-    flex-direction: column-reverse; /* Mobilde kart üste, yazılar alta gelir */
+    grid-template-columns: 1fr; /* Mobilde tek sütun düzenine döner */
     text-align: center;
-    padding-top: 120px;
-    justify-content: center;
+    gap: 50px;
+    padding-top: 160px;
   }
 
   .hero-content-left {
@@ -459,31 +448,26 @@ footer {
     text-align: center;
   }
 
+  #tilted-card {
+    justify-content: center; /* Mobilde kartı merkeze alır */
+  }
+
   .tilted-card-inner {
-    width: 260px; /* Mobilde aşırı devasa durmasın diye hafifçe ölçeklendi */
-    height: 260px;
+    width: 300px;
+    height: 300px;
   }
 }
 
 @media (max-width: 768px) {
-  .staggered-menu-wrapper {
-    padding: 15px 5%;
-  }
-  
-  .sm-panel-list {
-    gap: 15px;
-  }
-
-  .sm-panel-list a {
-    font-size: 0.85rem;
-  }
-
-  .hero-title { font-size: 2.4rem; }
-  .hero-sub { font-size: 1rem; }
+  .staggered-menu-wrapper { padding: 20px 5%; }
+  .sm-panel-list { gap: 20px; }
+  .sm-panel-list a { font-size: 0.9rem; }
+  .hero-title { font-size: 2.8rem; }
   .hero-buttons { flex-direction: column; width: 100%; }
   .btn-primary, .btn-secondary { width: 100%; text-align: center; }
-  .tanitim-header h2, #galeri .galeri-header h2, #iletisim h2 { font-size: 2rem; }
-  .circular-item { width: 260px; height: 180px; }
+  .tanitim-header h2, #galeri .galeri-header h2, #iletisim h2 { font-size: 2.2rem; }
+  .scroll-stack-card { padding: 30px; }
+  .circular-item { width: 280px; height: 200px; }
   .iletisim-buttons { flex-direction: column; width: 100%; }
-  footer { flex-direction: column; gap: 20px; text-align: center; }
+  footer { flex-direction: column; gap: 25px; text-align: center; }
 }
