@@ -181,7 +181,7 @@ body {
   margin: 0 auto;
   display: block;
   padding: 160px 8% 80px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Şık sınır çizgisi */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .hero-content-left {
@@ -292,7 +292,7 @@ body {
 
 .scroll-stack-container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Kartları yanyana ikili ızgara yaptık */
+  grid-template-columns: repeat(2, 1fr);
   gap: 30px;
 }
 
@@ -370,7 +370,6 @@ body {
   -webkit-backdrop-filter: blur(20px);
 }
 
-/* Dinamik Spotlight Parıltısı Maskesi */
 .spotlight-card::before {
   content: '';
   position: absolute;
@@ -386,7 +385,22 @@ body {
 
 .spotlight-card h2 { font-size: 3rem; font-weight: 800; position: relative; z-index: 2; }
 .spotlight-card p { color: #94a3b8; margin-top: 20px; font-size: 1.15rem; position: relative; z-index: 2; }
-.iletisim-buttons { margin-top: 40px; display: flex; justify-content: center; position: relative; z-index: 2; }
+
+.iletisim-buttons {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  position: relative;
+  z-index: 2;
+}
+
+.btn-instagram:hover {
+  border-color: #d946ef;
+  background: rgba(217, 70, 239, 0.05);
+  box-shadow: 0 0 20px rgba(217, 70, 239, 0.2);
+}
+
 .kurucu { margin-top: 50px; color: #64748b; position: relative; z-index: 2; }
 .kurucu strong { color: #94a3b8; }
 
@@ -404,7 +418,9 @@ footer { border-top: 1px solid rgba(255, 255, 255, 0.04); padding: 40px 8%; disp
 }
 
 @media (max-width: 768px) {
-  .sm-panel-list { display: none; } /* Mobilde üst linkleri gizler */
+  .sm-panel-list { display: none; }
   .hero-title { font-size: 2.8rem; }
   .spotlight-card h2 { font-size: 2.2rem; }
+  .iletisim-buttons { flex-direction: column; width: 100%; }
+  .btn-primary, .btn-secondary { width: 100%; text-align: center; }
 }
