@@ -111,9 +111,12 @@
     <div id="iletisim" class="spotlight-card">
       <h2>Bize Katılın</h2>
       <p>Siz de bu entelektüel yolculuğun bir parçası olmak ister misiniz? Kapımız tüm edebiyatseverlere açık.</p>
+      
       <div class="iletisim-buttons">
         <a href="mailto:iletisim@tunay.com" class="btn-primary">E-posta Gönder</a>
+        <a href="https://instagram.com/tunaykitapkulubu" target="_blank" class="btn-secondary btn-instagram">Instagram</a>
       </div>
+      
       <div class="kurucu">
         <p>Kulüp Kurucusu: <strong>Tunay</strong></p>
       </div>
@@ -130,13 +133,15 @@
 
   <script>
     const card = document.querySelector('.spotlight-card');
-    card.addEventListener('mousemove', e => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      card.style.setProperty('--mouse-x', `${x}px`);
-      card.style.setProperty('--mouse-y', `${y}px`);
-    });
+    if(card) {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+      });
+    }
   </script>
 </body>
 </html>
