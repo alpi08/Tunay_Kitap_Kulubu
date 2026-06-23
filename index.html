@@ -42,11 +42,8 @@
   <section id="hero">
     <div class="hero-content-left intro-fade-up">
       <h1 class="hero-title"><span class="gradient-text">Tunay Kitap Kulübü</span></h1>
-      
       <span class="hero-badge">Fevzi Çakmak Anadolu Lisesi</span>
-      
-      <p class="hero-sub">Kitapların büyülü dünyasında kaybolmak, yeni fikirler keşfetmek og edebiyatın derinliklerine birlikte dalmak için en doğru yerdesiniz.</p>
-      
+      <p class="hero-sub">Kitapların büyülü dünyasında kaybolmak, yeni fikirler keşfetmek ve edebiyatın derinliklerine birlikte dalmak için en doğru yerdesiniz.</p>
       <div class="hero-buttons">
         <a href="#tanitim" class="btn-primary">Keşfet</a>
         <a href="#galeri" class="btn-secondary">Galeri</a>
@@ -74,6 +71,22 @@
         <h3>Amacımız Ne?</h3>
         <p>Sadece kitap okumak değil; sayfaların ötesine geçerek analizler yapmak, eleştirel düşünceyi geliştirmek ve kültürel bağlar kurmak.</p>
       </div>
+      <div class="scroll-stack-card">
+        <h3>Haftalık Buluşmalar</h3>
+        <p>Belirlediğimiz ortak kitaplar üzerine her hafta derin fikir alışverişleri yapıyor, kahve eşliğinde sinematik ve edebi tartışmalar yürütüyoruz.</p>
+      </div>
+      <div class="scroll-stack-card">
+        <h3>Yazar Söyleşileri & Paneller</h3>
+        <p>Dönem boyunca davet ettiğimiz konuk yazarlarla atölyeler düzenliyor, ufkumuzu genişletecek panellere ev sahipliği yapıyoruz.</p>
+      </div>
+      <div class="scroll-stack-card">
+        <h3>Kritik ve Analiz Atölyesi</h3>
+        <p>Klasiklerden modern edebiyata, distopyalardan felsefi metinlere kadar geniş bir yelpazede alt metin okumaları gerçekleştiriyoruz.</p>
+      </div>
+      <div class="scroll-stack-card">
+        <h3>Kütüphane ve Sosyal Sorumluluk</h3>
+        <p>Okulumuzda ve çevre okullarda kitap toplama kampanyaları düzenliyor, herkesin edebiyata erişebilmesi için köprüler kuruyoruz.</p>
+      </div>
     </div>
   </section>
 
@@ -84,24 +97,26 @@
     </div>
     <div class="circular-gallery-wrap">
       <div class="circular-track">
-        <div class="circular-item"><img src="Tunay_Logo-removebg-preview.png" alt="Galeri 1"></div>
-        <div class="circular-item"><img src="Tunay_Logo-removebg-preview.png" alt="Galeri 2"></div>
-        <div class="circular-item"><img src="Tunay_Logo-removebg-preview.png" alt="Galeri 3"></div>
-        <div class="circular-item"><img src="Tunay_Logo-removebg-preview.png" alt="Galeri 1"></div>
-        <div class="circular-item"><img src="Tunay_Logo-removebg-preview.png" alt="Galeri 2"></div>
-        <div class="circular-item"><img src="Tunay_Logo-removebg-preview.png" alt="Galeri 3"></div>
+        <div class="circular-item"><img src="Tunay_Kitap_BG.jpeg" alt="Tunay Kitap Arka Planı"></div>
+        <div class="circular-item"><img src="Tunay_Buluşma.jpeg" alt="Tunay Buluşma Günü"></div>
+        <div class="circular-item"><img src="Tunay_Logo-removebg-preview.png" alt="Kulüp Teması 1"></div>
+        <div class="circular-item"><img src="Tunay_Kitap_BG.jpeg" alt="Tunay Kitap Arka Planı Tekrar"></div>
+        <div class="circular-item"><img src="Tunay_Buluşma.jpeg" alt="Tunay Buluşma Günü Tekrar"></div>
+        <div class="circular-item"><img src="Tunay_Logo-removebg-preview.png" alt="Kulüp Teması 2"></div>
       </div>
     </div>
   </section>
 
-  <section id="iletisim">
-    <h2>Bize Katılın</h2>
-    <p>Siz de bu entelektüel yolculuğun bir parçası olmak ister misiniz? Kapımız tüm edebiyatseverlere açık.</p>
-    <div class="iletisim-buttons">
-      <a href="mailto:iletisim@tunay.com" class="btn-primary">E-posta Gönder</a>
-    </div>
-    <div class="kurucu">
-      <p>Kulüp Kurucusu: <strong>Tunay</strong></p>
+  <section id="iletisim-container">
+    <div id="iletisim" class="spotlight-card">
+      <h2>Bize Katılın</h2>
+      <p>Siz de bu entelektüel yolculuğun bir parçası olmak ister misiniz? Kapımız tüm edebiyatseverlere açık.</p>
+      <div class="iletisim-buttons">
+        <a href="mailto:iletisim@tunay.com" class="btn-primary">E-posta Gönder</a>
+      </div>
+      <div class="kurucu">
+        <p>Kulüp Kurucusu: <strong>Tunay</strong></p>
+      </div>
     </div>
   </section>
 
@@ -113,5 +128,15 @@
     </div>
   </footer>
 
+  <script>
+    const card = document.querySelector('.spotlight-card');
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      card.style.setProperty('--mouse-x', `${x}px`);
+      card.style.setProperty('--mouse-y', `${y}px`);
+    });
+  </script>
 </body>
 </html>
