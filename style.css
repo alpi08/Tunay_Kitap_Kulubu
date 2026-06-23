@@ -1,381 +1,664 @@
-/* ===== 1. GENEL SIFIRLAMALAR ===== */
+/* ==========================================================================
+   1. GENEL AYARLAR & KOZMİK ARKA PLAN (AURORA)
+   ========================================================================== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body {
-  font-family: 'Poppins', 'Segoe UI', sans-serif;
-  overflow-x: hidden;
-  background: #0a0a1f;
-  color: #fff;
+html {
+  scroll-behavior: smooth;
 }
 
-/* ===== 2. INTRO PERDESİ (İLK KODUN BİREBİR AYNISI) ===== */
-.intro-overlay {
+body {
+  font-family: 'Outfit', 'Inter', sans-serif;
+  background-color: #050515;
+  color: #ffffff;
+  overflow-x: hidden;
+}
+
+/* Aurora Dalgalı Arka Plan Efekti */
+.aurora-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 50%, #0c0c28 0%, #050515 100%);
+}
+
+.aurora-wave {
+  position: absolute;
+  filter: blur(100px);
+  opacity: 0.25;
+  border-radius: 50%;
+  animation: auroraFloat 20s infinite ease-in-out;
+}
+
+.aurora-wave-1 {
+  top: -20%;
+  left: -10%;
+  width: 80vw;
+  height: 80vh;
+  background: #7c3aed;
+  animation-duration: 25s;
+}
+
+.aurora-wave-2 {
+  bottom: -30%;
+  right: -10%;
+  width: 90vw;
+  height: 90vh;
+  background: #2563eb;
+  animation-duration: 30s;
+  animation-delay: -5s;
+}
+
+.aurora-wave-3 {
+  top: 40%;
+  left: 30%;
+  width: 60vw;
+  height: 60vh;
+  background: #c084fc;
+  animation-duration: 22s;
+  animation-delay: -10s;
+}
+
+@keyframes auroraFloat {
+  0%, 100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+  33% { transform: translate(5vw, -5vh) scale(1.1) rotate(120deg); }
+  66% { transform: translate(-3vw, 8vh) scale(0.9) rotate(240deg); }
+}
+
+/* Gradyan Metin Sihirli Sınıfı */
+.gradient-text {
+  background: linear-gradient(135deg, #a78bfa 0%, #60a5fa 50%, #c084fc 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ==========================================================================
+   2. İLK VERDİĞİN SİNEMATİK GİRİŞ PERDESİ (INTRO-CURTAIN)
+   ========================================================================== */
+.intro-curtain {
   position: fixed;
   inset: 0;
-  z-index: 9999;
-  background: linear-gradient(135deg, #1a0b2e 0%, #16213e 50%, #0f0c29 100%);
+  z-index: 99999;
+  background: linear-gradient(135deg, #110724 0%, #0a0f24 50%, #050414 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  animation: slideAway 1.2s cubic-bezier(0.77, 0, 0.18, 1) forwards;
+  animation: curtainUp 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards;
   animation-delay: 3s;
 }
 
-.intro-overlay::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 20% 30%, rgba(124, 58, 237, 0.4), transparent 40%),
-    radial-gradient(circle at 80% 70%, rgba(37, 99, 235, 0.4), transparent 40%);
-  animation: pulseGlow 3s ease-in-out infinite;
-}
-
-@keyframes slideAway {
-  0%   { transform: translateY(0); opacity: 1; }
-  70%  { transform: translateY(0); opacity: 1; }
-  100% { transform: translateY(-100%); opacity: 0; visibility: hidden; }
-}
-
-@keyframes pulseGlow {
-  0%, 100% { opacity: 0.6; }
-  50%      { opacity: 1; }
-}
-
-/* ===== 3. INTRO İÇERİĞİ ===== */
+/* Intro Yazıları Grubu */
 .intro-content {
   text-align: center;
   z-index: 2;
-  animation: fadeOutContent 0.8s ease forwards;
-  animation-delay: 2.5s;
-}
-
-@keyframes fadeOutContent {
-  to { opacity: 0; transform: scale(1.2); }
+  animation: fadeOutIntro 0.6s ease forwards;
+  animation-delay: 2.6s;
 }
 
 .intro-logo {
-  font-size: 4rem;
-  font-weight: 800;
-  letter-spacing: 8px;
-  color: #a78bfa; /* Renk uçmasın diye garantiye aldık */
+  font-size: 4.5rem;
+  font-weight: 900;
+  letter-spacing: 12px;
   background: linear-gradient(90deg, #a78bfa, #60a5fa, #c084fc);
   -webkit-background-clip: text;
   background-clip: text;
+  color: transparent;
   opacity: 0;
-  animation: revealText 1s ease forwards 0.4s;
-  text-shadow: 0 0 40px rgba(167, 139, 250, 0.5);
+  animation: revealIntroText 1s ease forwards 0.3s;
+  text-shadow: 0 0 50px rgba(167, 139, 250, 0.4);
 }
 
 .intro-subtitle {
-  margin-top: 15px;
-  font-size: 1.1rem;
-  color: #b8b8d8;
-  letter-spacing: 4px;
+  margin-top: 12px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #94a3b8;
+  letter-spacing: 6px;
   opacity: 0;
-  animation: revealText 1s ease forwards 1s;
+  animation: revealIntroText 1s ease forwards 0.9s;
 }
 
 .intro-line {
   width: 0;
   height: 2px;
-  margin: 20px auto 0;
+  margin: 25px auto 0;
   background: linear-gradient(90deg, transparent, #a78bfa, #60a5fa, transparent);
-  animation: lineGrow 1.2s ease forwards 1.3s;
+  animation: lineExpand 1.2s ease forwards 1.2s;
 }
 
-@keyframes revealText {
-  from { opacity: 0; transform: translateY(30px); }
-  to   { opacity: 1; transform: translateY(0); }
+@keyframes curtainUp {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-100%); visibility: hidden; }
 }
 
-@keyframes lineGrow {
-  to { width: 300px; }
+@keyframes fadeOutIntro {
+  to { opacity: 0; transform: scale(1.1); }
 }
 
-/* Yüzen Işık Parçacıkları */
-.particle {
-  position: absolute;
-  border-radius: 50%;
-  background: radial-gradient(circle, #a78bfa, transparent);
-  animation: floatUp 4s linear infinite;
+@keyframes revealIntroText {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes lineExpand {
+  to { width: 280px; }
+}
+
+/* Perde Sonrası Elementlerin Sırayla Gelmesi İçin Sınıf */
+.intro-fade-up {
   opacity: 0;
+  transform: translateY(40px);
+  animation: fadeUpIn 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 
-@keyframes floatUp {
-  0%   { transform: translateY(100vh) scale(0); opacity: 0; }
-  20%  { opacity: 1; }
-  100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+#hero #tilted-card { animation-delay: 3.5s; }
+#hero .hero-badge { animation-delay: 3.7s; }
+#hero .hero-title { animation-delay: 3.9s; }
+#hero .hero-sub { animation-delay: 4.1s; }
+#hero .hero-buttons { animation-delay: 4.3s; }
+
+@keyframes fadeUpIn {
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* ===== 4. ANA SİTE ARKA PLANI ===== */
-.site {
-  min-height: 100vh;
-  background: linear-gradient(160deg, #0f0c29 0%, #16213e 50%, #1a0b2e 100%);
-}
-
-/* ===== 5. NAVBAR ===== */
-.navbar {
+/* ==========================================================================
+   3. SAF CSS STAGGER MENÜ & NAVBAR (AÇMA-KAPATMA GARANTİLİ)
+   ========================================================================== */
+.staggered-menu-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px 5%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 25px 60px;
+  z-index: 5000;
   opacity: 0;
-  transform: translateY(-40px);
-  animation: elementIn 0.8s ease forwards 3.4s;
-  position: relative;
-  z-index: 100;
+  transform: translateY(-20px);
+  animation: fadeUpIn 0.8s ease forwards 3.4s;
 }
 
-.nav-logo {
-  font-size: 1.5rem;
-  font-weight: 700;
-  background: linear-gradient(90deg, #a78bfa, #60a5fa);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+.staggered-menu-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.nav-links {
+.sm-logo-img {
+  height: 55px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 10px rgba(167, 139, 250, 0.3));
+}
+
+/* Tetikleyici Buton Tasarımı */
+.sm-toggle {
+  font-size: 2.2rem;
+  color: #fff;
+  cursor: pointer;
+  z-index: 6000; /* Buton her şeyin üstünde kalacak */
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  transition: transform 0.2s;
+}
+
+.sm-toggle:hover {
+  transform: scale(1.1);
+}
+
+/* Başlangıçta Kapatma Simgesi (X) Gizli */
+.sm-toggle-close {
+  display: none;
+}
+
+/* Büyük Ekranlar İçin Panel Düzeni (Yatay ve Sabit) */
+.staggered-menu-panel {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.sm-panel-list {
   display: flex;
   gap: 35px;
   list-style: none;
 }
 
-.nav-links a {
-  color: #c4c4e0;
+.sm-panel-list a {
+  color: #94a3b8;
   text-decoration: none;
-  font-size: 0.95rem;
-  transition: color 0.3s;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: color 0.3s, text-shadow 0.3s;
 }
 
-.nav-links a:hover {
+.sm-panel-list a:hover {
   color: #a78bfa;
+  text-shadow: 0 0 15px rgba(167, 139, 250, 0.6);
 }
 
-/* Saf CSS Menü Altyapısı */
-.menu-checkbox {
-  display: none;
+.sm-socials {
+  display: none; /* Masaüstünde sosyal medya başlığı gizli */
 }
 
-.menu-toggle-btn {
-  display: none;
-  font-size: 1.8rem;
-  color: #fff;
-  cursor: pointer;
-}
-
-/* ===== 6. HERO BÖLÜMÜ ===== */
-.hero {
+/* ==========================================================================
+   4. HERO BÖLÜMÜ & 3D TILTED LOGO KARTI
+   ========================================================================== */
+#hero {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 100px 20px 60px;
+  padding: 120px 20px 80px;
 }
 
-.hero h1 {
-  font-size: 3.5rem;
-  font-weight: 800;
-  line-height: 1.2;
-  max-width: 800px;
-  opacity: 0;
-  transform: translateY(50px);
-  animation: elementIn 0.9s ease forwards 3.7s;
+/* 3D Tilted Card Yapısı */
+#tilted-card {
+  perspective: 1000px;
+  margin-bottom: 30px;
 }
 
-.hero h1 span {
-  background: linear-gradient(90deg, #a78bfa, #60a5fa, #c084fc);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+.tilted-card-inner {
+  width: 140px;
+  height: 140px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(167, 139, 250, 0.25);
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), inset 0 0 20px rgba(167, 139, 250, 0.1);
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  transform-style: preserve-3d;
 }
 
-.hero p {
+.tilted-card-inner:hover {
+  transform: rotateY(15deg) rotateX(-10deg) scale(1.05);
+}
+
+.tilted-card-img {
+  width: 85%;
+  height: 85%;
+  object-fit: contain;
+  transform: translateZ(30px); /* 3D derinlik hissi */
+}
+
+.hero-badge {
+  background: rgba(124, 58, 237, 0.15);
+  border: 1px solid rgba(124, 58, 237, 0.4);
+  padding: 8px 20px;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #c084fc;
+  letter-spacing: 0.5px;
+  margin-bottom: 25px;
+  box-shadow: 0 0 20px rgba(124, 58, 237, 0.1);
+}
+
+.hero-title {
+  font-size: 4rem;
+  font-weight: 900;
+  letter-spacing: -1px;
+  max-width: 850px;
+  line-height: 1.15;
+}
+
+.hero-sub {
+  font-size: 1.2rem;
+  color: #94a3b8;
+  max-width: 600px;
   margin-top: 25px;
-  font-size: 1.15rem;
-  color: #b8b8d8;
-  max-width: 550px;
-  opacity: 0;
-  transform: translateY(50px);
-  animation: elementIn 0.9s ease forwards 4s;
+  line-height: 1.6;
 }
 
 .hero-buttons {
   margin-top: 40px;
   display: flex;
   gap: 20px;
-  opacity: 0;
-  transform: translateY(50px);
-  animation: elementIn 0.9s ease forwards 4.3s;
 }
 
-/* ===== 7. BUTONLAR ===== */
-.btn {
-  padding: 14px 35px;
+/* Buton Tasarımları */
+.btn-primary, .btn-secondary {
+  padding: 15px 40px;
   border-radius: 50px;
   font-size: 1rem;
   font-weight: 600;
-  cursor: pointer;
-  border: none;
-  transition: transform 0.3s, box-shadow 0.3s;
   text-decoration: none;
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
   display: inline-block;
 }
 
 .btn-primary {
-  background: linear-gradient(90deg, #7c3aed, #2563eb);
+  background: linear-gradient(135deg, #7c3aed 0%, #2563eb 100%);
   color: #fff;
-  box-shadow: 0 10px 30px rgba(124, 58, 237, 0.4);
+  box-shadow: 0 10px 25px rgba(124, 58, 237, 0.35);
 }
 
 .btn-primary:hover {
   transform: translateY(-3px);
-  box-shadow: 0 15px 40px rgba(124, 58, 237, 0.6);
+  box-shadow: 0 15px 35px rgba(124, 58, 237, 0.55);
 }
 
-.btn-outline {
-  background: transparent;
-  color: #c4c4e0;
-  border: 1px solid #4c4c7a;
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.03);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
 }
 
-.btn-outline:hover {
+.btn-secondary:hover {
   border-color: #a78bfa;
-  color: #a78bfa;
+  background: rgba(167, 139, 250, 0.05);
+  transform: translateY(-3px);
 }
 
-/* ===== 8. KARTLAR ===== */
-.cards {
+/* ==========================================================================
+   5. KULÜP HAKKINDA (TANITIM) & SCROLL STACK CARD DÜZENİ
+   ========================================================================== */
+#tanitim {
+  padding: 100px 5%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.tanitim-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.tanitim-header h2 {
+  font-size: 2.8rem;
+  font-weight: 800;
+}
+
+.tanitim-header p {
+  color: #94a3b8;
+  font-size: 1.1rem;
+  margin-top: 10px;
+}
+
+.scroll-stack-container {
   display: flex;
-  gap: 30px;
-  justify-content: center;
-  flex-wrap: wrap;
-  padding: 60px 40px;
+  flex-direction: column;
+  gap: 25px;
 }
 
-.card {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(167, 139, 250, 0.2);
+.scroll-stack-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 40px;
+  border-radius: 24px;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+
+.scroll-stack-card:hover {
+  border-color: rgba(167, 139, 250, 0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.scroll-stack-card h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #f8fafc;
+}
+
+.scroll-stack-card p {
+  color: #94a3b8;
+  line-height: 1.7;
+  font-size: 1.05rem;
+}
+
+.highlight {
+  color: #c084fc;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   6. SONSUZ AKAN GALERİ BÖLÜMÜ (CIRCULAR GALERİ)
+   ========================================================================== */
+#galeri {
+  padding: 100px 0;
+  overflow: hidden;
+}
+
+.galeri-header {
+  text-align: center;
+  padding: 0 5%;
+  margin-bottom: 50px;
+}
+
+.galeri-header h2 { font-size: 2.8rem; font-weight: 800; }
+.galeri-header p { color: #94a3b8; margin-top: 10px; }
+
+.circular-gallery-wrap {
+  width: 100%;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  padding: 20px 0;
+}
+
+/* Pürüzsüz akan şerit */
+.circular-track {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  animation: scrollInfinite 30s linear infinite;
+}
+
+.circular-track:hover {
+  animation-play-state: paused; /* Üzerine gelince akış durur */
+}
+
+.circular-item {
+  width: 320px;
+  height: 220px;
   border-radius: 20px;
-  padding: 35px 30px;
-  width: 300px;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  opacity: 0;
-  transform: translateY(60px);
-  transition: transform 0.3s, box-shadow 0.3s;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s;
 }
 
-.card:nth-child(1) { animation: elementIn 0.8s ease forwards 4.6s; }
-.card:nth-child(2) { animation: elementIn 0.8s ease forwards 4.8s; }
-.card:nth-child(3) { animation: elementIn 0.8s ease forwards 5s; }
-
-.card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 20px 50px rgba(124, 58, 237, 0.3);
+.circular-item:hover {
+  transform: scale(1.03);
 }
 
-.card-icon {
-  width: 60px;
-  height: 60px;
-  border-radius: 15px;
-  background: linear-gradient(135deg, #7c3aed, #2563eb);
+.circular-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@keyframes scrollInfinite {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-50% - 10px)); }
+}
+
+/* DÖNGÜNÜN KOPMAMASI İÇİN: Aynı track'i CSS'te iki katı genişlikte simüle ediyoruz */
+.circular-track::after {
+  content: "";
   display: flex;
-  align-items: center;
+}
+
+/* ==========================================================================
+   7. İLETİŞİM & FOOTER BÖLÜMÜ
+   ========================================================================== */
+#iletisim {
+  padding: 100px 5%;
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+#iletisim h2 { font-size: 2.8rem; font-weight: 800; }
+#iletisim p { color: #94a3b8; margin-top: 15px; font-size: 1.1rem; }
+
+.iletisim-buttons {
+  margin-top: 35px;
+  display: flex;
   justify-content: center;
-  font-size: 1.8rem;
-  margin-bottom: 20px;
+  gap: 20px;
 }
 
-.card h3 {
-  font-size: 1.3rem;
-  margin-bottom: 12px;
+.kurucu {
+  margin-top: 40px;
+  font-size: 1rem;
+  color: #64748b;
 }
 
-.card p {
-  color: #b8b8d8;
+.kurucu strong { color: #94a3b8; }
+
+footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 40px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  color: #475569;
   font-size: 0.95rem;
-  line-height: 1.6;
 }
 
-/* Ortak Animasyon Tetikleyici */
-@keyframes elementIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.footer-social {
+  display: flex;
+  gap: 20px;
 }
 
-/* ===== 9. GÜVENLİ VE MOBİL UYUMLU KATMANLAR ===== */
+.footer-social a {
+  text-decoration: none;
+  font-size: 1.2rem;
+  transition: transform 0.2s;
+}
+
+.footer-social a:hover {
+  transform: scale(1.2);
+}
+
+/* ==========================================================================
+   8. %100 HATASIZ MOBİL RESPONSIVE & SÜPER GÜÇLÜ KAPANAN MENÜ SİSTEMİ
+   ========================================================================== */
 @media (max-width: 768px) {
-  .navbar { 
-    padding: 20px; 
-  }
   
-  .nav-logo {
-    font-size: 1.3rem;
+  /* MOBİL MENÜ DÜZENLEME ALANI */
+  .sm-toggle {
+    display: flex; /* Mobilde ikon küpünü açıyoruz */
   }
 
-  /* Hamburger İkonunu Aç */
-  .menu-toggle-btn.open-btn {
-    display: block;
-    z-index: 100;
+  /* HTML'deki Checkbox tetiklendiğinde gerçekleşecek mucize kurallar */
+  .menu-checkbox:checked ~ .staggered-menu-header .sm-toggle-icon {
+    display: none; /* Üç çizgi gizlenir */
   }
 
-  /* Yan Panel Yapısı */
-  .nav-links {
+  .menu-checkbox:checked ~ .staggered-menu-header .sm-toggle-close {
+    display: block; /* Çarpı (X) simgesi görünür olur */
+    color: #fff;
+  }
+
+  /* Menü Panelini Mobilde Tam Ekran Sağdan Açılır Panel Yapma */
+  .staggered-menu-panel {
     position: fixed;
     top: 0;
-    right: -100%;
-    width: 280px;
+    right: -100%; /* Başlangıçta sağ tarafta tamamen saklı */
+    width: 290px;
     height: 100vh;
-    background: #0f0c29;
+    background: #09091a; /* Görseldeki pürüzsüz koyu ton */
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 40px;
-    z-index: 99999; /* Katmanı en üste sabitledik */
-    transition: right 0.4s ease-in-out;
+    gap: 50px;
+    z-index: 5500; /* Kapatma butonunun hemen altında, içeriğin ise en üstünde */
+    transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+    box-shadow: -15px 0 40px rgba(0, 0, 0, 0.6);
     border-left: 1px solid rgba(167, 139, 250, 0.15);
-    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+    padding: 40px;
   }
 
-  .nav-links a {
+  /* Checkbox aktifleştiğinde paneli ekrana çekiyoruz */
+  .menu-checkbox:checked ~ .staggered-menu-panel {
+    right: 0;
+  }
+
+  .sm-panel-list {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .sm-panel-list a {
     font-size: 1.4rem;
     font-weight: 600;
   }
 
-  /* Menü Tetiklendiğinde (Açılınca) */
-  .menu-checkbox:checked ~ .nav-links {
-    right: 0;
+  /* Mobildeki sosyal medya alanı */
+  .sm-socials {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 30px;
+    width: 100%;
   }
 
-  /* Çarpı Butonunun Menünün Üstünde Kalması İçin Kesin Çözüm */
-  .menu-checkbox:checked ~ .menu-toggle-btn.open-btn {
-    display: none;
-  }
-  
-  .menu-checkbox:checked ~ .menu-toggle-btn.close-btn {
-    display: block;
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 100000; /* Çarpı ikonunu en tepeye aldık, arkada kalamaz */
+  .sm-socials h3 {
+    font-size: 0.9rem;
+    color: #475569;
+    text-transform: uppercase;
+    letter-spacing: 2px;
   }
 
-  /* Mobil Ekran Boyutlandırmaları */
-  .hero { padding: 60px 20px; }
-  .hero h1 { font-size: 2.2rem; }
+  .sm-socials a {
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 1.1rem;
+  }
+
+  /* MOBİL İÇERİK BOYUTLANDIRMALARI */
+  .intro-logo { font-size: 2.8rem; letter-spacing: 6px; }
+  .intro-subtitle { font-size: 0.95rem; letter-spacing: 3px; }
+
+  #hero { padding-top: 140px; }
+  .hero-title { font-size: 2.4rem; }
+  .hero-sub { font-size: 1rem; }
   .hero-buttons { flex-direction: column; width: 100%; }
-  .btn { width: 100%; text-align: center; }
-  .cards { padding: 20px; }
-  .card { width: 100%; }
-  .intro-logo { font-size: 2.6rem; }
+  .btn-primary, .btn-secondary { width: 100%; text-align: center; }
+
+  .tanitim-header h2, #galeri.galeri-header h2, #iletisim h2 { font-size: 2rem; }
+  .scroll-stack-card { padding: 25px; }
+
+  .circular-item { width: 260px; height: 180px; }
+  .iletisim-buttons { flex-direction: column; width: 100%; }
+
+  footer {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+    padding: 30px 5%;
+  }
 }
