@@ -9,23 +9,32 @@
 </head>
 <body>
 
-  <!-- AURORA ARKA PLAN (CSS ile taklit) -->
+  <div class="intro-curtain">
+    <div class="intro-line"></div>
+    <div class="intro-line"></div>
+    <div class="intro-line"></div>
+    <div class="intro-line"></div>
+  </div>
+
   <div class="aurora-bg">
     <div class="aurora-wave aurora-wave-1"></div>
     <div class="aurora-wave aurora-wave-2"></div>
     <div class="aurora-wave aurora-wave-3"></div>
   </div>
 
-  <!-- STAGGERED MENU (CSS ile) -->
   <nav class="staggered-menu-wrapper">
+    <input type="checkbox" id="menu-toggle-checkbox" class="menu-checkbox" hidden />
+    
     <div class="staggered-menu-header">
       <div class="sm-logo">
         <img src="Tunay_Logo-removebg-preview.png" alt="Tunay Logo" class="sm-logo-img" />
       </div>
-      <button class="sm-toggle" id="menuToggle">
-        <span class="sm-toggle-text">☰</span>
-      </button>
+      <label for="menu-toggle-checkbox" class="sm-toggle">
+        <span class="sm-toggle-icon">☰</span>
+        <span class="sm-toggle-close">✕</span>
+      </label>
     </div>
+    
     <div class="staggered-menu-panel" id="menuPanel">
       <ul class="sm-panel-list">
         <li><a href="#tanitim">Kulüp</a></li>
@@ -34,27 +43,28 @@
       </ul>
       <div class="sm-socials">
         <h3>Socials</h3>
-        <a href="https://instagram.com/tunaykitapkulubu">📸 Instagram</a>
+        <a href="https://instagram.com/tunaykitapkulubu" target="_blank">📸 Instagram</a>
         <a href="mailto:tunaykitapkulubu@gmail.com">✉️ Mail</a>
       </div>
     </div>
   </nav>
 
-  <!-- HERO -->
   <section id="hero">
-    <div class="hero-logo">
-      <img src="Tunay_Logo-removebg-preview.png" alt="Tunay Logo" class="hero-logo-img" />
+    <div id="tilted-card" class="intro-fade-up">
+      <div class="tilted-card-inner">
+        <img src="Tunay_Logo-removebg-preview.png" alt="Tunay Logo" class="tilted-card-img" />
+      </div>
     </div>
-    <div class="hero-badge">📖 Fevzi Çakmak Anadolu Lisesi</div>
-    <h1 class="hero-title gradient-text">Tunay Kitap Kulübü</h1>
-    <p class="hero-sub">Her ay bir kitap, yeni ufuklar. Hayatın yoğunluğunda kitaplar içinde kaybolun.</p>
-    <div class="hero-buttons">
+    
+    <div class="hero-badge intro-fade-up">📖 Fevzi Çakmak Anadolu Lisesi</div>
+    <h1 class="hero-title gradient-text intro-fade-up">Tunay Kitap Kulübü</h1>
+    <p class="hero-sub intro-fade-up">Her ay bir kitap, yeni ufuklar. Hayatın yoğunluğunda kitaplar içinde kaybolun.</p>
+    <div class="hero-buttons intro-fade-up">
       <a href="#tanitim" class="btn-primary">Keşfet →</a>
       <a href="#galeri" class="btn-secondary">Galeri</a>
     </div>
   </section>
 
-  <!-- TANITIM -->
   <section id="tanitim">
     <div class="tanitim-header">
       <h2 class="gradient-text">Kulüp Hakkında</h2>
@@ -85,13 +95,12 @@
     </div>
   </section>
 
-  <!-- GALERİ (CircularGallery taklidi) -->
   <section id="galeri">
     <div class="galeri-header">
       <h2 class="gradient-text">📸 Anılar & Buluşmalar</h2>
       <p>Kitaplık, kütüphane ve okuma köşelerinden kareler.</p>
     </div>
-    <div class="circular-gallery">
+    <div class="circular-gallery-wrap">
       <div class="circular-track">
         <div class="circular-item"><img src="Tunay_Kitap_BG.jpeg" alt="Kitap" /></div>
         <div class="circular-item"><img src="Tunay_Buluşma.jpeg" alt="Buluşma" /></div>
@@ -106,7 +115,6 @@
     </div>
   </section>
 
-  <!-- İLETİŞİM -->
   <section id="iletisim">
     <h2 class="gradient-text">Bize Katılın</h2>
     <p>Her ay yeni bir kitap, yeni tartışmalar. Dinleyici olarak da katılabilirsiniz.</p>
@@ -117,9 +125,8 @@
     <p class="kurucu">Kurucu: <strong>Zeynep Beril Köse</strong></p>
   </section>
 
-  <!-- FOOTER -->
   <footer>
-    <div>© 2025 Tunay Kitap Kulübü · Fevzi Çakmak Anadolu Lisesi</div>
+    <div>© 2026 Tunay Kitap Kulübü · Fevzi Çakmak Anadolu Lisesi</div>
     <div class="footer-social">
       <a href="https://instagram.com/tunaykitapkulubu" target="_blank">📸</a>
       <a href="mailto:tunaykitapkulubu@gmail.com">✉️</a>
