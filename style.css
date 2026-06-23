@@ -1,4 +1,4 @@
-/* ===== 1. GENEL AYARLAR & ARKA PLAN ===== */
+/* ===== 1. GENEL SIFIRLAMALAR ===== */
 * {
   margin: 0;
   padding: 0;
@@ -12,18 +12,11 @@ body {
   color: #fff;
 }
 
-.site {
-  min-height: 100vh;
-  background: linear-gradient(160deg, #0f0c29 0%, #16213e 50%, #1a0b2e 100%);
-  position: relative;
-  z-index: 1;
-}
-
-/* ===== 2. INTRO PERDESİ (GİRİŞ ANİMASYONU) ===== */
+/* ===== 2. INTRO PERDESİ (İLK KODUN BİREBİR AYNISI) ===== */
 .intro-overlay {
   position: fixed;
   inset: 0;
-  z-index: 99999;
+  z-index: 9999;
   background: linear-gradient(135deg, #1a0b2e 0%, #16213e 50%, #0f0c29 100%);
   display: flex;
   align-items: center;
@@ -70,7 +63,7 @@ body {
   font-size: 4rem;
   font-weight: 800;
   letter-spacing: 8px;
-  color: #a78bfa;
+  color: #a78bfa; /* Renk uçmasın diye garantiye aldık */
   background: linear-gradient(90deg, #a78bfa, #60a5fa, #c084fc);
   -webkit-background-clip: text;
   background-clip: text;
@@ -105,7 +98,7 @@ body {
   to { width: 300px; }
 }
 
-/* Yüzen Parçacıklar */
+/* Yüzen Işık Parçacıkları */
 .particle {
   position: absolute;
   border-radius: 50%;
@@ -120,7 +113,13 @@ body {
   100% { transform: translateY(-10vh) scale(1); opacity: 0; }
 }
 
-/* ===== 4. NAVBAR (ÜST MENÜ BAR) ===== */
+/* ===== 4. ANA SİTE ARKA PLANI ===== */
+.site {
+  min-height: 100vh;
+  background: linear-gradient(160deg, #0f0c29 0%, #16213e 50%, #1a0b2e 100%);
+}
+
+/* ===== 5. NAVBAR ===== */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -130,17 +129,16 @@ body {
   transform: translateY(-40px);
   animation: elementIn 0.8s ease forwards 3.4s;
   position: relative;
-  z-index: 1000;
+  z-index: 100;
 }
 
 .nav-logo {
-  font-size: 1.6rem;
-  font-weight: 800;
+  font-size: 1.5rem;
+  font-weight: 700;
   background: linear-gradient(90deg, #a78bfa, #60a5fa);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  text-shadow: 0 0 20px rgba(167, 139, 250, 0.2);
 }
 
 .nav-links {
@@ -160,20 +158,19 @@ body {
   color: #a78bfa;
 }
 
-/* SAF CSS MENÜ TETİKLEYİCİLERİ */
+/* Saf CSS Menü Altyapısı */
 .menu-checkbox {
   display: none;
 }
 
 .menu-toggle-btn {
   display: none;
-  font-size: 2rem;
+  font-size: 1.8rem;
   color: #fff;
   cursor: pointer;
-  user-select: none;
 }
 
-/* ===== 5. HERO BÖLÜMÜ ===== */
+/* ===== 6. HERO BÖLÜMÜ ===== */
 .hero {
   display: flex;
   flex-direction: column;
@@ -181,8 +178,6 @@ body {
   justify-content: center;
   text-align: center;
   padding: 100px 20px 60px;
-  position: relative;
-  z-index: 5;
 }
 
 .hero h1 {
@@ -221,7 +216,7 @@ body {
   animation: elementIn 0.9s ease forwards 4.3s;
 }
 
-/* ===== 6. BUTONLAR ===== */
+/* ===== 7. BUTONLAR ===== */
 .btn {
   padding: 14px 35px;
   border-radius: 50px;
@@ -256,15 +251,13 @@ body {
   color: #a78bfa;
 }
 
-/* ===== 7. KARTLAR ===== */
+/* ===== 8. KARTLAR ===== */
 .cards {
   display: flex;
   gap: 30px;
   justify-content: center;
   flex-wrap: wrap;
   padding: 60px 40px;
-  position: relative;
-  z-index: 5;
 }
 
 .card {
@@ -312,7 +305,7 @@ body {
   line-height: 1.6;
 }
 
-/* Ortak Giriş Zamanlaması */
+/* Ortak Animasyon Tetikleyici */
 @keyframes elementIn {
   to {
     opacity: 1;
@@ -320,44 +313,38 @@ body {
   }
 }
 
-/* ═══════════════════════════════════════════════════
-   8. %100 KARARLI RESPONSIVE & MOBİL AÇILIR MENÜ
-═══════════════════════════════════════════════════ */
+/* ===== 9. GÜVENLİ VE MOBİL UYUMLU KATMANLAR ===== */
 @media (max-width: 768px) {
   .navbar { 
     padding: 20px; 
   }
-
+  
   .nav-logo {
     font-size: 1.3rem;
   }
 
-  /* Hamburger Açma İkonu Görünür */
+  /* Hamburger İkonunu Aç */
   .menu-toggle-btn.open-btn {
     display: block;
+    z-index: 100;
   }
 
-  /* Kapatma İkonu Varsayılan Durumda Gizli */
-  .menu-toggle-btn.close-btn {
-    display: none;
-  }
-
-  /* Mobil Menü Paneli */
+  /* Yan Panel Yapısı */
   .nav-links {
     position: fixed;
     top: 0;
-    right: -100%; /* Ekranın sağında gizli tut */
-    width: 290px;
+    right: -100%;
+    width: 280px;
     height: 100vh;
     background: #0f0c29;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 40px;
-    z-index: 999999; /* Her şeyin üstünde */
+    z-index: 99999; /* Katmanı en üste sabitledik */
     transition: right 0.4s ease-in-out;
     border-left: 1px solid rgba(167, 139, 250, 0.15);
-    box-shadow: -15px 0 40px rgba(0, 0, 0, 0.7);
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
   }
 
   .nav-links a {
@@ -365,51 +352,30 @@ body {
     font-weight: 600;
   }
 
-  /* MENÜ AÇILDIĞINDA TETİKLENECEK CSS KURALLARI */
+  /* Menü Tetiklendiğinde (Açılınca) */
   .menu-checkbox:checked ~ .nav-links {
-    right: 0; /* Paneli içeri kaydır */
+    right: 0;
   }
 
+  /* Çarpı Butonunun Menünün Üstünde Kalması İçin Kesin Çözüm */
   .menu-checkbox:checked ~ .menu-toggle-btn.open-btn {
-    display: none; /* Açma butonunu gizle */
+    display: none;
   }
-
+  
   .menu-checkbox:checked ~ .menu-toggle-btn.close-btn {
-    display: block; /* Çarpı butonunu göster */
+    display: block;
     position: fixed;
     top: 20px;
     right: 20px;
-    z-index: 1000000; /* Menü panelinin de en üstüne oturt */
+    z-index: 100000; /* Çarpı ikonunu en tepeye aldık, arkada kalamaz */
   }
 
-  /* Hero & İçerik Düzenlemeleri */
-  .hero {
-    padding: 60px 20px;
-  }
-
-  .hero h1 { 
-    font-size: 2.2rem; 
-  }
-
-  .hero-buttons {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .btn {
-    width: 100%;
-    text-align: center;
-  }
-
-  .cards {
-    padding: 20px;
-  }
-
-  .card {
-    width: 100%;
-  }
-
-  .intro-logo {
-    font-size: 2.8rem;
-  }
+  /* Mobil Ekran Boyutlandırmaları */
+  .hero { padding: 60px 20px; }
+  .hero h1 { font-size: 2.2rem; }
+  .hero-buttons { flex-direction: column; width: 100%; }
+  .btn { width: 100%; text-align: center; }
+  .cards { padding: 20px; }
+  .card { width: 100%; }
+  .intro-logo { font-size: 2.6rem; }
 }
