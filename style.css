@@ -1,4 +1,4 @@
-/* ─────────────── RESET & TEMEL ─────────────── */
+/* ───────── RESET & TEMEL ───────── */
 * {
   margin: 0;
   padding: 0;
@@ -15,7 +15,7 @@ body {
   min-height: 100vh;
 }
 
-/* ─────────────── PLASMA ARKA PLAN ─────────────── */
+/* ───────── PLASMA ARKA PLAN ───────── */
 #plasma-bg {
   position: fixed;
   inset: 0;
@@ -28,7 +28,7 @@ body {
   height: 100% !important;
 }
 
-/* ─────────────── SPLASH CURSOR (kullanılmıyor ama stil var) ─────────────── */
+/* ───────── SPLASH CURSOR ───────── */
 .splash-cursor-wrapper {
   position: fixed;
   top: 0;
@@ -44,7 +44,7 @@ body {
   height: 100vh;
 }
 
-/* ─────────────── NAVBAR ─────────────── */
+/* ───────── NAVBAR ───────── */
 nav {
   position: fixed;
   top: 0;
@@ -64,7 +64,6 @@ nav.scrolled {
   background: rgba(5, 3, 10, 0.9);
   backdrop-filter: blur(20px);
 }
-
 .nav-logo-wrap {
   display: flex;
   align-items: center;
@@ -85,7 +84,6 @@ nav.scrolled {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-
 .nav-links {
   display: flex;
   gap: 2.4rem;
@@ -119,14 +117,14 @@ nav.scrolled {
   transform: scaleX(1);
 }
 
-/* ─────────────── BÖLÜMLER ─────────────── */
+/* ───────── BÖLÜMLER ───────── */
 section {
   position: relative;
   z-index: 2;
   padding: 6rem 2rem;
 }
 
-/* ─────────────── HERO ─────────────── */
+/* ───────── HERO ───────── */
 #hero {
   min-height: 100vh;
   display: flex;
@@ -168,7 +166,7 @@ section {
   margin: 0 auto 2.5rem;
 }
 
-/* ─────────────── TILTED CARD (3D logo) ─────────────── */
+/* ───────── TILTED CARD ───────── */
 .tilted-card-figure {
   position: relative;
   width: 100%;
@@ -211,7 +209,7 @@ section {
   transition: opacity 0.2s;
 }
 
-/* ─────────────── SCROLL STACK (Tanıtım) ─────────────── */
+/* ───────── SCROLL STACK ───────── */
 #tanitim .tanitim-header {
   text-align: center;
   margin-bottom: 3rem;
@@ -228,7 +226,6 @@ section {
   margin: 0 auto;
   font-size: 1.15rem;
 }
-
 .scroll-stack-scroller {
   position: relative;
   width: 100%;
@@ -284,7 +281,7 @@ section {
   font-weight: 600;
 }
 
-/* ─────────────── MASONRY GALERİ ─────────────── */
+/* ───────── MASONRY GALERİ ───────── */
 #galeri {
   background: rgba(0, 0, 0, 0.3);
   padding: 4rem 2rem;
@@ -304,7 +301,6 @@ section {
   margin: 0.5rem auto 0;
   font-size: 1.1rem;
 }
-
 .masonry-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -330,7 +326,7 @@ section {
   display: block;
 }
 
-/* ─────────────── İLETİŞİM ─────────────── */
+/* ───────── İLETİŞİM ───────── */
 #iletisim {
   text-align: center;
   padding: 5rem 2rem;
@@ -349,7 +345,7 @@ section {
   font-size: 1.15rem;
 }
 
-/* ─────────────── BUTONLAR ─────────────── */
+/* ───────── BUTONLAR ───────── */
 .btn-primary,
 .btn-secondary {
   padding: 0.9rem 2.5rem;
@@ -378,7 +374,7 @@ section {
   background: rgba(255, 255, 255, 0.05);
 }
 
-/* ─────────────── FOOTER ─────────────── */
+/* ───────── FOOTER ───────── */
 footer {
   position: relative;
   z-index: 2;
@@ -407,7 +403,7 @@ footer a {
   color: #a78bfa;
 }
 
-/* ─────────────── GRADIENT TEXT (GradientText eklentisi) ─────────────── */
+/* ───────── GRADIENT TEXT ───────── */
 .gradient-text {
   background-size: 300% 300%;
   background-clip: text;
@@ -427,7 +423,7 @@ footer a {
   }
 }
 
-/* ─────────────── RESPONSIVE ─────────────── */
+/* ───────── RESPONSIVE ───────── */
 @media (max-width: 768px) {
   nav {
     padding: 0.8rem 1.5rem;
