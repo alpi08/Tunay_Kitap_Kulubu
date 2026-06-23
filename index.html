@@ -9,30 +9,44 @@
 </head>
 <body>
 
-  <!-- PLASMA ARKA PLAN -->
-  <div id="plasma-bg"></div>
+  <!-- AURORA ARKA PLAN (CSS ile taklit) -->
+  <div class="aurora-bg">
+    <div class="aurora-wave aurora-wave-1"></div>
+    <div class="aurora-wave aurora-wave-2"></div>
+    <div class="aurora-wave aurora-wave-3"></div>
+  </div>
 
-  <!-- SPLASH CURSOR -->
-  <div class="splash-cursor-wrapper" id="splash-cursor"></div>
-
-  <!-- NAV -->
-  <nav id="navbar">
-    <div class="nav-logo-wrap">
-      <img src="Tunay_Logo-removebg-preview.png" alt="Tunay Logo" class="nav-logo-img" onerror="this.style.display='none'" />
-      <span class="nav-logo">✦ TUNAY</span>
+  <!-- STAGGERED MENU (CSS ile) -->
+  <nav class="staggered-menu-wrapper">
+    <div class="staggered-menu-header">
+      <div class="sm-logo">
+        <img src="Tunay_Logo-removebg-preview.png" alt="Tunay Logo" class="sm-logo-img" />
+      </div>
+      <button class="sm-toggle" id="menuToggle">
+        <span class="sm-toggle-text">☰</span>
+      </button>
     </div>
-    <ul class="nav-links">
-      <li><a href="#tanitim">Kulüp</a></li>
-      <li><a href="#galeri">Galeri</a></li>
-      <li><a href="#iletisim">İletişim</a></li>
-    </ul>
+    <div class="staggered-menu-panel" id="menuPanel">
+      <ul class="sm-panel-list">
+        <li><a href="#tanitim">Kulüp</a></li>
+        <li><a href="#galeri">Galeri</a></li>
+        <li><a href="#iletisim">İletişim</a></li>
+      </ul>
+      <div class="sm-socials">
+        <h3>Socials</h3>
+        <a href="https://instagram.com/tunaykitapkulubu">📸 Instagram</a>
+        <a href="mailto:tunaykitapkulubu@gmail.com">✉️ Mail</a>
+      </div>
+    </div>
   </nav>
 
   <!-- HERO -->
   <section id="hero">
-    <div class="hero-logo" id="hero-logo-container"></div>
+    <div class="hero-logo">
+      <img src="Tunay_Logo-removebg-preview.png" alt="Tunay Logo" class="hero-logo-img" />
+    </div>
     <div class="hero-badge">📖 Fevzi Çakmak Anadolu Lisesi</div>
-    <h1 class="hero-title gradient-text" style="background-image: linear-gradient(135deg, #a78bfa, #7c3aed, #6d28d9);">Tunay Kitap Kulübü</h1>
+    <h1 class="hero-title gradient-text">Tunay Kitap Kulübü</h1>
     <p class="hero-sub">Her ay bir kitap, yeni ufuklar. Hayatın yoğunluğunda kitaplar içinde kaybolun.</p>
     <div class="hero-buttons">
       <a href="#tanitim" class="btn-primary">Keşfet →</a>
@@ -40,27 +54,61 @@
     </div>
   </section>
 
-  <!-- TANITIM (ScrollStack) -->
+  <!-- TANITIM -->
   <section id="tanitim">
     <div class="tanitim-header">
-      <h2 class="gradient-text" style="background-image: linear-gradient(135deg, #7c3aed, #a78bfa, #c4b5fd);">Kulüp Hakkında</h2>
+      <h2 class="gradient-text">Kulüp Hakkında</h2>
       <p>Okuma yolculuğumuza birlikte çıkıyoruz.</p>
     </div>
-    <div id="scrollstack-container"></div>
+    <div class="scroll-stack-container">
+      <div class="scroll-stack-card">
+        <h3>📖 Felsefemiz</h3>
+        <p>Fevzi Çakmak Anadolu Lisesi'nin değerli öğrencileri, kitap kulübümüz yakında açılıyor. Her ay bir kitap okuyup, beraber tahlil edeceğiz. Okuyacağımız kitaba, her ay sizinle karar vereceğiz.</p>
+      </div>
+      <div class="scroll-stack-card">
+        <h3>🌙 "TUNAY" Ne Demek?</h3>
+        <p>"TUNAY" eski Türkçe'de <span class="highlight">ay gibi parlak ve aydınlık</span> anlamına gelir. "Tun" gece demektir. Geceyi aydınlatan ay... Kulübümüzün isminin öz Türkçe olmasını, böylece Türklüğü temsil etmesini istedik.</p>
+      </div>
+      <div class="scroll-stack-card">
+        <h3>🚀 Amaç & Hedef</h3>
+        <p>Kulübümüz, size dünyaya dair yeni ufuklar ve bilgiler kazandırmayı amaçlıyor. Hayatın yoğunluğunda kendinizi kaybetmeyin, kitaplar içinde kaybolun. Kulübümüze dinleyici olarak da katılabilirsiniz.</p>
+      </div>
+      <div class="scroll-stack-card">
+        <h3>👩‍🏫 Kurucu: Zeynep Beril Köse</h3>
+        <p>Kulübümüzün kurucusu ve yürütücüsü <span class="highlight">Zeynep Beril Köse</span>, okuma tutkusunu paylaşmak ve arkadaşlarıyla birlikte öğrenmeyi büyütmek için bu yola çıktı.</p>
+      </div>
+      <div class="scroll-stack-card">
+        <h3>🤝 Katılın, Birlikte Okuyalım</h3>
+        <p>Kitaplar, uygarlığa yol gösteren ışıklardır. – Francis Bacon</p>
+        <p style="margin-top:0.5rem;">Kulübümüze öğretmenlerimiz de teşrif edecektir. Sizleri de aramızda görmekten mutluluk duyarız.</p>
+      </div>
+    </div>
   </section>
 
-  <!-- GALERİ (Masonry) -->
+  <!-- GALERİ (CircularGallery taklidi) -->
   <section id="galeri">
     <div class="galeri-header">
-      <h2 class="gradient-text" style="background-image: linear-gradient(135deg, #7c3aed, #a78bfa, #c4b5fd);">📸 Anılar & Buluşmalar</h2>
+      <h2 class="gradient-text">📸 Anılar & Buluşmalar</h2>
       <p>Kitaplık, kütüphane ve okuma köşelerinden kareler.</p>
     </div>
-    <div id="masonry-container" class="masonry-grid"></div>
+    <div class="circular-gallery">
+      <div class="circular-track">
+        <div class="circular-item"><img src="Tunay_Kitap_BG.jpeg" alt="Kitap" /></div>
+        <div class="circular-item"><img src="Tunay_Buluşma.jpeg" alt="Buluşma" /></div>
+        <div class="circular-item"><img src="https://picsum.photos/seed/bookstore1/600/400" alt="Kitaplık" /></div>
+        <div class="circular-item"><img src="https://picsum.photos/seed/library7/600/500" alt="Kütüphane" /></div>
+        <div class="circular-item"><img src="https://picsum.photos/seed/reading1/600/350" alt="Okuma" /></div>
+        <div class="circular-item"><img src="https://picsum.photos/seed/shelf1/600/450" alt="Raf" /></div>
+        <div class="circular-item"><img src="https://picsum.photos/seed/bookpile/600/380" alt="Kitap Yığını" /></div>
+        <div class="circular-item"><img src="https://picsum.photos/seed/library8/600/420" alt="Kütüphane" /></div>
+        <div class="circular-item"><img src="https://picsum.photos/seed/bookshelf2/600/480" alt="Kitaplık" /></div>
+      </div>
+    </div>
   </section>
 
   <!-- İLETİŞİM -->
   <section id="iletisim">
-    <h2 class="gradient-text" style="background-image: linear-gradient(135deg, #7c3aed, #a78bfa, #c4b5fd);">Bize Katılın</h2>
+    <h2 class="gradient-text">Bize Katılın</h2>
     <p>Her ay yeni bir kitap, yeni tartışmalar. Dinleyici olarak da katılabilirsiniz.</p>
     <div class="iletisim-buttons">
       <a href="mailto:tunaykitapkulubu@gmail.com" class="btn-primary">📧 Mail Gönder</a>
@@ -77,285 +125,6 @@
       <a href="mailto:tunaykitapkulubu@gmail.com">✉️</a>
     </div>
   </footer>
-
-  <!-- ─── SCRIPTS ─── -->
-  <script>
-    // ─────────────────────────────────────────────
-    // 1. PLASMA – koyu mor dalgalı arka plan
-    // ─────────────────────────────────────────────
-    (function initPlasma() {
-      const container = document.getElementById('plasma-bg');
-      if (!container) return;
-      const canvas = document.createElement('canvas');
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      container.appendChild(canvas);
-      const ctx = canvas.getContext('2d');
-
-      let w, h;
-      function resize() {
-        w = canvas.width = window.innerWidth;
-        h = canvas.height = window.innerHeight;
-      }
-      window.addEventListener('resize', resize);
-      resize();
-
-      let time = 0;
-      function draw() {
-        time += 0.006;
-        ctx.clearRect(0, 0, w, h);
-        const imageData = ctx.createImageData(w, h);
-        const data = imageData.data;
-        for (let y = 0; y < h; y++) {
-          for (let x = 0; x < w; x++) {
-            const i = (y * w + x) * 4;
-            const nx = x / w;
-            const ny = y / h;
-            const v1 = Math.sin(nx * 10 + time * 0.5) * Math.cos(ny * 8 + time * 0.4);
-            const v2 = Math.sin(ny * 12 + time * 0.3) * Math.cos(nx * 6 + time * 0.6);
-            const v = (v1 * 0.5 + v2 * 0.5 + 1) * 0.5;
-            const r = 0.10 + v * 0.20;
-            const g = 0.03 + v * 0.08;
-            const b = 0.20 + v * 0.30;
-            data[i] = r * 255;
-            data[i+1] = g * 255;
-            data[i+2] = b * 255;
-            data[i+3] = 230;
-          }
-        }
-        ctx.putImageData(imageData, 0, 0);
-        requestAnimationFrame(draw);
-      }
-      draw();
-    })();
-
-    // ─────────────────────────────────────────────
-    // 2. SPLASH CURSOR – mor parçacıklar
-    // ─────────────────────────────────────────────
-    (function initSplash() {
-      const container = document.getElementById('splash-cursor');
-      if (!container) return;
-      const canvas = document.createElement('canvas');
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      container.appendChild(canvas);
-      const ctx = canvas.getContext('2d');
-
-      let w, h;
-      function resize() {
-        w = canvas.width = window.innerWidth;
-        h = canvas.height = window.innerHeight;
-      }
-      window.addEventListener('resize', resize);
-      resize();
-
-      const particles = [];
-      for (let i = 0; i < 70; i++) {
-        particles.push({
-          x: Math.random() * w,
-          y: Math.random() * h,
-          r: Math.random() * 4 + 2,
-          vx: (Math.random() - 0.5) * 0.4,
-          vy: (Math.random() - 0.5) * 0.4,
-          hue: 270 + Math.random() * 30,
-          sat: 70 + Math.random() * 20,
-          lig: 50 + Math.random() * 30
-        });
-      }
-
-      let mouse = { x: w/2, y: h/2 };
-      window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
-      window.addEventListener('touchmove', e => {
-        if (e.touches.length) { mouse.x = e.touches[0].clientX; mouse.y = e.touches[0].clientY; }
-      }, { passive: true });
-
-      function animate() {
-        ctx.clearRect(0, 0, w, h);
-        particles.forEach(p => {
-          p.x += p.vx;
-          p.y += p.vy;
-          const dx = mouse.x - p.x;
-          const dy = mouse.y - p.y;
-          const dist = Math.sqrt(dx*dx + dy*dy);
-          if (dist < 120) {
-            p.vx += dx * 0.006;
-            p.vy += dy * 0.006;
-          }
-          p.vx *= 0.97;
-          p.vy *= 0.97;
-          if (p.x < 0 || p.x > w) p.vx *= -1;
-          if (p.y < 0 || p.y > h) p.vy *= -1;
-
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-          ctx.fillStyle = `hsl(${p.hue}, ${p.sat}%, ${p.lig}%)`;
-          ctx.shadowColor = `hsl(${p.hue}, 80%, 70%)`;
-          ctx.shadowBlur = 15;
-          ctx.fill();
-        });
-        requestAnimationFrame(animate);
-      }
-      animate();
-    })();
-
-    // ─────────────────────────────────────────────
-    // 3. TILTED CARD (3D logo)
-    // ─────────────────────────────────────────────
-    (function initTiltedCard() {
-      const container = document.getElementById('hero-logo-container');
-      if (!container) return;
-
-      const figure = document.createElement('figure');
-      figure.className = 'tilted-card-figure';
-      const inner = document.createElement('div');
-      inner.className = 'tilted-card-inner';
-      const img = document.createElement('img');
-      img.className = 'tilted-card-img';
-      img.alt = 'Tunay Kitap Kulübü Logosu';
-      img.src = 'Tunay_Logo-removebg-preview.png';
-      img.onerror = () => {
-        img.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300"%3E%3Crect width="300" height="300" fill="%231a0a2e"/%3E%3Ctext x="50%25" y="50%25" font-family="Outfit, sans-serif" font-size="28" fill="%23a78bfa" text-anchor="middle" dy=".3em" font-weight="bold"%3ETUNAY%3C/text%3E%3C/svg%3E';
-      };
-      const caption = document.createElement('figcaption');
-      caption.className = 'tilted-card-caption';
-      caption.textContent = 'Tunay Kitap Kulübü';
-
-      inner.appendChild(img);
-      inner.appendChild(caption);
-      figure.appendChild(inner);
-      container.appendChild(figure);
-
-      const amplitude = 14;
-      figure.addEventListener('mousemove', (e) => {
-        const rect = figure.getBoundingClientRect();
-        const ox = e.clientX - rect.left - rect.width/2;
-        const oy = e.clientY - rect.top - rect.height/2;
-        const rx = (oy / (rect.height/2)) * -amplitude;
-        const ry = (ox / (rect.width/2)) * amplitude;
-        inner.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg) scale(1.05)`;
-        caption.style.opacity = '1';
-        caption.style.left = (e.clientX - rect.left) + 'px';
-        caption.style.top = (e.clientY - rect.top) + 'px';
-      });
-      figure.addEventListener('mouseleave', () => {
-        inner.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
-        caption.style.opacity = '0';
-      });
-    })();
-
-    // ─────────────────────────────────────────────
-    // 4. SCROLL STACK – kart yığını
-    // ─────────────────────────────────────────────
-    (function initScrollStack() {
-      const container = document.getElementById('scrollstack-container');
-      if (!container) return;
-
-      const items = [
-        {
-          title: '📖 Felsefemiz',
-          content: `Fevzi Çakmak Anadolu Lisesi’nin değerli öğrencileri, kitap kulübümüz yakında açılıyor. Her ay bir kitap okuyup, beraber tahlil edeceğiz. Okuyacağımız kitaba, her ay sizinle karar vereceğiz.`
-        },
-        {
-          title: '🌙 “TUNAY” Ne Demek?',
-          content: `“TUNAY” eski Türkçe’de <span class="highlight">ay gibi parlak ve aydınlık</span> anlamına gelir. “Tun” gece demektir. Geceyi aydınlatan ay… Kulübümüzün isminin öz Türkçe olmasını, böylece Türklüğü temsil etmesini istedik.`
-        },
-        {
-          title: '🚀 Amaç & Hedef',
-          content: `Kulübümüz, size dünyaya dair yeni ufuklar ve bilgiler kazandırmayı amaçlıyor. Hayatın yoğunluğunda kendinizi kaybetmeyin, kitaplar içinde kaybolun. Kulübümüze dinleyici olarak da katılabilirsiniz.`
-        },
-        {
-          title: '👩‍🏫 Kurucu: Zeynep Beril Köse',
-          content: `Kulübümüzün kurucusu ve yürütücüsü <span class="highlight">Zeynep Beril Köse</span>, okuma tutkusunu paylaşmak ve arkadaşlarıyla birlikte öğrenmeyi büyütmek için bu yola çıktı.`
-        },
-        {
-          title: '🤝 Katılın, Birlikte Okuyalım',
-          content: `Kitaplar, uygarlığa yol gösteren ışıklardır. – Francis Bacon<br><br>Kulübümüze öğretmenlerimiz de teşrif edecektir. Sizleri de aramızda görmekten mutluluk duyarız.`
-        }
-      ];
-
-      const scroller = document.createElement('div');
-      scroller.className = 'scroll-stack-scroller';
-      const inner = document.createElement('div');
-      inner.className = 'scroll-stack-inner';
-
-      items.forEach((item, i) => {
-        const card = document.createElement('div');
-        card.className = 'scroll-stack-card';
-        card.dataset.index = i;
-        card.innerHTML = `<h3>${item.title}</h3><p>${item.content}</p>`;
-        inner.appendChild(card);
-      });
-
-      scroller.appendChild(inner);
-      container.appendChild(scroller);
-
-      const cards = inner.querySelectorAll('.scroll-stack-card');
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          const card = entry.target;
-          const idx = parseInt(card.dataset.index);
-          const progress = 1 - entry.intersectionRatio;
-          const scale = 1 - progress * 0.06 * (idx + 1);
-          const y = progress * 20 * (idx + 1);
-          card.style.transform = `translate3d(0, ${y}px, 0) scale(${Math.max(0.85, scale)})`;
-          card.style.filter = `blur(${progress * 1.5 * idx}px)`;
-          card.style.opacity = 1 - progress * 0.2;
-        });
-      }, { threshold: Array.from({ length: 11 }, (_, i) => i/10) });
-
-      cards.forEach(card => observer.observe(card));
-    })();
-
-    // ─────────────────────────────────────────────
-    // 5. MASONRY – TÜM GÖRSELLER
-    // ─────────────────────────────────────────────
-    (function initMasonry() {
-      const container = document.getElementById('masonry-container');
-      if (!container) return;
-
-      // TÜM görseller – verdiğin 3 dosya + ekstra kitaplık görselleri
-      const images = [
-        // Senin verdiğin görseller
-        'Tunay_Kitap_BG.jpeg',
-        'Tunay_Buluşma.jpeg',
-        // Logo zaten hero'da var, galeriye koymuyorum
-        // Ekstra kitaplık/kütüphane görselleri
-        'https://picsum.photos/seed/bookstore1/600/400',
-        'https://picsum.photos/seed/library7/600/500',
-        'https://picsum.photos/seed/reading1/600/350',
-        'https://picsum.photos/seed/shelf1/600/450',
-        'https://picsum.photos/seed/bookpile/600/380',
-        'https://picsum.photos/seed/library8/600/420',
-        'https://picsum.photos/seed/bookshelf2/600/480',
-        'https://picsum.photos/seed/reading2/600/370',
-        'https://picsum.photos/seed/library9/600/410',
-        'https://picsum.photos/seed/bookstore2/600/390'
-      ];
-
-      images.forEach(src => {
-        const item = document.createElement('div');
-        item.className = 'masonry-item';
-        const img = document.createElement('img');
-        img.src = src;
-        img.loading = 'lazy';
-        img.onerror = () => {
-          img.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="300" height="200" viewBox="0 0 300 200"%3E%3Crect width="300" height="200" fill="%231a0a2e"/%3E%3Ctext x="50%25" y="50%25" font-family="Outfit, sans-serif" font-size="24" fill="%23a78bfa" text-anchor="middle" dy=".3em"%3E📚%3C/text%3E%3C/svg%3E';
-        };
-        const h = 160 + Math.floor(Math.random() * 200);
-        item.style.gridRowEnd = `span ${Math.ceil(h / 10)}`;
-        item.appendChild(img);
-        container.appendChild(item);
-      });
-    })();
-
-    // ─────────────────────────────────────────────
-    // 6. NAVBAR scroll efekti
-    // ─────────────────────────────────────────────
-    const nav = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 40);
-    });
-  </script>
 
 </body>
 </html>
