@@ -73,7 +73,6 @@ body {
   66% { transform: translate(-3vw, 8vh) scale(0.9) rotate(240deg); }
 }
 
-/* Gradyan Metin Sihirli Sınıfı */
 .gradient-text {
   background: linear-gradient(135deg, #a78bfa 0%, #60a5fa 50%, #c084fc 100%);
   -webkit-background-clip: text;
@@ -82,7 +81,7 @@ body {
 }
 
 /* ==========================================================================
-   2. İLK VERDİĞİN SİNEMATİK GİRİŞ PERDESİ (INTRO-CURTAIN)
+   2. SİNEMATİK GİRİŞ PERDESİ (INTRO-CURTAIN)
    ========================================================================== */
 .intro-curtain {
   position: fixed;
@@ -97,7 +96,6 @@ body {
   animation-delay: 3s;
 }
 
-/* Intro Yazıları Grubu */
 .intro-content {
   text-align: center;
   z-index: 2;
@@ -154,25 +152,21 @@ body {
   to { width: 280px; }
 }
 
-/* Perde Sonrası Elementlerin Sırayla Gelmesi İçin Sınıf */
 .intro-fade-up {
   opacity: 0;
   transform: translateY(40px);
   animation: fadeUpIn 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 
-#hero #tilted-card { animation-delay: 3.5s; }
-#hero .hero-badge { animation-delay: 3.7s; }
-#hero .hero-title { animation-delay: 3.9s; }
-#hero .hero-sub { animation-delay: 4.1s; }
-#hero .hero-buttons { animation-delay: 4.3s; }
+#hero .hero-content-left { animation-delay: 3.5s; }
+#hero #tilted-card { animation-delay: 3.8s; }
 
 @keyframes fadeUpIn {
   to { opacity: 1; transform: translateY(0); }
 }
 
 /* ==========================================================================
-   3. SAF CSS STAGGER MENÜ & NAVBAR (AÇMA-KAPATMA GARANTİLİ)
+   3. YENİ TEMİZ NAVBAR SİSTEMİ (MENÜ TUŞU KALDIRILDI)
    ========================================================================== */
 .staggered-menu-wrapper {
   position: fixed;
@@ -187,63 +181,45 @@ body {
   opacity: 0;
   transform: translateY(-20px);
   animation: fadeUpIn 0.8s ease forwards 3.4s;
+  background: rgba(5, 5, 21, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .staggered-menu-header {
-  width: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
 }
 
 .sm-logo-img {
-  height: 55px;
+  height: 50px;
   object-fit: contain;
   filter: drop-shadow(0 0 10px rgba(167, 139, 250, 0.3));
 }
 
-/* Tetikleyici Buton Tasarımı */
-.sm-toggle {
-  font-size: 2.2rem;
-  color: #fff;
-  cursor: pointer;
-  z-index: 6000; /* Buton her şeyin üstünde kalacak */
-  width: 45px;
-  height: 45px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  user-select: none;
-  transition: transform 0.2s;
+/* Menü Butonu (☰ / ✕) Tamamen Kapatıldı */
+.sm-toggle, .menu-checkbox {
+  display: none !important;
 }
 
-.sm-toggle:hover {
-  transform: scale(1.1);
-}
-
-/* Başlangıçta Kapatma Simgesi (X) Gizli */
-.sm-toggle-close {
-  display: none;
-}
-
-/* Büyük Ekranlar İçin Panel Düzeni (Yatay ve Sabit) */
+/* Menü Linkleri Her Zaman Açık */
 .staggered-menu-panel {
   display: flex;
   align-items: center;
-  gap: 40px;
 }
 
 .sm-panel-list {
   display: flex;
-  gap: 35px;
+  gap: 30px;
   list-style: none;
 }
 
 .sm-panel-list a {
   color: #94a3b8;
   text-decoration: none;
-  font-size: 1rem;
-  font-weight: 500;
+  font-size: 0.95rem;
+  font-weight: 600;
   transition: color 0.3s, text-shadow 0.3s;
 }
 
@@ -253,53 +229,29 @@ body {
 }
 
 .sm-socials {
-  display: none; /* Masaüstünde sosyal medya başlığı gizli */
+  display: none;
 }
 
 /* ==========================================================================
-   4. HERO BÖLÜMÜ & 3D TILTED LOGO KARTI
+   4. YENİ MODERN HERO BÖLÜMÜ (KART BÜYÜTÜLDÜ VE SAĞA ALINDI)
    ========================================================================== */
 #hero {
   min-height: 100vh;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Sol metin, sağ kart düzeni */
+  padding: 140px 5% 80px;
+  gap: 50px;
+}
+
+.hero-content-left {
+  flex: 1;
+  text-align: left;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 120px 20px 80px;
-}
-
-/* 3D Tilted Card Yapısı */
-#tilted-card {
-  perspective: 1000px;
-  margin-bottom: 30px;
-}
-
-.tilted-card-inner {
-  width: 140px;
-  height: 140px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(167, 139, 250, 0.25);
-  border-radius: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), inset 0 0 20px rgba(167, 139, 250, 0.1);
-  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-  transform-style: preserve-3d;
-}
-
-.tilted-card-inner:hover {
-  transform: rotateY(15deg) rotateX(-10deg) scale(1.05);
-}
-
-.tilted-card-img {
-  width: 85%;
-  height: 85%;
-  object-fit: contain;
-  transform: translateZ(30px); /* 3D derinlik hissi */
+  align-items: flex-start;
 }
 
 .hero-badge {
@@ -316,19 +268,18 @@ body {
 }
 
 .hero-title {
-  font-size: 4rem;
+  font-size: 3.8rem;
   font-weight: 900;
   letter-spacing: -1px;
-  max-width: 850px;
   line-height: 1.15;
 }
 
 .hero-sub {
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   color: #94a3b8;
-  max-width: 600px;
   margin-top: 25px;
   line-height: 1.6;
+  max-width: 550px;
 }
 
 .hero-buttons {
@@ -337,14 +288,50 @@ body {
   gap: 20px;
 }
 
+/* BÜYÜTÜLMÜŞ VE SAĞA TAŞINMIŞ 3D KART */
+#tilted-card {
+  perspective: 1200px;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.tilted-card-inner {
+  width: 320px;  /* Eski boyutu 140px idi, büyükçe yaptık */
+  height: 320px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 2px solid rgba(167, 139, 250, 0.3);
+  border-radius: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), inset 0 0 30px rgba(167, 139, 250, 0.15);
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  transform-style: preserve-3d;
+}
+
+.tilted-card-inner:hover {
+  transform: rotateY(20deg) rotateX(-15deg) scale(1.05);
+}
+
+.tilted-card-img {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+  transform: translateZ(50px); /* 3D derinliği arttırıldı */
+  filter: drop-shadow(0 15px 25px rgba(0,0,0,0.3));
+}
+
 /* Buton Tasarımları */
 .btn-primary, .btn-secondary {
-  padding: 15px 40px;
+  padding: 15px 35px;
   border-radius: 50px;
   font-size: 1rem;
   font-weight: 600;
   text-decoration: none;
-  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+  transition: transform 0.3s, box-shadow 0.3s;
   display: inline-block;
 }
 
@@ -363,7 +350,6 @@ body {
   background: rgba(255, 255, 255, 0.03);
   color: #fff;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(5px);
 }
 
 .btn-secondary:hover {
@@ -373,7 +359,7 @@ body {
 }
 
 /* ==========================================================================
-   5. KULÜP HAKKINDA (TANITIM) & SCROLL STACK CARD DÜZENİ
+   5. KULÜP HAKKINDA (TANITIM)
    ========================================================================== */
 #tanitim {
   padding: 100px 5%;
@@ -386,16 +372,8 @@ body {
   margin-bottom: 60px;
 }
 
-.tanitim-header h2 {
-  font-size: 2.8rem;
-  font-weight: 800;
-}
-
-.tanitim-header p {
-  color: #94a3b8;
-  font-size: 1.1rem;
-  margin-top: 10px;
-}
+.tanitim-header h2 { font-size: 2.8rem; font-weight: 800; }
+.tanitim-header p { color: #94a3b8; font-size: 1.1rem; margin-top: 10px; }
 
 .scroll-stack-container {
   display: flex;
@@ -410,127 +388,45 @@ body {
   border-radius: 24px;
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
-  transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+  transition: transform 0.3s, border-color 0.3s;
 }
 
 .scroll-stack-card:hover {
   border-color: rgba(167, 139, 250, 0.3);
   transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
-.scroll-stack-card h3 {
-  font-size: 1.4rem;
-  font-weight: 700;
-  margin-bottom: 15px;
-  color: #f8fafc;
-}
-
-.scroll-stack-card p {
-  color: #94a3b8;
-  line-height: 1.7;
-  font-size: 1.05rem;
-}
-
-.highlight {
-  color: #c084fc;
-  font-weight: 600;
-}
+.scroll-stack-card h3 { font-size: 1.4rem; margin-bottom: 15px; color: #f8fafc; }
+.scroll-stack-card p { color: #94a3b8; line-height: 1.7; font-size: 1.05rem; }
+.highlight { color: #c084fc; font-weight: 600; }
 
 /* ==========================================================================
-   6. SONSUZ AKAN GALERİ BÖLÜMÜ (CIRCULAR GALERİ)
+   6. SONSUZ AKAN GALERİ BÖLÜMÜ
    ========================================================================== */
-#galeri {
-  padding: 100px 0;
-  overflow: hidden;
-}
-
-.galeri-header {
-  text-align: center;
-  padding: 0 5%;
-  margin-bottom: 50px;
-}
-
+#galeri { padding: 100px 0; overflow: hidden; }
+.galeri-header { text-align: center; padding: 0 5%; margin-bottom: 50px; }
 .galeri-header h2 { font-size: 2.8rem; font-weight: 800; }
 .galeri-header p { color: #94a3b8; margin-top: 10px; }
 
-.circular-gallery-wrap {
-  width: 100%;
-  display: flex;
-  overflow: hidden;
-  position: relative;
-  padding: 20px 0;
-}
-
-/* Pürüzsüz akan şerit */
-.circular-track {
-  display: flex;
-  gap: 20px;
-  width: max-content;
-  animation: scrollInfinite 30s linear infinite;
-}
-
-.circular-track:hover {
-  animation-play-state: paused; /* Üzerine gelince akış durur */
-}
-
-.circular-item {
-  width: 320px;
-  height: 220px;
-  border-radius: 20px;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
-  transition: transform 0.3s;
-}
-
-.circular-item:hover {
-  transform: scale(1.03);
-}
-
-.circular-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+.circular-gallery-wrap { width: 100%; display: flex; overflow: hidden; padding: 20px 0; }
+.circular-track { display: flex; gap: 20px; width: max-content; animation: scrollInfinite 30s linear infinite; }
+.circular-track:hover { animation-play-state: paused; }
+.circular-item { width: 320px; height: 220px; border-radius: 20px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.08); }
+.circular-item img { width: 100%; height: 100%; object-fit: cover; }
 
 @keyframes scrollInfinite {
   0% { transform: translateX(0); }
   100% { transform: translateX(calc(-50% - 10px)); }
 }
 
-/* DÖNGÜNÜN KOPMAMASI İÇİN: Aynı track'i CSS'te iki katı genişlikte simüle ediyoruz */
-.circular-track::after {
-  content: "";
-  display: flex;
-}
-
 /* ==========================================================================
-   7. İLETİŞİM & FOOTER BÖLÜMÜ
+   7. İLETİŞİM & FOOTER
    ========================================================================== */
-#iletisim {
-  padding: 100px 5%;
-  text-align: center;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
+#iletisim { padding: 100px 5%; text-align: center; max-width: 600px; margin: 0 auto; }
 #iletisim h2 { font-size: 2.8rem; font-weight: 800; }
-#iletisim p { color: #94a3b8; margin-top: 15px; font-size: 1.1rem; }
-
-.iletisim-buttons {
-  margin-top: 35px;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-}
-
-.kurucu {
-  margin-top: 40px;
-  font-size: 1rem;
-  color: #64748b;
-}
-
+#iletisim p { color: #94a3b8; margin-top: 15px; }
+.iletisim-buttons { margin-top: 35px; display: flex; justify-content: center; gap: 20px; }
+.kurucu { margin-top: 40px; color: #64748b; }
 .kurucu strong { color: #94a3b8; }
 
 footer {
@@ -542,123 +438,52 @@ footer {
   max-width: 1200px;
   margin: 0 auto;
   color: #475569;
-  font-size: 0.95rem;
 }
-
-.footer-social {
-  display: flex;
-  gap: 20px;
-}
-
-.footer-social a {
-  text-decoration: none;
-  font-size: 1.2rem;
-  transition: transform 0.2s;
-}
-
-.footer-social a:hover {
-  transform: scale(1.2);
-}
+.footer-social { display: flex; gap: 20px; }
+.footer-social a { text-decoration: none; transition: transform 0.2s; }
+.footer-social a:hover { transform: scale(1.2); }
 
 /* ==========================================================================
-   8. %100 HATASIZ MOBİL RESPONSIVE & SÜPER GÜÇLÜ KAPANAN MENÜ SİSTEMİ
+   8. MOBİL RESPONSIVE DÜZENLEMELERİ
    ========================================================================== */
-@media (max-width: 768px) {
-  
-  /* MOBİL MENÜ DÜZENLEME ALANI */
-  .sm-toggle {
-    display: flex; /* Mobilde ikon küpünü açıyoruz */
-  }
-
-  /* HTML'deki Checkbox tetiklendiğinde gerçekleşecek mucize kurallar */
-  .menu-checkbox:checked ~ .staggered-menu-header .sm-toggle-icon {
-    display: none; /* Üç çizgi gizlenir */
-  }
-
-  .menu-checkbox:checked ~ .staggered-menu-header .sm-toggle-close {
-    display: block; /* Çarpı (X) simgesi görünür olur */
-    color: #fff;
-  }
-
-  /* Menü Panelini Mobilde Tam Ekran Sağdan Açılır Panel Yapma */
-  .staggered-menu-panel {
-    position: fixed;
-    top: 0;
-    right: -100%; /* Başlangıçta sağ tarafta tamamen saklı */
-    width: 290px;
-    height: 100vh;
-    background: #09091a; /* Görseldeki pürüzsüz koyu ton */
-    flex-direction: column;
+@media (max-width: 968px) {
+  #hero {
+    flex-direction: column-reverse; /* Mobilde kart üste, yazılar alta gelir */
+    text-align: center;
+    padding-top: 120px;
     justify-content: center;
+  }
+
+  .hero-content-left {
     align-items: center;
-    gap: 50px;
-    z-index: 5500; /* Kapatma butonunun hemen altında, içeriğin ise en üstünde */
-    transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1);
-    box-shadow: -15px 0 40px rgba(0, 0, 0, 0.6);
-    border-left: 1px solid rgba(167, 139, 250, 0.15);
-    padding: 40px;
+    text-align: center;
   }
 
-  /* Checkbox aktifleştiğinde paneli ekrana çekiyoruz */
-  .menu-checkbox:checked ~ .staggered-menu-panel {
-    right: 0;
+  .tilted-card-inner {
+    width: 260px; /* Mobilde aşırı devasa durmasın diye hafifçe ölçeklendi */
+    height: 260px;
   }
+}
 
+@media (max-width: 768px) {
+  .staggered-menu-wrapper {
+    padding: 15px 5%;
+  }
+  
   .sm-panel-list {
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
+    gap: 15px;
   }
 
   .sm-panel-list a {
-    font-size: 1.4rem;
-    font-weight: 600;
+    font-size: 0.85rem;
   }
 
-  /* Mobildeki sosyal medya alanı */
-  .sm-socials {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-    padding-top: 30px;
-    width: 100%;
-  }
-
-  .sm-socials h3 {
-    font-size: 0.9rem;
-    color: #475569;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-  }
-
-  .sm-socials a {
-    color: #94a3b8;
-    text-decoration: none;
-    font-size: 1.1rem;
-  }
-
-  /* MOBİL İÇERİK BOYUTLANDIRMALARI */
-  .intro-logo { font-size: 2.8rem; letter-spacing: 6px; }
-  .intro-subtitle { font-size: 0.95rem; letter-spacing: 3px; }
-
-  #hero { padding-top: 140px; }
   .hero-title { font-size: 2.4rem; }
   .hero-sub { font-size: 1rem; }
   .hero-buttons { flex-direction: column; width: 100%; }
   .btn-primary, .btn-secondary { width: 100%; text-align: center; }
-
-  .tanitim-header h2, #galeri.galeri-header h2, #iletisim h2 { font-size: 2rem; }
-  .scroll-stack-card { padding: 25px; }
-
+  .tanitim-header h2, #galeri .galeri-header h2, #iletisim h2 { font-size: 2rem; }
   .circular-item { width: 260px; height: 180px; }
   .iletisim-buttons { flex-direction: column; width: 100%; }
-
-  footer {
-    flex-direction: column;
-    gap: 20px;
-    text-align: center;
-    padding: 30px 5%;
-  }
+  footer { flex-direction: column; gap: 20px; text-align: center; }
 }
