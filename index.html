@@ -3,175 +3,206 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tunay Kitap Kulübü | Dijital Edebi Deneyim</title>
+  <title>Tunay Kitap Kulübü | The Avant-Garde Library</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,800;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="dark-theme">
 
-  <canvas id="cosmic-canvas"></canvas>
-  <div class="aurora-overlay"></div>
+  <div class="fluid-glow-container">
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+  </div>
 
-  <div class="intro-curtain" id="intro-curtain">
-    <div class="intro-content">
-      <h1 class="intro-title" id="intro-main-title">TUNAY</h1>
-      <p class="intro-subtitle" id="intro-sub-title">KİTAP KULÜBÜ</p>
-      <div class="intro-bar">
-        <div class="intro-progress"></div>
+  <div class="luxury-preloader" id="preloader">
+    <div class="preloader-wrap">
+      <div class="reveal-box">
+        <h1 class="preloader-logo">TUNAY</h1>
       </div>
+      <div class="reveal-box text-delay">
+        <p class="preloader-sub">KİTAP KULÜBÜ</p>
+      </div>
+      <div class="preloader-line"></div>
     </div>
   </div>
 
-  <header class="navbar">
-    <div class="nav-container">
-      <div class="nav-brand">
-        <img src="Tunay_Logo-removebg-preview.png" onerror="this.src='https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=80&auto=format&fit=crop&q=80'" alt="Tunay Logo" class="logo-img">
+  <nav class="capsule-nav">
+    <div class="nav-internal">
+      <a href="#hero" class="nav-brand-link">
+        <img src="Tunay_Logo-removebg-preview.png" onerror="this.src='https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=80&auto=format&fit=crop&q=80'" alt="Tunay" class="nav-minimal-logo">
+      </a>
+      <div class="nav-routes">
+        <a href="#hero" class="route-link active">Giriş</a>
+        <a href="#bento-culture" class="route-link">Kültür</a>
+        <a href="#3d-gallery" class="route-link">Galeri</a>
+        <a href="#nexus-connect" class="route-link">Katıl</a>
       </div>
-      
-      <nav class="nav-menu">
-        <ul class="nav-links">
-          <li><a href="#hero" class="nav-link active">Giriş</a></li>
-          <li><a href="#tanitim" class="nav-link">Keşfet</a></li>
-          <li><a href="#galeri" class="nav-link">Galeri</a></li>
-          <li><a href="#iletisim-container" class="nav-link">Katıl</a></li>
-          <li class="theme-wrapper">
-            <label id="theme-toggle-button">
-              <input type="checkbox" id="toggle">
-              <svg viewBox="0 0 69.667 44" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
-                <g id="container" fill="#59bbec"><rect height="44" rx="22" width="69.667"></rect></g>
-                <g id="patches" fill="#e4effa" opacity="0"><path d="M11.5 22c0-1.38.56-2.63 1.47-3.53-.9-.91-2.15-1.47-3.53-1.47-2.76 0-5 2.24-5 5s2.24 5 5 5c1.38 0 2.63-.56 3.53-1.47-.91-.9-1.47-2.15-1.47-3.53z"></path></g>
-                <g id="stars" fill="#fff">
-                  <path d="M52.5 14.5l.75 1.75 1.75.75-1.75.75-.75 1.75-.75-1.75-1.75-.75 1.75-.75z" />
-                  <path d="M42.5 26.5l.5 1.25 1.25.5-1.25.5-.5 1.25-.5-1.25-1.25-.5 1.25-.5z" />
-                </g>
-                <g id="cloud" fill="#fff"><path d="M16 28c0-3.31 2.69-6 6-6 1.12 0 2.16.31 3.06.85C26.54 20.35 29.07 18 32 18c3.87 0 7 3.13 7 7 0 .34-.03.68-.08 1.01C40.11 26.41 41 27.6 41 29c0 2.21-1.79 4-4 4H16v-5z"></path></g>
-                <g id="button" fill="#f4eb49">
-                  <circle cx="22" cy="22" r="14" id="sun"></circle>
-                  <circle cx="22" cy="22" r="14" fill="#e4effa" id="moon"></circle>
-                </g>
-              </svg>
-            </label>
-          </li>
-        </ul>
-      </nav>
+      <div class="theme-switch-zone">
+        <label id="theme-toggle-button">
+          <input type="checkbox" id="toggle">
+          <svg viewBox="0 0 69.667 44" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+            <g id="container" fill="#59bbec"><rect height="44" rx="22" width="69.667"></rect></g>
+            <g id="patches" fill="#e4effa" opacity="0"><path d="M11.5 22c0-1.38.56-2.63 1.47-3.53-.9-.91-2.15-1.47-3.53-1.47-2.76 0-5 2.24-5 5s2.24 5 5 5c1.38 0 2.63-.56 3.53-1.47-.91-.9-1.47-2.15-1.47-3.53z"></path></g>
+            <g id="stars" fill="#fff">
+              <path d="M52.5 14.5l.75 1.75 1.75.75-1.75.75-.75 1.75-.75-1.75-1.75-.75 1.75-.75z" />
+              <path d="M42.5 26.5l.5 1.25 1.25.5-1.25.5-.5 1.25-.5-1.25-1.25-.5 1.25-.5z" />
+            </g>
+            <g id="cloud" fill="#fff"><path d="M16 28c0-3.31 2.69-6 6-6 1.12 0 2.16.31 3.06.85C26.54 20.35 29.07 18 32 18c3.87 0 7 3.13 7 7 0 .34-.03.68-.08 1.01C40.11 26.41 41 27.6 41 29c0 2.21-1.79 4-4 4H16v-5z"></path></g>
+            <g id="button" fill="#f4eb49">
+              <circle cx="22" cy="22" r="14" id="sun"></circle>
+              <circle cx="22" cy="22" r="14" fill="#e4effa" id="moon"></circle>
+            </g>
+          </svg>
+        </label>
+      </div>
     </div>
-  </header>
+  </nav>
 
-  <main>
-    <section id="hero" class="hero-section">
-      <div class="hero-grid">
-        <div class="hero-text-block reveal-fade">
-          <div class="badge-container">
-            <span class="premium-badge">Fevzi Çakmak Anadolu Lisesi</span>
-          </div>
-          <h1 class="main-title">Fikirlerin <br><span class="aesthetic-text">Yeniden Doğuşu</span></h1>
-          <p class="hero-description">Kitapların zamansız dünyasında kaybolmak, sayfaların ardındaki felsefi derinliği keşfetmek ve edebi bir toplulukla bağ kurmak için en doğru yerdesiniz.</p>
-          <div class="hero-action-row">
-            <a href="#tanitim" class="action-btn btn-solid">Yolculuğa Başla</a>
-            <a href="#galeri" class="action-btn btn-outline">Galeriyi İncele</a>
-          </div>
-        </div>
+  <main class="super-container">
 
-        <div class="hero-visual-block reveal-fade">
-          <div id="interactive-3d-card" class="card-3d-wrapper">
-            <div class="card-glass-base">
-              <div class="card-glow-layer"></div>
-              <img src="Tunay_Logo-removebg-preview.png" onerror="this.src='https://images.unsplash.com/photo-1512820790803-83ca734da794?w=600&auto=format&fit=crop&q=80'" alt="Tunay Logotype" class="center-logo-artifact">
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="tanitim" class="showcase-section">
-      <div class="section-center-header reveal-fade">
-        <h2 class="section-title">Entelektüel Kültürümüz</h2>
-        <p class="section-subtitle">Sadece okumuyoruz; alt metinleri parçalıyor, analiz ediyor ve tartışıyoruz.</p>
-      </div>
-
-      <div class="interactive-grid">
-        <div class="feature-card reveal-fade">
-          <div class="card-number">01</div>
-          <h3>Biz Kimiz?</h3>
-          <p>Fevzi Çakmak Anadolu Lisesi'nin vizyoner edebiyat tutkunları olarak, <span class="highlight-accent">Tunay</span> markası altında düşünen, sorgulayan bir komüniteyiz.</p>
-        </div>
-
-        <div class="feature-card reveal-fade">
-          <div class="card-number">02</div>
-          <h3>Modern Analiz</h3>
-          <p>Klasik felsefi metinlerden modern distopyalara kadar geniş bir yelpazede, popüler kültürün ötesinde edebi derinlik arıyoruz.</p>
-        </div>
-
-        <div class="feature-card reveal-fade">
-          <div class="card-number">03</div>
-          <h3>Haftalık Oturumlar</h3>
-          <p>Her hafta belirlenen bir eser üzerinden, sıcak kahve kokusu ve sinematik müzikler eşliğinde beyin fırtınaları gerçekleştiriyoruz.</p>
-        </div>
-
-        <div class="feature-card reveal-fade">
-          <div class="card-number">04</div>
-          <h3>Yazar Söyleşileri</h3>
-          <p>Dönemlik etkinlik planlarımız dahilinde günümüz yazarlarını ve akademisyenlerini kulübümüzde ağırlayarak ufukları genişletiyoruz.</p>
-        </div>
-
-        <div class="feature-card reveal-fade">
-          <div class="card-number">05</div>
-          <h3>Kritik Atölyeleri</h3>
-          <p>Bir kitabın sadece hikayesine değil; yazarın psikolojisine, dönemin sosyolojik yapısına ve gizli sembolizmlere odaklanıyoruz.</p>
-        </div>
-
-        <div class="feature-card reveal-fade">
-          <div class="card-number">06</div>
-          <h3>Sosyal Köprüler</h3>
-          <p>Kütüphane geliştirme projeleri ve kitap toplama kampanyaları yürüterek bilginin gücünü çevre okullara ulaştırıyoruz.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="galeri" class="gallery-section">
-      <div class="section-center-header reveal-fade">
-        <h2 class="section-title">Anların Estetiği</h2>
-        <p class="section-subtitle">Buluşmalarımızdan, etkinliklerimizden ve kulüp ruhundan geriye kalan ikonik kesitler.</p>
+    <section id="hero" class="kinetic-hero">
+      <div class="hero-left-editorial scroll-trigger">
+        <span class="editorial-badge">Fevzi Çakmak Anadolu Lisesi</span>
+        <h1 class="giant-headline">Fikirlerin<br><span class="hollow-text">Sonsuz</span><br>Sarmalı.</h1>
       </div>
       
-      <div class="infinite-ribbon-wrapper reveal-fade">
-        <div class="ribbon-track">
-          <div class="ribbon-cell"><img src="Tunay_Kitap_BG.jpeg" onerror="this.src='https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=600&auto=format&fit=crop&q=80'" alt="Edebi Estetik"></div>
-          <div class="ribbon-cell"><img src="Tunay_Buluşma.jpeg" onerror="this.src='https://images.unsplash.com/photo-1513001900722-370f803f498d?w=600&auto=format&fit=crop&q=80'" alt="Toplantı Anı"></div>
-          <div class="ribbon-cell"><img src="Tunay_Logo-removebg-preview.png" onerror="this.src='https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=600&auto=format&fit=crop&q=80'" alt="Kulüp Logosu"></div>
-          <div class="ribbon-cell"><img src="Tunay_Kitap_BG.jpeg" onerror="this.src='https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=600&auto=format&fit=crop&q=80'" alt="Kitap Detay"></div>
-          <div class="ribbon-cell"><img src="Tunay_Buluşma.jpeg" onerror="this.src='https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&auto=format&fit=crop&q=80'" alt="Edebi Sohbetler"></div>
-          <div class="ribbon-cell"><img src="Tunay_Kitap_BG.jpeg" onerror="this.src='https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=600&auto=format&fit=crop&q=80'" alt="Edebi Estetik"></div>
-          <div class="ribbon-cell"><img src="Tunay_Buluşma.jpeg" onerror="this.src='https://images.unsplash.com/photo-1513001900722-370f803f498d?w=600&auto=format&fit=crop&q=80'" alt="Toplantı Anı"></div>
+      <div class="hero-right-abstract scroll-trigger">
+        <div class="magnetic-artifact" id="magnetic-item">
+          <div class="artifact-core">
+            <img src="Tunay_Logo-removebg-preview.png" onerror="this.src='https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400&auto=format&fit=crop&q=80'" alt="Artifact" class="artifact-img">
+          </div>
+          <div class="artifact-ring"></div>
+        </div>
+        <p class="minimal-abstract-p">Burası düz bir okuma kulübü değil; sayfaların arkasındaki felsefi kodları kıran, entelektüel derinliği arayan bağımsız bir komünite.</p>
+        <div class="interactive-btn-wrap">
+          <a href="#bento-culture" class="brutalist-btn">
+            <span class="btn-txt">Keşfe Başla</span>
+            <span class="btn-arrow">→</span>
+          </a>
         </div>
       </div>
     </section>
 
-    <section id="iletisim-container" class="contact-section">
-      <div class="interactive-spotlight-card reveal-fade" id="spotlight-card">
-        <div class="spotlight-shimmer"></div>
-        <h2 class="card-main-heading">Hikayemize Ortak Ol</h2>
-        <p class="card-sub-heading">Kültürel bir rüzgâra kapılmak, okuma alışkanlıklarını elit bir seviyeye taşımak istiyorsan, topluluğumuzun kapıları sana sonuna kadar açık.</p>
+    <section id="bento-culture" class="bento-section">
+      <div class="bento-header scroll-trigger">
+        <h2 class="bento-main-title">Entelektüel Matris</h2>
+        <p class="bento-sub-title">Kulübümüzün DNA'sını oluşturan altı temel sütun, modern bir mozaik yapıda birleşti.</p>
+      </div>
+
+      <div class="bento-grid-container">
+        <div class="bento-card size-2x2 scroll-trigger">
+          <div class="bento-glow"></div>
+          <span class="bento-tag">Vizyon</span>
+          <div class="bento-content-heavy">
+            <h3>Biz Kimiz?</h3>
+            <p>Fevzi Çakmak Anadolu Lisesi bünyesinde, edebiyatı bir hobi değil bir yaşam felsefesi olarak gören vizyonerlerden oluşan <span class="text-neon-glow">Tunay Kulübü</span> topluluğuyuz.</p>
+          </div>
+        </div>
+
+        <div class="bento-card size-1x2 scroll-trigger">
+          <div class="bento-glow"></div>
+          <span class="bento-tag">Metot</span>
+          <h3>Modern Analiz</h3>
+          <p>Klasik felsefi metinlerden modern distopyalara uzanan bir düzlemde popüler anlatıların altındaki gizli anlamları söküp alıyoruz.</p>
+        </div>
+
+        <div class="bento-card size-1x1 scroll-trigger">
+          <div class="bento-glow"></div>
+          <span class="bento-tag">Zaman</span>
+          <h3>Haftalık Oturum</h3>
+          <p>Her hafta loş bir ışık ve kahve eşliğinde zihinsel sınırları zorluyoruz.</p>
+        </div>
+
+        <div class="bento-card size-1x1 scroll-trigger">
+          <div class="bento-glow"></div>
+          <span class="bento-tag">Network</span>
+          <h3>Söyleşiler</h3>
+          <p>Yazarlar ve akademisyenlerle vizyon turları.</p>
+        </div>
+
+        <div class="bento-card size-2x1 scroll-trigger">
+          <div class="bento-glow"></div>
+          <span class="bento-tag">Derinlik</span>
+          <div class="bento-row-layout">
+            <h3>Kritik Atölyeleri</h3>
+            <p>Sadece olay örgüsünü değil; yazarın psikolojisini ve dönemin sosyo-politik yapısını mikro düzeyde masaya yatırıyoruz.</p>
+          </div>
+        </div>
+
+        <div class="bento-card size-1x2 scroll-trigger">
+          <div class="bento-glow"></div>
+          <span class="bento-tag">Etki</span>
+          <h3>Sosyal Köprüler</h3>
+          <p>Kitap toplama kampanyaları ve çevre kütüphane restorasyonları ile bilginin ışığını lise duvarlarının dışına taşıyoruz.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="3d-gallery" class="gallery-interactive-section">
+      <div class="bento-header scroll-trigger">
+        <h2 class="bento-main-title">Anların Estetiği</h2>
+        <p class="bento-sub-title">Sürükle, incele ve hisset. Buluşmalarımızdan estetik kareler.</p>
+      </div>
+
+      <div class="staggered-gallery-wall">
+        <div class="gallery-column layer-fast">
+          <div class="gallery-item-wrap scroll-trigger">
+            <img src="Tunay_Kitap_BG.jpeg" onerror="this.src='https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=600&auto=format&fit=crop&q=80'" alt="Estetik 1">
+            <div class="img-meta">Odak Noktası / Oturumlar</div>
+          </div>
+          <div class="gallery-item-wrap scroll-trigger">
+            <img src="Tunay_Buluşma.jpeg" onerror="this.src='https://images.unsplash.com/photo-1513001900722-370f803f498d?w=600&auto=format&fit=crop&q=80'" alt="Estetik 2">
+            <div class="img-meta">Zihinsel Etkileşim</div>
+          </div>
+        </div>
+
+        <div class="gallery-column layer-slow">
+          <div class="gallery-item-wrap scroll-trigger">
+            <img src="Tunay_Logo-removebg-preview.png" onerror="this.src='https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=600&auto=format&fit=crop&q=80'" alt="Estetik 3">
+            <div class="img-meta">Tunay Amblem</div>
+          </div>
+          <div class="gallery-item-wrap scroll-trigger">
+            <img src="Tunay_Kitap_BG.jpeg" onerror="this.src='https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=600&auto=format&fit=crop&q=80'" alt="Estetik 4">
+            <div class="img-meta">Kütüphane Kokusu</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="nexus-connect" class="nexus-section">
+      <div class="nexus-card scroll-trigger" id="nexus-card">
+        <div class="nexus-grid-overlay"></div>
+        <div class="nexus-interactive-glow"></div>
         
-        <div class="cta-button-group">
-          <a href="mailto:iletisim@tunay.com" class="action-btn btn-solid">Bizimle İletişime Geç</a>
-          <a href="https://instagram.com/tunaykitapkulubu" target="_blank" class="action-btn btn-instagram">Instagram'da Keşfet</a>
+        <span class="nexus-mini-title">// JOIN THE NEXUS</span>
+        <h2 class="nexus-title">Bu Kültürün <br>Bir Parçası Ol</h2>
+        <p class="nexus-desc">Kendi entelektüel devrimini başlatmak ve vizyoner komünitemize adını yazdırmak için formu tetikle veya sosyal ağlardan ağımıza sız.</p>
+        
+        <div class="nexus-actions">
+          <a href="mailto:iletisim@tunay.com" class="brutalist-btn primary-nexus">
+            <span class="btn-txt">Bize Ulaşın</span>
+          </a>
+          <a href="https://instagram.com/tunaykitapkulubu" target="_blank" class="brutalist-btn outline-nexus">
+            <span class="btn-txt">Instagram</span>
+          </a>
         </div>
 
-        <div class="founder-signature">
-          <p>Kulüp Kurucusu & Yönetim: <span class="founder-name">Tunay</span></p>
+        <div class="nexus-footer">
+          <span class="curator">Küratör & Yönetim: <strong>Tunay</strong></span>
         </div>
       </div>
     </section>
+
   </main>
 
-  <footer class="footer-bar">
-    <p class="copyright">&copy; 2026 Tunay Kitap Kulübü. Elegance & Intellect.</p>
-    <div class="footer-social-links">
-      <a href="https://instagram.com/tunaykitapkulubu" target="_blank">Instagram</a>
-      <a href="#">Twitter</a>
+  <footer class="editorial-footer">
+    <div class="footer-left">
+      <p>&copy; 2026 Tunay Kitap Kulübü. All rights reserved.</p>
+    </div>
+    <div class="footer-right">
+      <span>Designed for Intellectuals</span>
     </div>
   </footer>
 
