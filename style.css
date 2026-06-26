@@ -1,13 +1,12 @@
 /* ==========================================================================
-   1. COSMIC PURPLE THEME DESIGN SYSTEM
+   1. SOLID COSMIC PURPLE DESIGN SYSTEM
    ========================================================================== */
 :root {
   --font-base: 'Plus Jakarta Sans', sans-serif;
   --font-display: 'Syne', sans-serif;
   --cubic-luxury: cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-body.cosmic-dark {
+  
+  /* Kalıcı Koyu Mor Değişkenleri */
   --bg-deep: #06040a;
   --text-pure: #f3f1f7;
   --text-soft: #8e8a9f;
@@ -16,17 +15,6 @@ body.cosmic-dark {
   --card-hover-border: rgba(157, 78, 221, 0.4);
   --nav-bg: rgba(6, 4, 10, 0.5);
   --glow-primary: rgba(124, 58, 237, 0.15);
-}
-
-body.cosmic-light {
-  --bg-deep: #f7f5fa;
-  --text-pure: #120e1a;
-  --text-soft: #736f85;
-  --card-bg: rgba(255, 255, 255, 0.7);
-  --card-border: rgba(124, 58, 237, 0.08);
-  --card-hover-border: rgba(124, 58, 237, 0.3);
-  --nav-bg: rgba(247, 245, 250, 0.6);
-  --glow-primary: rgba(124, 58, 237, 0.05);
 }
 
 * {
@@ -40,10 +28,9 @@ body {
   color: var(--text-pure);
   font-family: var(--font-base);
   overflow-x: hidden;
-  transition: background-color 0.8s var(--cubic-luxury), color 0.8s var(--cubic-luxury);
 }
 
-/* Sıvı Hareketli Mor Işık Katmanı (Kullanıcıyı İçeri Çeken Alan) */
+/* Sıvı Hareketli Mor Işık Katmanı */
 .purple-universe {
   position: fixed;
   inset: 0;
@@ -66,7 +53,7 @@ body {
 .orb-pink { width: 400px; height: 400px; background: #db2777; top: 40%; left: 30%; opacity: 0.1; }
 
 /* ==========================================================================
-   2. SİNEMATİK KUSURSUZ INTRO (GARANTİLİ AÇILIR)
+   2. SİNEMATİK INTRO
    ========================================================================== */
 .cosmic-intro {
   position: fixed;
@@ -112,19 +99,18 @@ body {
 }
 
 /* ==========================================================================
-   3. MİKRO LÜKS NAVBAR (ARTIK KAFAMIZ KADAR DEĞİL!)
+   3. MİKRO NAVBAR & LOGO KORUMASI
    ========================================================================== */
 .micro-nav {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 65px; /* İnce ve narin yükseklik */
+  height: 65px;
   z-index: 10000;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: var(--cubic-luxury);
 }
 
 .nav-blur-holder {
@@ -146,13 +132,19 @@ body {
   justify-content: space-between;
 }
 
+.nav-logo-zone {
+  display: flex;
+  align-items: center;
+}
+
 .pure-logo {
-  height: 28px; /* Kibar logo boyutu */
+  height: 38px; /* Logonun belirgin durması için boyutu optimize edildi */
+  width: auto;
   object-fit: contain;
   transition: transform 0.4s var(--cubic-luxury);
 }
 
-.pure-logo:hover { transform: scale(1.05); }
+.pure-logo:hover { transform: scale(1.08); }
 
 .nav-links { display: flex; gap: 30px; }
 
@@ -170,21 +162,10 @@ body {
   color: #9d4edd;
 }
 
-/* UIverse Tema Buton Uyumlaştırması */
-#theme-toggle-button { width: 42px; cursor: pointer; }
-#toggle { opacity: 0; width: 0; height: 0; }
-#container, #patches, #stars, #button, #sun, #moon, #cloud { transition: 0.3s ease; }
-#toggle:checked + svg #container { fill: #2d1b4e; }
-#toggle:checked + svg #button { transform: translate(27px, 0px); }
-#sun { opacity: 1; }
-#toggle:checked + svg #sun { opacity: 0; }
-#moon { opacity: 0; fill: #f1f5f9; }
-#toggle:checked + svg #moon { opacity: 1; }
-#cloud { opacity: 0; }
-#stars { opacity: 1; fill: #9d4edd; }
+.nav-right-space { width: 40px; } /* Simetri dengesi için */
 
 /* ==========================================================================
-   4. SEKTÖREL ÇEKİCİ HERO ALANI
+   4. HERO ALANI
    ========================================================================== */
 .cosmic-wrapper {
   max-width: 1300px;
@@ -231,7 +212,6 @@ body {
   line-height: 1.7;
 }
 
-/* Fütüristik İnce Işıklı Buton */
 .cosmic-btn {
   position: relative;
   display: inline-flex;
@@ -253,10 +233,9 @@ body {
 }
 
 /* ==========================================================================
-   5. FINE-LINE GRID (KUTULARI KÜÇÜLTTÜK, ZARAFET GETİRDİK)
+   5. CARDS GRID
    ========================================================================== */
 .culture-section { padding: 100px 0; }
-
 .section-meta { margin-bottom: 60px; text-align: center; }
 
 .ghost-heading {
@@ -277,7 +256,7 @@ body {
 .sleek-card {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
-  padding: 35px; /* Kutuları daralttık */
+  padding: 35px;
   border-radius: 20px;
   position: relative;
   overflow: hidden;
@@ -314,14 +293,10 @@ body {
 }
 
 /* ==========================================================================
-   6. AKICI CAM SİNEMA GALERİSİ
+   6. SİNEMATİK GALERİ
    ========================================================================== */
 .cinema-gallery-section { padding: 80px 0; }
-
-.liquid-gallery-container {
-  width: 100%;
-  overflow: hidden;
-}
+.liquid-gallery-container { width: 100%; overflow: hidden; }
 
 .gallery-glass-frame {
   background: rgba(255, 255, 255, 0.02);
@@ -330,10 +305,7 @@ body {
   border-radius: 30px;
 }
 
-.frame-track {
-  display: flex;
-  gap: 20px;
-}
+.frame-track { display: flex; gap: 20px; }
 
 .cinema-cell {
   flex: 1;
@@ -351,18 +323,11 @@ body {
   transition: 0.7s;
 }
 
-/* Dinamik Genişleme Etkisi (Kullanıcı etkileşimi tavan) */
-.cinema-cell:hover {
-  flex: 2.2;
-}
-
-.cinema-cell:hover img {
-  filter: saturate(1.1) brightness(1);
-  transform: scale(1.02);
-}
+.cinema-cell:hover { flex: 2.2; }
+.cinema-cell:hover img { filter: saturate(1.1) brightness(1); transform: scale(1.02); }
 
 /* ==========================================================================
-   7. CHILL MAGNET NEXUS CARD (İLETİŞİM)
+   7. NEXUS CARD
    ========================================================================== */
 .nexus-glow-section { padding: 100px 0 140px; }
 
@@ -374,7 +339,6 @@ body {
   text-align: center;
   position: relative;
   overflow: hidden;
-  transition: transform 0.2s ease;
 }
 
 .nexus-main-title {
@@ -386,7 +350,6 @@ body {
 }
 
 .nexus-text { color: var(--text-soft); max-width: 500px; margin: 0 auto 40px; font-size: 1.1rem; }
-
 .nexus-btn-row { display: flex; justify-content: center; gap: 20px; }
 
 .static-btn { background: #7c3aed; }
@@ -405,10 +368,7 @@ body {
   transition: opacity 1s var(--cubic-luxury), transform 1s var(--cubic-luxury);
 }
 
-.scroll-reveal.active {
-  opacity: 1;
-  transform: translateY(0);
-}
+.scroll-reveal.active { opacity: 1; transform: translateY(0); }
 
 .minimal-footer {
   text-align: center;
@@ -418,7 +378,6 @@ body {
   border-top: 1px solid var(--card-border);
 }
 
-/* Mobil Optimizasyon */
 @media (max-width: 1024px) {
   .fine-line-grid { grid-template-columns: repeat(2, 1fr); }
   .fluid-title { font-size: 3.8rem; }
