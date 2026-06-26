@@ -1,144 +1,117 @@
 /**
- * TUNAY KİTAP KULÜBÜ - INTELLECTUAL INTERACTION ENGINE 2026
- * Pure Performance, Luxury Micro-interactions
+ * TUNAY KİTAP KULÜBÜ - COSMIC PURPLE ENGINE 2026
  */
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // 1. INTRO ENGINE (GARANTİLİ VE KUSURSUZ KALDIRMA)
-    const initPreloader = () => {
-        const preloader = document.getElementById('preloader');
-        if (!preloader) return;
+    // 1. INTRO ENGINE (KUSURSUZ VE ZAMANLI GEÇİŞ)
+    const initIntro = () => {
+        const intro = document.getElementById('intro-screen');
+        if (!intro) return;
 
-        // Sayfa tamamen yüklendiğinde perdeyi kaldır
         window.addEventListener('load', () => {
             setTimeout(() => {
-                preloader.classList.add('unveil');
-            }, 1800); 
+                intro.classList.add('vanish');
+            }, 1400); // 1.4 saniye sonra pürüzsüzce kaybolur
         });
 
-        // Fail-safe (Herhangi bir yükleme takılması durumunda maksimum 3 saniye sonra zorla aç)
+        // Fail-safe (Yüklenme takılırsa en geç 2.5 saniyede zorla açar)
         setTimeout(() => {
-            preloader.classList.add('unveil');
-        }, 3000);
+            intro.classList.add('vanish');
+        }, 2500);
     };
-    initPreloader();
+    initIntro();
 
 
-    // 2. BENTO CARDS MOUSE TRACKING GLOW EFFECT
-    const initBentoGlow = () => {
-        const cards = document.querySelectorAll('.bento-card');
+    // 2. MOUSE-TRACKING FLUID ORBS (ARKA PLANDAKİ IŞIKLAR MOUSE'U TAKİP EDER)
+    const initFluidUniverse = () => {
+        const orbs = document.querySelectorAll('.liquid-orb');
         
-        cards.forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
+        window.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth) * 40;
+            const y = (e.clientY / window.innerHeight) * 40;
 
-                card.style.setProperty('--mouse-x', `${x}px`);
-                card.style.setProperty('--mouse-y', `${y}px`);
+            orbs.forEach((orb, index) => {
+                const factor = (index + 1) * 0.5;
+                orb.style.transform = `translate(${x * factor}px, ${y * factor}px)`;
             });
         });
     };
-    initBentoGlow();
+    initFluidUniverse();
 
 
-    // 3. MAGNETIC LOGO ARTIFACT ENGINE (HERO)
-    const initMagneticArtifact = () => {
-        const artifact = document.getElementById('magnetic-item');
-        if (!artifact) return;
+    // 3. MAGNETIC NEXUS INTERACTION (İLETİŞİM ALANI MOUSE'U KENDİNE ÇEKER)
+    const initMagneticNexus = () => {
+        const nexus = document.getElementById('magnetic-nexus');
+        if (!nexus || window.innerWidth < 768) return;
 
-        artifact.addEventListener('mousemove', (e) => {
-            const rect = artifact.getBoundingClientRect();
+        nexus.addEventListener('mousemove', (e) => {
+            const rect = nexus.getBoundingClientRect();
             const centerX = rect.left + rect.width / 2;
             const centerY = rect.top + rect.height / 2;
             
-            // Mouse ile merkez arasındaki mesafe ve esneme katsayısı
-            const deltaX = e.clientX - centerX;
-            const deltaY = e.clientY - centerY;
+            const moveX = (e.clientX - centerX) * 0.08;
+            const moveY = (e.clientY - centerY) * 0.08;
 
-            // Yumuşak lüks kayma (Max 25px)
-            artifact.style.transform = `translate(${deltaX * 0.15}px, ${deltaY * 0.15}px)`;
+            nexus.style.transform = `translate(${moveX}px, ${moveY}px)`;
         });
 
-        artifact.addEventListener('mouseleave', () => {
-            artifact.style.transform = 'translate(0px, 0px)';
+        nexus.addEventListener('mouseleave', () => {
+            nexus.style.transform = 'translate(0px, 0px)';
         });
     };
-    initMagneticArtifact();
+    initMagneticNexus();
 
 
-    // 4. NEXUS CARD CARD TRACKING GLOW (İLETİŞİM)
-    const initNexusSpotlight = () => {
-        const nexusCard = document.getElementById('nexus-card');
-        if (!nexusCard) return;
-
-        nexusCard.addEventListener('mousemove', (e) => {
-            const rect = nexusCard.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-
-            nexusCard.style.setProperty('--nexus-x', `${x}px`);
-            nexusCard.style.setProperty('--nexus-y', `${y}px`);
-        });
-    };
-    initNexusSpotlight();
-
-
-    // 5. INTUITIVE INTERSECTION SCROLL REVEAL
-    const initScrollReveal = () => {
-        const triggers = document.querySelectorAll('.scroll-trigger');
-        const routes = document.querySelectorAll('.route-link');
+    // 4. INTELLIGENT SCROLL REVEAL & ROUTE ACTIVE
+    const initScrollSystem = () => {
+        const reveals = document.querySelectorAll('.scroll-reveal');
+        const links = document.querySelectorAll('.link-item');
         const sections = document.querySelectorAll('section');
 
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const revealObserver = new IntersectionObserver((entries) => {
+        const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1 });
 
-        triggers.forEach(trigger => revealObserver.observe(trigger));
+        reveals.forEach(el => observer.observe(el));
 
-        // Active Route Highlighting during Scroll
+        // Hangi bölümdeysek menüdeki o link parıldar
         const sectionObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    const currentId = entry.target.getAttribute('id');
-                    routes.forEach(route => {
-                        route.classList.remove('active');
-                        if (route.getAttribute('href') === `#${currentId}`) {
-                            route.classList.add('active');
+                    const id = entry.target.getAttribute('id');
+                    links.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${id}`) {
+                            link.classList.add('active');
                         }
                     });
                 }
             });
-        }, { threshold: 0.3 });
+        }, { threshold: 0.4 });
 
-        sections.forEach(section => sectionObserver.observe(section));
+        sections.forEach(sec => sectionObserver.observe(sec));
     };
-    initScrollReveal();
+    initScrollSystem();
 
 
-    // 6. THEME SWAP SWITCHER
-    const initThemeSystem = () => {
+    // 5. THEME SWAP SWITCHER
+    const initTheme = () => {
         const toggle = document.getElementById('toggle');
         if (!toggle) return;
 
         toggle.addEventListener('change', function() {
             if (this.checked) {
-                document.body.classList.replace('dark-theme', 'light-theme');
+                document.body.classList.replace('cosmic-dark', 'cosmic-light');
             } else {
-                document.body.classList.replace('light-theme', 'dark-theme');
+                document.body.classList.replace('cosmic-light', 'cosmic-dark');
             }
         });
     };
-    initThemeSystem();
+    initTheme();
 
 });
