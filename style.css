@@ -1,630 +1,601 @@
 /* ==========================================================================
-   1. MIMARI DEĞİŞKENLER & PREMIUM TEMA ALTYAPISI (2026 DESIGN SYSTEM)
+   1. MODERN DESIGN SYSTEM & VARIABLE MATRIX
    ========================================================================== */
 :root {
-  --font-sans: 'Plus Jakarta Sans', sans-serif;
-  --font-serif: 'Playfair Display', serif;
-  --transition-smooth: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  --transition-fast: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --font-sans: 'Space Grotesk', sans-serif;
+  --font-serif: 'Cinzel', serif;
+  --cubic-luxury: cubic-bezier(0.25, 1, 0.5, 1);
+  --cubic-fast: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 body.dark-theme {
-  --bg-main: #030308;
-  --text-main: #f8fafc;
-  --text-muted: #64748b;
-  --glass-bg: rgba(10, 10, 20, 0.5);
-  --glass-border: rgba(255, 255, 255, 0.05);
-  --accent-gradient: linear-gradient(135deg, #a78bfa 0%, #6366f1 50%, #38bdf8 100%);
-  --badge-bg: rgba(99, 102, 241, 0.08);
-  --badge-border: rgba(99, 102, 241, 0.2);
-  --badge-text: #a5b4fc;
-  --spotlight-color: rgba(99, 102, 241, 0.15);
-  --card-shadow: rgba(0, 0, 0, 0.7);
+  --bg-core: #05050a;
+  --text-core: #f1f5f9;
+  --text-dim: #64748b;
+  --bento-bg: rgba(13, 13, 25, 0.45);
+  --bento-border: rgba(255, 255, 255, 0.04);
+  --bento-hover-border: rgba(99, 102, 241, 0.3);
+  --nav-bg: rgba(7, 7, 15, 0.6);
+  --accent-glow: rgba(99, 102, 241, 0.12);
+  --btn-bg: #f1f5f9;
+  --btn-text: #05050a;
 }
 
 body.light-theme {
-  --bg-main: #f8fafc;
-  --text-main: #0f172a;
-  --text-muted: #64748b;
-  --glass-bg: rgba(255, 255, 255, 0.65);
-  --glass-border: rgba(15, 23, 42, 0.06);
-  --accent-gradient: linear-gradient(135deg, #6d28d9 0%, #4338ca 50%, #0369a1 100%);
-  --badge-bg: rgba(67, 56, 202, 0.05);
-  --badge-border: rgba(67, 56, 202, 0.15);
-  --badge-text: #4338ca;
-  --spotlight-color: rgba(67, 56, 202, 0.06);
-  --card-shadow: rgba(15, 23, 42, 0.05);
+  --bg-core: #f8fafc;
+  --text-core: #0f172a;
+  --text-dim: #64748b;
+  --bento-bg: rgba(255, 255, 255, 0.7);
+  --bento-border: rgba(15, 23, 42, 0.06);
+  --bento-hover-border: rgba(67, 56, 202, 0.3);
+  --nav-bg: rgba(248, 250, 252, 0.7);
+  --accent-glow: rgba(67, 56, 202, 0.05);
+  --btn-bg: #0f172a;
+  --btn-text: #f8fafc;
 }
 
-/* Global Reset */
+/* Base Setup */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-}
-
 body {
+  background-color: var(--bg-core);
+  color: var(--text-core);
   font-family: var(--font-sans);
-  background-color: var(--bg-main);
-  color: var(--text-main);
   overflow-x: hidden;
-  transition: var(--transition-smooth);
+  transition: background-color 0.8s var(--cubic-luxury), color 0.8s var(--cubic-luxury);
 }
 
-/* Cosmic Background */
-#cosmic-canvas {
-  position: fixed;
-  inset: 0;
-  z-index: -2;
-  pointer-events: none;
-}
-
-.aurora-overlay {
+/* Fluid Background Glows */
+.fluid-glow-container {
   position: fixed;
   inset: 0;
   z-index: -1;
-  background: radial-gradient(circle at 80% 20%, var(--spotlight-color) 0%, transparent 50%),
-              radial-gradient(circle at 10% 80%, var(--spotlight-color) 0%, transparent 60%);
   pointer-events: none;
-  filter: blur(40px);
+  overflow: hidden;
+}
+
+.glow-orb {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+  filter: blur(60px);
+  mix-blend-mode: screen;
+  transition: all 0.8s var(--cubic-luxury);
+}
+
+.orb-1 { top: -200px; right: -100px; }
+.orb-2 { bottom: -200px; left: -100px; }
+
+/* ==========================================================================
+   2. BULLETPROOF ULTRA-PREMIUM PRELOADER (İNTRO DÜZELTME)
+   ========================================================================== */
+.luxury-preloader {
+  position: fixed;
+  inset: 0;
+  background-color: #05050a;
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 1.2s cubic-bezier(0.85, 0, 0.15, 1), opacity 1s ease;
+}
+
+.luxury-preloader.unveil {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.preloader-wrap {
+  text-align: center;
+  position: relative;
+}
+
+.reveal-box {
+  overflow: hidden;
+  margin-bottom: 5px;
+}
+
+.preloader-logo {
+  font-family: var(--font-serif);
+  font-size: 5rem;
+  font-weight: 800;
+  color: #ffffff !important; /* Görünme garantisi için zorunlu beyaz */
+  letter-spacing: 15px;
+  line-height: 1.2;
+  transform: translateY(110%);
+  animation: textReveal 1s var(--cubic-luxury) forwards 0.2s;
+}
+
+.preloader-sub {
+  font-size: 1rem;
+  letter-spacing: 8px;
+  color: #64748b;
+  text-transform: uppercase;
+  transform: translateY(110%);
+  animation: textReveal 1s var(--cubic-luxury) forwards 0.5s;
+}
+
+.preloader-line {
+  width: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #6366f1, transparent);
+  margin: 20px auto 0;
+  animation: lineExtend 1.5s var(--cubic-luxury) forwards;
+}
+
+@keyframes textReveal {
+  to { transform: translateY(0); }
+}
+
+@keyframes lineExtend {
+  to { width: 100%; }
 }
 
 /* ==========================================================================
-   2. UIVERSE TEMA DEĞİŞTİRME BUTONU OPTİMİZASYONU
+   3. FLOATING CAPSULE NAVBAR
    ========================================================================== */
-#theme-toggle-button {
-  position: relative;
-  display: block;
-  width: 50px;
-  cursor: pointer;
+.capsule-nav {
+  position: fixed;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10000;
+  width: calc(100% - 60px);
+  max-width: 750px;
 }
 
+.nav-internal {
+  background: var(--nav-bg);
+  border: 1px solid var(--bento-border);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 10px 24px;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.nav-minimal-logo {
+  height: 32px;
+  object-fit: contain;
+}
+
+.nav-routes {
+  display: flex;
+  gap: 25px;
+}
+
+.route-link {
+  color: var(--text-core);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  opacity: 0.6;
+  transition: var(--cubic-fast);
+}
+
+.route-link:hover, .route-link.active {
+  opacity: 1;
+}
+
+/* UIverse Tema Butonu Entegrasyonu */
+#theme-toggle-button { width: 45px; cursor: pointer; }
 #toggle { opacity: 0; width: 0; height: 0; }
-#container, #patches, #stars, #button, #sun, #moon, #cloud { transition: var(--transition-fast); }
+#container, #patches, #stars, #button, #sun, #moon, #cloud { transition: 0.3s ease; }
 #toggle:checked + svg #container { fill: #1e1e2f; }
 #toggle:checked + svg #button { transform: translate(27px, 0px); }
 #sun { opacity: 1; }
 #toggle:checked + svg #sun { opacity: 0; }
-#moon { opacity: 0; }
-#toggle:checked + svg #moon { opacity: 1; fill: #f1f5f9; }
+#moon { opacity: 0; fill: #f1f5f9; }
+#toggle:checked + svg #moon { opacity: 1; }
 #cloud { opacity: 1; fill: #fff; }
 #toggle:checked + svg #cloud { opacity: 0; }
 #stars { opacity: 0; }
 #toggle:checked + svg #stars { opacity: 1; }
 
 /* ==========================================================================
-   3. ULTRA-PREMIUM SINEMATİK INTRO PERDESİ
+   4. ASYMMETRIC EDITORIAL HERO SECTION
    ========================================================================== */
-.intro-curtain {
-  position: fixed;
-  inset: 0;
-  z-index: 99999;
-  background: #020205;
+.super-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 4%;
+}
+
+.kinetic-hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: 80px;
+  padding-top: 100px;
+}
+
+.editorial-badge {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--text-dim);
+  display: block;
+  margin-bottom: 20px;
+}
+
+.giant-headline {
+  font-family: var(--font-serif);
+  font-size: 5.5rem;
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -2px;
+}
+
+.hollow-text {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--text-core);
+  font-style: italic;
+}
+
+.hero-right-abstract {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding-left: 40px;
+}
+
+/* Floating Artifact Component */
+.magnetic-artifact {
+  position: relative;
+  width: 260px;
+  height: 260px;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: opacity 1s cubic-bezier(0.85, 0, 0.15, 1), visibility 1s;
+  cursor: grab;
 }
 
-.intro-curtain.loaded {
-  opacity: 0;
-  visibility: hidden;
-}
-
-.intro-content {
-  text-align: center;
-}
-
-.intro-title {
-  font-size: 5.5rem;
-  font-weight: 800;
-  letter-spacing: 20px;
-  margin-left: 20px;
-  font-family: var(--font-sans);
-  background: linear-gradient(90deg, #fff, #64748b);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.intro-subtitle {
-  font-size: 1.1rem;
-  letter-spacing: 8px;
-  margin-top: 15px;
-  color: #64748b;
-  font-weight: 500;
-}
-
-/* JS ile Entegre Harf Animasyon Sınıfları (Tamamen Net) */
-.intro-char {
-  display: inline-block;
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.intro-char.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.intro-bar {
-  width: 200px;
-  height: 2px;
-  background: rgba(255, 255, 255, 0.05);
-  margin: 30px auto 0;
-  border-radius: 2px;
-  overflow: hidden;
-}
-
-.intro-progress {
-  width: 0%;
-  height: 100%;
-  background: linear-gradient(90deg, #6366f1, #38bdf8);
-  transition: width 2.5s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-/* ==========================================================================
-   4. FLOATING BLUR GLASSMORPHIC NAVBAR
-   ========================================================================== */
-.navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 20px 8%;
-  z-index: 1000;
-  background: var(--navbar-bg);
-  transition: var(--transition-smooth);
-}
-
-.navbar.scrolled {
-  padding: 15px 8%;
-  background: var(--glass-bg);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--glass-border);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.02);
-}
-
-.nav-container {
-  max-width: 1400px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.logo-img {
-  height: 48px;
-  object-fit: contain;
-  filter: drop-shadow(0 0 10px rgba(99, 102, 241, 0.2));
-}
-
-.nav-links {
-  display: flex;
-  gap: 35px;
-  list-style: none;
-  align-items: center;
-}
-
-.nav-link {
-  color: var(--text-main);
-  text-decoration: none;
-  font-size: 0.95rem;
-  font-weight: 500;
-  opacity: 0.7;
-  transition: var(--transition-fast);
-  position: relative;
-}
-
-.nav-link:hover, .nav-link.active {
-  opacity: 1;
-}
-
-.nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: -6px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--accent-gradient);
-  transition: var(--transition-fast);
-}
-
-.nav-link:hover::after, .nav-link.active::after {
-  width: 100%;
-}
-
-/* ==========================================================================
-   5. HERO SECTION MİMARİSİ
-   ========================================================================== */
-.hero-section {
-  min-height: 100vh;
+.artifact-core {
+  width: 180px;
+  height: 180px;
+  background: var(--bento-bg);
+  border: 1px solid var(--bento-border);
+  border-radius: 35% 65% 70% 30% / 30% 40% 60% 70%;
   display: flex;
   align-items: center;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 120px 8% 60px;
-}
-
-.hero-grid {
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 60px;
-  align-items: center;
-  width: 100%;
-}
-
-.premium-badge {
-  display: inline-block;
-  background: var(--badge-bg);
-  border: 1px solid var(--badge-border);
-  color: var(--badge-text);
-  padding: 6px 18px;
-  border-radius: 100px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  margin-bottom: 25px;
-}
-
-.main-title {
-  font-family: var(--font-sans);
-  font-size: 4.8rem;
-  font-weight: 800;
-  line-height: 1.1;
-  letter-spacing: -2px;
-  margin-bottom: 25px;
-}
-
-.aesthetic-text {
-  background: var(--accent-gradient);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 400;
-}
-
-.hero-description {
-  font-size: 1.15rem;
-  color: var(--text-muted);
-  line-height: 1.7;
-  max-width: 580px;
-  margin-bottom: 40px;
-}
-
-.hero-action-row {
-  display: flex;
-  gap: 20px;
-}
-
-/* Global Buton Mimarisi */
-.action-btn {
-  padding: 16px 36px;
-  border-radius: 100px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  text-decoration: none;
-  transition: var(--transition-fast);
-  display: inline-block;
-}
-
-.btn-solid {
-  background: var(--accent-gradient);
-  color: #fff;
-  box-shadow: 0 10px 25px rgba(99, 102, 241, 0.25);
-}
-
-.btn-solid:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 15px 35px rgba(99, 102, 241, 0.4);
-}
-
-.btn-outline {
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  color: var(--text-main);
+  justify-content: center;
+  animation: morphingBlob 8s ease-in-out infinite alternate;
   backdrop-filter: blur(10px);
 }
 
-.btn-outline:hover {
-  border-color: #6366f1;
-  transform: translateY(-3px);
-}
-
-/* 3D Interactive Artifact Card */
-.card-3d-wrapper {
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  perspective: 2000px;
-}
-
-.card-glass-base {
-  width: 380px;
-  height: 380px;
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  border-radius: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  backdrop-filter: blur(30px);
-  -webkit-backdrop-filter: blur(30px);
-  box-shadow: 0 40px 80px var(--shadow-color);
-  transform-style: preserve-3d;
-  transition: transform 0.1s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.card-glow-layer {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.15) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-.center-logo-artifact {
-  width: 75%;
-  height: 75%;
+.artifact-img {
+  width: 65%;
+  height: 65%;
   object-fit: contain;
-  transform: translateZ(60px);
-  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.3));
 }
 
-/* ==========================================================================
-   6. INTERACTIVE FEATURES GRID (KULÜP HAKKINDA)
-   ========================================================================== */
-.showcase-section {
-  padding: 140px 8%;
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-.section-center-header {
-  text-align: center;
-  max-width: 700px;
-  margin: 0 auto 80px;
-}
-
-.section-title {
-  font-size: 3.2rem;
-  font-weight: 800;
-  letter-spacing: -1px;
-  margin-bottom: 15px;
-}
-
-.section-subtitle {
-  font-size: 1.15rem;
-  color: var(--text-muted);
-  line-height: 1.6;
-}
-
-.interactive-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-}
-
-.feature-card {
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  padding: 50px 40px;
-  border-radius: 32px;
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.01);
-  transition: var(--transition-smooth);
-  position: relative;
-}
-
-.card-number {
-  font-size: 0.9rem;
-  font-weight: 700;
-  color: var(--text-muted);
-  opacity: 0.4;
-  margin-bottom: 25px;
-}
-
-.feature-card h3 {
-  font-size: 1.4rem;
-  font-weight: 700;
-  margin-bottom: 15px;
-}
-
-.feature-card p {
-  color: var(--text-muted);
-  line-height: 1.7;
-  font-size: 1rem;
-}
-
-.highlight-accent {
-  background: var(--accent-gradient);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  font-weight: 700;
-}
-
-/* Card Hover Micro-interactions */
-.feature-card:hover {
-  transform: translateY(-10px) scale(1.02);
-  border-color: rgba(99, 102, 241, 0.3);
-  box-shadow: 0 30px 60px var(--shadow-color);
-}
-
-/* ==========================================================================
-   7. LUXURY HORIZONTAL INFINITE RIBBON (GALERİ)
-   ========================================================================== */
-.gallery-section { padding: 140px 0; }
-
-.infinite-ribbon-wrapper {
-  width: 100%;
-  display: flex;
-  overflow: hidden;
-  padding: 30px 0;
-  position: relative;
-}
-
-.ribbon-track {
-  display: flex;
-  gap: 35px;
-  width: max-content;
-  animation: dynamicRibbonRun 40s linear infinite;
-}
-
-.infinite-ribbon-wrapper:hover .ribbon-track {
-  animation-play-state: paused;
-}
-
-.ribbon-cell {
-  width: 400px;
-  height: 270px;
-  border-radius: 30px;
-  overflow: hidden;
-  border: 1px solid var(--glass-border);
-  box-shadow: 0 25px 50px var(--shadow-color);
-  background: var(--glass-bg);
-}
-
-.ribbon-cell img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.ribbon-cell:hover img {
-  transform: scale(1.1);
-}
-
-@keyframes dynamicRibbonRun {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(calc(-50% - 17.5px)); }
-}
-
-/* ==========================================================================
-   8. DYNAMIC MOUSE-TRACKING SPOTLIGHT CARD (İLETİŞİM)
-   ========================================================================== */
-.contact-section {
-  padding: 140px 8%;
-  display: flex;
-  justify-content: center;
-}
-
-.interactive-spotlight-card {
-  position: relative;
-  width: 100%;
-  max-width: 900px;
-  padding: 80px 60px;
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  border-radius: 45px;
-  overflow: hidden;
-  text-align: center;
-  backdrop-filter: blur(30px);
-  -webkit-backdrop-filter: blur(30px);
-  box-shadow: 0 40px 80px var(--shadow-color);
-  transition: var(--transition-smooth);
-}
-
-.spotlight-shimmer {
+.artifact-ring {
   position: absolute;
   inset: 0;
-  background: radial-gradient(450px circle at var(--m-x, 50%) var(--m-y, 50%), var(--spotlight-color), transparent 80%);
+  border: 1px dashed var(--bento-hover-border);
+  border-radius: 50%;
+  animation: spinRing 20s linear infinite;
+}
+
+@keyframes morphingBlob {
+  0% { border-radius: 35% 65% 70% 30% / 30% 40% 60% 70%; }
+  100% { border-radius: 65% 35% 30% 70% / 60% 70% 30% 40%; }
+}
+
+@keyframes spinRing { to { transform: rotate(360deg); } }
+
+.minimal-abstract-p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--text-dim);
+  max-width: 400px;
+}
+
+/* Brutalist Button Component */
+.brutalist-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
+  padding: 18px 40px;
+  border-radius: 100px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: var(--cubic-fast);
+  border: 1px solid transparent;
+}
+
+.brutalist-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+/* ==========================================================================
+   5. THE BENTO GRID ARCHITECTURE
+   ========================================================================== */
+.bento-section {
+  padding: 120px 0;
+}
+
+.bento-header {
+  margin-bottom: 60px;
+}
+
+.bento-main-title {
+  font-family: var(--font-serif);
+  font-size: 3.5rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.bento-sub-title {
+  color: var(--text-dim);
+  font-size: 1.1rem;
+  max-width: 600px;
+}
+
+.bento-grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 240px;
+  gap: 25px;
+}
+
+/* Bento Sizing Logic */
+.bento-card {
+  background: var(--bento-bg);
+  border: 1px solid var(--bento-border);
+  border-radius: 30px;
+  padding: 40px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: border-color 0.5s var(--cubic-fast), transform 0.5s var(--cubic-fast);
+}
+
+.size-1x1 { grid-column: span 1; grid-row: span 1; }
+.size-1x2 { grid-column: span 1; grid-row: span 2; }
+.size-2x1 { grid-column: span 2; grid-row: span 1; }
+.size-2x2 { grid-column: span 2; grid-row: span 2; }
+
+.bento-tag {
+  position: absolute;
+  top: 30px;
+  left: 40px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-dim);
+}
+
+.bento-card h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.bento-card p {
+  color: var(--text-dim);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.text-neon-glow {
+  color: #6366f1;
+  font-weight: 600;
+}
+
+/* Bento Card Mouse Glow Interaction */
+.bento-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(800px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(99, 102, 241, 0.06), transparent 40%);
   z-index: 1;
   pointer-events: none;
 }
 
-.card-main-heading { font-size: 3.5rem; font-weight: 800; position: relative; z-index: 2; letter-spacing: -1.5px; }
-.card-sub-heading { color: var(--text-muted); margin: 20px auto 40px; font-size: 1.2rem; position: relative; z-index: 2; max-width: 620px; line-height: 1.7; }
+.bento-card:hover {
+  border-color: var(--bento-hover-border);
+  transform: translateY(-5px);
+}
 
-.cta-button-group {
+.bento-row-layout {
   display: flex;
-  justify-content: center;
-  gap: 20px;
-  position: relative;
-  z-index: 2;
+  align-items: center;
+  gap: 40px;
 }
-
-.btn-instagram:hover {
-  border-color: #ec4899;
-  background: rgba(236, 72, 153, 0.05);
-  color: #ec4899;
-  box-shadow: 0 15px 30px rgba(236, 72, 153, 0.15);
-}
-
-.founder-signature { margin-top: 60px; color: var(--text-muted); font-size: 1.05rem; position: relative; z-index: 2; }
-.founder-name { color: var(--text-main); font-weight: 700; }
 
 /* ==========================================================================
-   9. INTERSECTION OBSERVER REVEAL (JS KAYDIRMA ANİMASYONU)
+   6. EDITORIAL STAGGERED PARALLAX GALLERY
    ========================================================================== */
-.reveal-fade {
-  opacity: 0;
-  transform: translateY(50px);
-  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+.gallery-interactive-section { padding: 100px 0; }
+
+.staggered-gallery-wall {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
 }
 
-.reveal-fade.is-visible {
+.gallery-column {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* Parallaxi simüle eden asimetrik kaydırma başlangıcı */
+.layer-fast { transform: translateY(40px); }
+.layer-slow { transform: translateY(-40px); }
+
+.gallery-item-wrap {
+  position: relative;
+  border-radius: 40px;
+  overflow: hidden;
+  border: 1px solid var(--bento-border);
+  background: var(--bento-bg);
+}
+
+.gallery-item-wrap img {
+  width: 100%;
+  height: 550px;
+  object-fit: cover;
+  transition: transform 1.2s var(--cubic-luxury);
+  filter: grayscale(20%);
+}
+
+.gallery-item-wrap:hover img {
+  transform: scale(1.05) translateY(-5px);
+  filter: grayscale(0%);
+}
+
+.img-meta {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(10px);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 100px;
+  font-size: 0.85rem;
+}
+
+/* ==========================================================================
+   7. FUTURISTIC NEXUS CARD (İLETİŞİM)
+   ========================================================================== */
+.nexus-section { padding: 120px 0; }
+
+.nexus-card {
+  background: var(--bento-bg);
+  border: 1px solid var(--bento-border);
+  border-radius: 50px;
+  padding: 100px 60px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.nexus-grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(var(--bento-border) 1px, transparent 1px),
+                    linear-gradient(90deg, var(--bento-border) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.4;
+}
+
+.nexus-interactive-glow {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+  top: var(--nexus-y, 50%);
+  left: var(--nexus-x, 50%);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.nexus-mini-title {
+  font-size: 0.8rem;
+  letter-spacing: 4px;
+  color: #6366f1;
+  display: block;
+  margin-bottom: 25px;
+}
+
+.nexus-title {
+  font-family: var(--font-serif);
+  font-size: 4rem;
+  font-weight: 600;
+  line-height: 1.1;
+  margin-bottom: 30px;
+}
+
+.nexus-desc {
+  color: var(--text-dim);
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto 50px;
+  line-height: 1.7;
+}
+
+.nexus-actions {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+}
+
+.outline-nexus {
+  background: transparent;
+  border: 1px solid var(--text-core);
+  color: var(--text-core);
+}
+
+.nexus-footer { margin-top: 80px; font-size: 0.95rem; color: var(--text-dim); }
+
+/* ==========================================================================
+   8. SCROLL REVEAL DRIVER & RESPONSIVE GRID
+   ========================================================================== */
+.scroll-trigger {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1.2s var(--cubic-luxury), transform 1.2s var(--cubic-luxury);
+}
+
+.scroll-trigger.active {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* ==========================================================================
-   10. FOOTER & ADVANCED RESPONSIVE GRID SYSTEM
-   ========================================================================== */
-.footer-bar {
-  border-top: 1px solid var(--glass-border);
-  padding: 50px 8%;
+.editorial-footer {
+  border-top: 1px solid var(--bento-border);
+  padding: 40px 0;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  max-width: 1400px;
-  margin: 0 auto;
-  color: var(--text-muted);
-  font-size: 0.95rem;
+  color: var(--text-dim);
+  font-size: 0.9rem;
 }
 
-.footer-social-links a {
-  color: var(--text-muted);
-  text-decoration: none;
-  transition: var(--transition-fast);
-}
-.footer-social-links a:hover { color: #6366f1; }
-
-/* Responsive Kırılma Noktaları */
+/* Advanced Responsiveness */
 @media (max-width: 1200px) {
-  .interactive-grid { grid-template-columns: repeat(2, 1fr); }
+  .bento-grid-container { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 220px; }
+  .size-2x2, .size-2x1, .size-1x2 { grid-column: span 2; grid-row: span 1; }
+  .size-1x1 { grid-column: span 1; }
+  .giant-headline { font-size: 4.2rem; }
 }
 
 @media (max-width: 992px) {
-  .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 50px; }
-  .hero-text-block { display: flex; flex-direction: column; align-items: center; }
-  .card-3d-wrapper { justify-content: center; }
-  .main-title { font-size: 3.8rem; }
-  .section-title { font-size: 2.8rem; }
+  .kinetic-hero { grid-template-columns: 1fr; text-align: center; gap: 50px; }
+  .hero-right-abstract { padding-left: 0; align-items: center; }
+  .staggered-gallery-wall { grid-template-columns: 1fr; }
+  .layer-fast, .layer-slow { transform: translateY(0); }
+  .gallery-item-wrap img { height: 400px; }
 }
 
 @media (max-width: 768px) {
-  .interactive-grid { grid-template-columns: 1fr; }
-  .nav-links { display: none; } /* Mobil menü altyapısı için minimalist yaklaşım */
-  .main-title { font-size: 2.8rem; }
-  .card-main-heading { font-size: 2.4rem; }
-  .cta-button-group { flex-direction: column; width: 100%; }
-  .action-btn { width: 100%; text-align: center; }
-  .card-glass-base { width: 290px; height: 290px; }
-  .footer-bar { flex-direction: column; gap: 20px; text-align: center; }
+  .bento-grid-container { grid-template-columns: 1fr; }
+  .size-1x1, .size-1x2, .size-2x1, .size-2x2 { grid-column: span 1; grid-row: span 1; }
+  .bento-row-layout { flex-direction: column; align-items: flex-start; }
+  .nexus-actions { flex-direction: column; }
+  .brutalist-btn { width: 100%; justify-content: center; }
+  .capsule-nav { width: calc(100% - 20px); top: 15px; }
+  .nav-routes { display: none; } /* Temiz minimalist mobil deneyim */
+  .giant-headline { font-size: 3rem; }
+  .nexus-title { font-size: 2.5rem; }
 }
