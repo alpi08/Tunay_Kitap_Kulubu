@@ -1,10 +1,10 @@
 /**
- * TUNAY KİTAP KULÜBÜ - COSMIC PURPLE ENGINE 2026
+ * TUNAY KİTAP KULÜBÜ - PERMANENT PURPLE ENGINE 2026
  */
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // 1. INTRO ENGINE (KUSURSUZ VE ZAMANLI GEÇİŞ)
+    // 1. INTRO ENGINE
     const initIntro = () => {
         const intro = document.getElementById('intro-screen');
         if (!intro) return;
@@ -12,10 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('load', () => {
             setTimeout(() => {
                 intro.classList.add('vanish');
-            }, 1400); // 1.4 saniye sonra pürüzsüzce kaybolur
+            }, 1400);
         });
 
-        // Fail-safe (Yüklenme takılırsa en geç 2.5 saniyede zorla açar)
         setTimeout(() => {
             intro.classList.add('vanish');
         }, 2500);
@@ -23,9 +22,10 @@ document.addEventListener('DOMContentLoaded', () => {
     initIntro();
 
 
-    // 2. MOUSE-TRACKING FLUID ORBS (ARKA PLANDAKİ IŞIKLAR MOUSE'U TAKİP EDER)
+    // 2. MOUSE-TRACKING FLUID ORBS
     const initFluidUniverse = () => {
         const orbs = document.querySelectorAll('.liquid-orb');
+        if (window.innerWidth < 768) return;
         
         window.addEventListener('mousemove', (e) => {
             const x = (e.clientX / window.innerWidth) * 40;
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initFluidUniverse();
 
 
-    // 3. MAGNETIC NEXUS INTERACTION (İLETİŞİM ALANI MOUSE'U KENDİNE ÇEKER)
+    // 3. MAGNETIC NEXUS INTERACTION
     const initMagneticNexus = () => {
         const nexus = document.getElementById('magnetic-nexus');
         if (!nexus || window.innerWidth < 768) return;
@@ -79,7 +79,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         reveals.forEach(el => observer.observe(el));
 
-        // Hangi bölümdeysek menüdeki o link parıldar
         const sectionObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -97,21 +96,5 @@ document.addEventListener('DOMContentLoaded', () => {
         sections.forEach(sec => sectionObserver.observe(sec));
     };
     initScrollSystem();
-
-
-    // 5. THEME SWAP SWITCHER
-    const initTheme = () => {
-        const toggle = document.getElementById('toggle');
-        if (!toggle) return;
-
-        toggle.addEventListener('change', function() {
-            if (this.checked) {
-                document.body.classList.replace('cosmic-dark', 'cosmic-light');
-            } else {
-                document.body.classList.replace('cosmic-light', 'cosmic-dark');
-            }
-        });
-    };
-    initTheme();
 
 });
