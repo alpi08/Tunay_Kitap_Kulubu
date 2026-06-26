@@ -3,240 +3,178 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tunay Kitap Kulübü</title>
+  <title>Tunay Kitap Kulübü | Dijital Edebi Deneyim</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;600;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,800;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="dark-theme">
 
-  <div class="aurora-bg">
-    <div class="aurora-wave aurora-wave-1"></div>
-    <div class="aurora-wave aurora-wave-2"></div>
-    <div class="aurora-wave aurora-wave-3"></div>
-  </div>
+  <canvas id="cosmic-canvas"></canvas>
+  <div class="aurora-overlay"></div>
 
-  <div class="intro-curtain">
+  <div class="intro-curtain" id="intro-curtain">
     <div class="intro-content">
-      <div class="loader intro-logo">
-        <span class="char-t">T</span>
-        <span class="char-u">U</span>
-        <span class="char-n">N</span>
-        <span class="char-a">A</span>
-        <span class="char-y">Y</span>
+      <h1 class="intro-title" id="intro-main-title">TUNAY</h1>
+      <p class="intro-subtitle" id="intro-sub-title">KİTAP KULÜBÜ</p>
+      <div class="intro-bar">
+        <div class="intro-progress"></div>
       </div>
-      <div class="loader intro-subtitle">
-        <span class="char-k1">K</span>
-        <span class="char-i1">İ</span>
-        <span class="char-t1">T</span>
-        <span class="char-a1">A</span>
-        <span class="char-p1">P</span>
-        <span class="char-space">&nbsp;</span>
-        <span class="char-k2">K</span>
-        <span class="char-u1">U</span>
-        <span class="char-l1">L</span>
-        <span class="char-u2">Ü</span>
-        <span class="char-b1">B</span>
-        <span class="char-u3">Ü</span>
-      </div>
-      <div class="intro-line"></div>
     </div>
   </div>
 
-  <header class="staggered-menu-wrapper">
-    <div class="staggered-menu-header">
-      <img src="Tunay_Logo-removebg-preview.png" onerror="this.src='https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=100&auto=format&fit=crop&q=60'" alt="Tunay Logo" class="sm-logo-img">
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="nav-brand">
+        <img src="Tunay_Logo-removebg-preview.png" onerror="this.src='https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=80&auto=format&fit=crop&q=80'" alt="Tunay Logo" class="logo-img">
+      </div>
+      
+      <nav class="nav-menu">
+        <ul class="nav-links">
+          <li><a href="#hero" class="nav-link active">Giriş</a></li>
+          <li><a href="#tanitim" class="nav-link">Keşfet</a></li>
+          <li><a href="#galeri" class="nav-link">Galeri</a></li>
+          <li><a href="#iletisim-container" class="nav-link">Katıl</a></li>
+          <li class="theme-wrapper">
+            <label id="theme-toggle-button">
+              <input type="checkbox" id="toggle">
+              <svg viewBox="0 0 69.667 44" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+                <g id="container" fill="#59bbec"><rect height="44" rx="22" width="69.667"></rect></g>
+                <g id="patches" fill="#e4effa" opacity="0"><path d="M11.5 22c0-1.38.56-2.63 1.47-3.53-.9-.91-2.15-1.47-3.53-1.47-2.76 0-5 2.24-5 5s2.24 5 5 5c1.38 0 2.63-.56 3.53-1.47-.91-.9-1.47-2.15-1.47-3.53z"></path></g>
+                <g id="stars" fill="#fff">
+                  <path d="M52.5 14.5l.75 1.75 1.75.75-1.75.75-.75 1.75-.75-1.75-1.75-.75 1.75-.75z" />
+                  <path d="M42.5 26.5l.5 1.25 1.25.5-1.25.5-.5 1.25-.5-1.25-1.25-.5 1.25-.5z" />
+                </g>
+                <g id="cloud" fill="#fff"><path d="M16 28c0-3.31 2.69-6 6-6 1.12 0 2.16.31 3.06.85C26.54 20.35 29.07 18 32 18c3.87 0 7 3.13 7 7 0 .34-.03.68-.08 1.01C40.11 26.41 41 27.6 41 29c0 2.21-1.79 4-4 4H16v-5z"></path></g>
+                <g id="button" fill="#f4eb49">
+                  <circle cx="22" cy="22" r="14" id="sun"></circle>
+                  <circle cx="22" cy="22" r="14" fill="#e4effa" id="moon"></circle>
+                </g>
+              </svg>
+            </label>
+          </li>
+        </ul>
+      </nav>
     </div>
-    
-    <nav class="staggered-menu-panel">
-      <ul class="sm-panel-list">
-        <li><a href="#hero">Ana Sayfa</a></li>
-        <li><a href="#tanitim">Kulüp Hakkında</a></li>
-        <li><a href="#galeri">Galeri</a></li>
-        <li><a href="#iletisim-container">İletişim</a></li>
-        
-        <li>
-          <label id="theme-toggle-button">
-            <input type="checkbox" id="toggle">
-            <svg viewBox="0 0 69.667 44" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
-              <g id="container" fill="#59bbec">
-                <rect height="44" rx="22" width="69.667"></rect>
-              </g>
-              <g id="patches" fill="#e4effa" opacity="0">
-                <path d="M11.5 22c0-1.38.56-2.63 1.47-3.53-.9-.91-2.15-1.47-3.53-1.47-2.76 0-5 2.24-5 5s2.24 5 5 5c1.38 0 2.63-.56 3.53-1.47-.91-.9-1.47-2.15-1.47-3.53z"></path>
-              </g>
-              <g id="stars" fill="#fff">
-                <path d="M52.5 14.5l.75 1.75 1.75.75-1.75.75-.75 1.75-.75-1.75-1.75-.75 1.75-.75z" />
-                <path d="M42.5 26.5l.5 1.25 1.25.5-1.25.5-.5 1.25-.5-1.25-1.25-.5 1.25-.5z" />
-                <path d="M56.5 28.5l.5 1.25 1.25.5-1.25.5-.5 1.25-.5-1.25-1.25-.5 1.25-.5z" />
-              </g>
-              <g id="cloud" fill="#fff">
-                <path d="M16 28c0-3.31 2.69-6 6-6 1.12 0 2.16.31 3.06.85C26.54 20.35 29.07 18 32 18c3.87 0 7 3.13 7 7 0 .34-.03.68-.08 1.01C40.11 26.41 41 27.6 41 29c0 2.21-1.79 4-4 4H16v-5z"></path>
-              </g>
-              <g id="button" fill="#f4eb49">
-                <circle cx="22" cy="22" r="14" id="sun"></circle>
-                <circle cx="22" cy="22" r="14" fill="#e4effa" id="moon"></circle>
-              </g>
-            </svg>
-          </label>
-        </li>
-      </ul>
-    </nav>
   </header>
 
-  <section id="hero">
-    <div class="hero-content-left intro-fade-up">
-      <h1 class="hero-title"><span class="gradient-text">Tunay Kitap Kulübü</span></h1>
-      <span class="hero-badge">Fevzi Çakmak Anadolu Lisesi</span>
-      <p class="hero-sub">Kitapların büyülü dünyasında kaybolmak, yeni fikirler keşfetmek ve edebiyatın derinliklerine birlikte dalmak için en doğru yerdesiniz.</p>
-      <div class="hero-buttons">
-        <a href="#tanitim" class="btn-primary">Keşfet</a>
-        <a href="#galeri" class="btn-secondary">Galeri</a>
-      </div>
-    </div>
+  <main>
+    <section id="hero" class="hero-section">
+      <div class="hero-grid">
+        <div class="hero-text-block reveal-fade">
+          <div class="badge-container">
+            <span class="premium-badge">Fevzi Çakmak Anadolu Lisesi</span>
+          </div>
+          <h1 class="main-title">Fikirlerin <br><span class="aesthetic-text">Yeniden Doğuşu</span></h1>
+          <p class="hero-description">Kitapların zamansız dünyasında kaybolmak, sayfaların ardındaki felsefi derinliği keşfetmek ve edebi bir toplulukla bağ kurmak için en doğru yerdesiniz.</p>
+          <div class="hero-action-row">
+            <a href="#tanitim" class="action-btn btn-solid">Yolculuğa Başla</a>
+            <a href="#galeri" class="action-btn btn-outline">Galeriyi İncele</a>
+          </div>
+        </div>
 
-    <div id="tilted-card" class="intro-fade-up">
-      <div class="tilted-card-inner">
-        <img src="Tunay_Logo-removebg-preview.png" onerror="this.src='https://images.unsplash.com/photo-1512820790803-83ca734da794?w=500&auto=format&fit=crop&q=80'" alt="Tunay Logo" class="tilted-card-img">
+        <div class="hero-visual-block reveal-fade">
+          <div id="interactive-3d-card" class="card-3d-wrapper">
+            <div class="card-glass-base">
+              <div class="card-glow-layer"></div>
+              <img src="Tunay_Logo-removebg-preview.png" onerror="this.src='https://images.unsplash.com/photo-1512820790803-83ca734da794?w=600&auto=format&fit=crop&q=80'" alt="Tunay Logotype" class="center-logo-artifact">
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="tanitim">
-    <div class="tanitim-header scroll-reveal">
-      <h2>Kulübümüz Hakkında</h2>
-      <p>Edebiyatla harmanlanmış modern bir topluluk hikayesi.</p>
-    </div>
-    <div class="scroll-stack-container">
-      <div class="scroll-stack-card scroll-reveal">
-        <div class="card-icon">📖</div>
-        <h3>Biz Kimiz?</h3>
-        <p>Fevzi Çakmak Anadolu Lisesi bünyesinde, <span class="highlight">Tunay</span> çatısı altında bir araya gelen kitap ve edebiyat tutkunlarıyız.</p>
+    <section id="tanitim" class="showcase-section">
+      <div class="section-center-header reveal-fade">
+        <h2 class="section-title">Entelektüel Kültürümüz</h2>
+        <p class="section-subtitle">Sadece okumuyoruz; alt metinleri parçalıyor, analiz ediyor ve tartışıyoruz.</p>
       </div>
-      <div class="scroll-stack-card scroll-reveal">
-        <div class="card-icon">🎯</div>
-        <h3>Amacımız Ne?</h3>
-        <p>Sadece kitap okumak değil; sayfaların ötesine geçerek analizler yapmak, eleştirel düşünceyi geliştirmek ve kültürel bağlar kurmak.</p>
-      </div>
-      <div class="scroll-stack-card scroll-reveal">
-        <div class="card-icon">☕</div>
-        <h3>Haftalık Buluşmalar</h3>
-        <p>Belirlediğimiz ortak kitaplar üzerine her hafta derin fikir alışverişleri yapıyor, kahve eşliğinde sinematik ve edebi tartışmalar yürütüyoruz.</p>
-      </div>
-      <div class="scroll-stack-card scroll-reveal">
-        <div class="card-icon">🎙️</div>
-        <h3>Yazar Söyleşileri & Paneller</h3>
-        <p>Dönem boyunca davet ettiğimiz konuk yazarlarla atölyeler düzenliyor, ufkumuzu genişletecek panellere ev sahipliği yapıyoruz.</p>
-      </div>
-      <div class="scroll-stack-card scroll-reveal">
-        <div class="card-icon">🔍</div>
-        <h3>Kritik ve Analiz Atölyesi</h3>
-        <p>Klasiklerden modern edebiyata, distopyalardan felsefi metinlere kadar geniş bir yelpazede alt metin okumaları gerçekleştiriyoruz.</p>
-      </div>
-      <div class="scroll-stack-card scroll-reveal">
-        <div class="card-icon">🤝</div>
-        <h3>Kütüphane ve Sosyal Sorumluluk</h3>
-        <p>Okulumuzda ve çevre okullarda kitap toplama kampanyaları düzenliyor, herkesin edebiyata erişebilmesi için köprüler kuruyoruz.</p>
-      </div>
-    </div>
-  </section>
 
-  <section id="galeri">
-    <div class="galeri-header scroll-reveal">
-      <h2>Kulüp Galerisi</h2>
-      <p>Etkinliklerimizden ve buluşmalarımızdan akılda kalan kareler.</p>
-    </div>
-    <div class="circular-gallery-wrap scroll-reveal">
-      <div class="circular-track">
-        <div class="circular-item"><img src="Tunay_Kitap_BG.jpeg" onerror="this.src='https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=500&auto=format&fit=crop&q=80'" alt="Tunay Kitap Arka Planı"></div>
-        <div class="circular-item"><img src="Tunay_Buluşma.jpeg" onerror="this.src='https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=500&auto=format&fit=crop&q=80'" alt="Tunay Buluşma Günü"></div>
-        <div class="circular-item"><img src="Tunay_Logo-removebg-preview.png" onerror="this.src='https://images.unsplash.com/photo-1516979187457-637abb4f9353?w=500&auto=format&fit=crop&q=80'" alt="Kulüp Teması 1"></div>
-        <div class="circular-item"><img src="Tunay_Kitap_BG.jpeg" onerror="this.src='https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=500&auto=format&fit=crop&q=80'" alt="Tunay Kitap Arka Planı Tekrar"></div>
-        <div class="circular-item"><img src="Tunay_Buluşma.jpeg" onerror="this.src='https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=500&auto=format&fit=crop&q=80'" alt="Tunay Buluşma Günü Tekrar"></div>
-        <div class="circular-item"><img src="Tunay_Logo-removebg-preview.png" onerror="this.src='https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?w=500&auto=format&fit=crop&q=80'" alt="Kulüp Teması 2"></div>
-      </div>
-    </div>
-  </section>
+      <div class="interactive-grid">
+        <div class="feature-card reveal-fade">
+          <div class="card-number">01</div>
+          <h3>Biz Kimiz?</h3>
+          <p>Fevzi Çakmak Anadolu Lisesi'nin vizyoner edebiyat tutkunları olarak, <span class="highlight-accent">Tunay</span> markası altında düşünen, sorgulayan bir komüniteyiz.</p>
+        </div>
 
-  <section id="iletisim-container">
-    <div id="iletisim" class="spotlight-card scroll-reveal">
-      <h2>Bize Katılın</h2>
-      <p>Siz de bu entelektüel yolculuğun bir parçası olmak ister misiniz? Kapımız tüm edebiyatseverlere açık.</p>
-      
-      <div class="iletisim-buttons">
-        <a href="mailto:iletisim@tunay.com" class="btn-primary">E-posta Gönder</a>
-        <a href="https://instagram.com/tunaykitapkulubu" target="_blank" class="btn-secondary btn-instagram">Instagram</a>
+        <div class="feature-card reveal-fade">
+          <div class="card-number">02</div>
+          <h3>Modern Analiz</h3>
+          <p>Klasik felsefi metinlerden modern distopyalara kadar geniş bir yelpazede, popüler kültürün ötesinde edebi derinlik arıyoruz.</p>
+        </div>
+
+        <div class="feature-card reveal-fade">
+          <div class="card-number">03</div>
+          <h3>Haftalık Oturumlar</h3>
+          <p>Her hafta belirlenen bir eser üzerinden, sıcak kahve kokusu ve sinematik müzikler eşliğinde beyin fırtınaları gerçekleştiriyoruz.</p>
+        </div>
+
+        <div class="feature-card reveal-fade">
+          <div class="card-number">04</div>
+          <h3>Yazar Söyleşileri</h3>
+          <p>Dönemlik etkinlik planlarımız dahilinde günümüz yazarlarını ve akademisyenlerini kulübümüzde ağırlayarak ufukları genişletiyoruz.</p>
+        </div>
+
+        <div class="feature-card reveal-fade">
+          <div class="card-number">05</div>
+          <h3>Kritik Atölyeleri</h3>
+          <p>Bir kitabın sadece hikayesine değil; yazarın psikolojisine, dönemin sosyolojik yapısına ve gizli sembolizmlere odaklanıyoruz.</p>
+        </div>
+
+        <div class="feature-card reveal-fade">
+          <div class="card-number">06</div>
+          <h3>Sosyal Köprüler</h3>
+          <p>Kütüphane geliştirme projeleri ve kitap toplama kampanyaları yürüterek bilginin gücünü çevre okullara ulaştırıyoruz.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="galeri" class="gallery-section">
+      <div class="section-center-header reveal-fade">
+        <h2 class="section-title">Anların Estetiği</h2>
+        <p class="section-subtitle">Buluşmalarımızdan, etkinliklerimizden ve kulüp ruhundan geriye kalan ikonik kesitler.</p>
       </div>
       
-      <div class="kurucu">
-        <p>Kulüp Kurucusu: <strong>Tunay</strong></p>
+      <div class="infinite-ribbon-wrapper reveal-fade">
+        <div class="ribbon-track">
+          <div class="ribbon-cell"><img src="Tunay_Kitap_BG.jpeg" onerror="this.src='https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=600&auto=format&fit=crop&q=80'" alt="Edebi Estetik"></div>
+          <div class="ribbon-cell"><img src="Tunay_Buluşma.jpeg" onerror="this.src='https://images.unsplash.com/photo-1513001900722-370f803f498d?w=600&auto=format&fit=crop&q=80'" alt="Toplantı Anı"></div>
+          <div class="ribbon-cell"><img src="Tunay_Logo-removebg-preview.png" onerror="this.src='https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=600&auto=format&fit=crop&q=80'" alt="Kulüp Logosu"></div>
+          <div class="ribbon-cell"><img src="Tunay_Kitap_BG.jpeg" onerror="this.src='https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=600&auto=format&fit=crop&q=80'" alt="Kitap Detay"></div>
+          <div class="ribbon-cell"><img src="Tunay_Buluşma.jpeg" onerror="this.src='https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&auto=format&fit=crop&q=80'" alt="Edebi Sohbetler"></div>
+          <div class="ribbon-cell"><img src="Tunay_Kitap_BG.jpeg" onerror="this.src='https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=600&auto=format&fit=crop&q=80'" alt="Edebi Estetik"></div>
+          <div class="ribbon-cell"><img src="Tunay_Buluşma.jpeg" onerror="this.src='https://images.unsplash.com/photo-1513001900722-370f803f498d?w=600&auto=format&fit=crop&q=80'" alt="Toplantı Anı"></div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <footer>
-    <p>&copy; 2026 Tunay Kitap Kulübü. Tüm Hakları Saklıdır.</p>
-    <div class="footer-social">
-      <a href="https://instagram.com/tunaykitapkulubu" target="_blank" style="color: var(--text-muted); text-decoration: none; font-weight: 500;">Instagram</a>
-      <a href="#" style="color: var(--text-muted); text-decoration: none; font-weight: 500; margin-left: 20px;">Twitter</a>
+    <section id="iletisim-container" class="contact-section">
+      <div class="interactive-spotlight-card reveal-fade" id="spotlight-card">
+        <div class="spotlight-shimmer"></div>
+        <h2 class="card-main-heading">Hikayemize Ortak Ol</h2>
+        <p class="card-sub-heading">Kültürel bir rüzgâra kapılmak, okuma alışkanlıklarını elit bir seviyeye taşımak istiyorsan, topluluğumuzun kapıları sana sonuna kadar açık.</p>
+        
+        <div class="cta-button-group">
+          <a href="mailto:iletisim@tunay.com" class="action-btn btn-solid">Bizimle İletişime Geç</a>
+          <a href="https://instagram.com/tunaykitapkulubu" target="_blank" class="action-btn btn-instagram">Instagram'da Keşfet</a>
+        </div>
+
+        <div class="founder-signature">
+          <p>Kulüp Kurucusu & Yönetim: <span class="founder-name">Tunay</span></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer-bar">
+    <p class="copyright">&copy; 2026 Tunay Kitap Kulübü. Elegance & Intellect.</p>
+    <div class="footer-social-links">
+      <a href="https://instagram.com/tunaykitapkulubu" target="_blank">Instagram</a>
+      <a href="#">Twitter</a>
     </div>
   </footer>
 
-  <script>
-    // 1. Dynamic Spotlight Efekti
-    const card = document.querySelector('.spotlight-card');
-    if(card) {
-      card.addEventListener('mousemove', e => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        card.style.setProperty('--mouse-x', `${x}px`);
-        card.style.setProperty('--mouse-y', `${y}px`);
-      });
-    }
-
-    // 2. Gelişmiş 3D Tilt Efekti (Hero Card)
-    const tiltCard = document.getElementById('tilted-card');
-    if(tiltCard) {
-      const inner = tiltCard.querySelector('.tilted-card-inner');
-      tiltCard.addEventListener('mousemove', e => {
-        const rect = tiltCard.getBoundingClientRect();
-        const x = e.clientX - rect.left - (rect.width/2);
-        const y = e.clientY - rect.top - (rect.height/2);
-        const rX = -(y / (rect.height/2)) * 15;
-        const rY = (x / (rect.width/2)) * 15;
-        inner.style.transform = `rotateX(${rX}deg) rotateY(${rY}deg) scale(1.04)`;
-      });
-      tiltCard.addEventListener('mouseleave', () => {
-        inner.style.transform = `rotateX(0deg) rotateY(0deg) scale(1)`;
-      });
-    }
-
-    // 3. Tema Değiştirme Mantığı
-    const toggleInput = document.getElementById('toggle');
-    const body = document.body;
-    toggleInput.addEventListener('change', function() {
-      if (this.checked) {
-        body.classList.remove('dark-theme');
-        body.classList.add('light-theme');
-      } else {
-        body.classList.remove('light-theme');
-        body.classList.add('dark-theme');
-      }
-    });
-
-    // 4. Intersection Observer - Kaydırınca Açılan Elementler
-    const revealElements = document.querySelectorAll('.scroll-reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting){
-          entry.target.classList.add('revealed');
-        }
-      });
-    }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
-
-    revealElements.forEach(el => observer.observe(el));
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
