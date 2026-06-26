@@ -1,147 +1,272 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tunay Kitap Kulübü</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;600;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
+  <!-- AURORA ARKA PLAN -->
   <div class="aurora-bg">
     <div class="aurora-wave aurora-wave-1"></div>
     <div class="aurora-wave aurora-wave-2"></div>
     <div class="aurora-wave aurora-wave-3"></div>
   </div>
 
-  <div class="intro-curtain">
-    <div class="intro-content">
-      <div class="intro-logo">TUNAY</div>
-      <div class="intro-subtitle">KİTAP KULÜBÜ</div>
-      <div class="intro-line"></div>
-    </div>
-  </div>
-
-  <header class="staggered-menu-wrapper">
+  <!-- STAGGERED MENU -->
+  <nav class="staggered-menu-wrapper">
     <div class="staggered-menu-header">
-      <img src="Tunay_Logo-removebg-preview.png" alt="Tunay Logo" class="sm-logo-img">
+      <div class="sm-logo">
+        <img src="Tunay_Logo-removebg-preview.png" alt="Tunay Logo" class="sm-logo-img" />
+        <span class="sm-logo-text">✦ TUNAY</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:1.5rem;">
+        <!-- TEMA TOGGLE -->
+        <label id="theme-toggle-button">
+          <input type="checkbox" id="toggle" />
+          <svg viewBox="0 0 69.667 32" xmlns="http://www.w3.org/2000/svg">
+            <g id="container">
+              <rect id="button-bg" width="69.667" height="32" rx="16" fill="#2b4360" />
+              <circle id="button" cx="16" cy="16" r="12" fill="#f0eaff" />
+              <circle id="sun" cx="24" cy="16" r="6" fill="#f59e0b" />
+              <circle id="moon" cx="24" cy="16" r="6" fill="#a78bfa" />
+              <path id="cloud" d="M12 18c-3.5 0-6-2.5-6-5.5S8.5 7 12 7c1.5 0 2.8 0.6 3.8 1.5C16.2 7.6 17.5 7 19 7c3.3 0 6 2.7 6 6s-2.7 6-6 6H12z" fill="#e0e0e0" opacity="0.8" />
+              <g id="stars">
+                <circle cx="40" cy="10" r="1.5" fill="#fff" />
+                <circle cx="45" cy="14" r="1" fill="#fff" />
+                <circle cx="50" cy="10" r="1.5" fill="#fff" />
+                <circle cx="55" cy="12" r="1" fill="#fff" />
+                <circle cx="42" cy="20" r="1" fill="#fff" />
+                <circle cx="48" cy="22" r="1.5" fill="#fff" />
+                <circle cx="54" cy="20" r="1" fill="#fff" />
+              </g>
+            </g>
+          </svg>
+        </label>
+        <button class="sm-toggle" id="menuToggle">
+          <span class="sm-toggle-icon">☰</span>
+          <span class="sm-toggle-close" style="display:none;">✕</span>
+        </button>
+      </div>
     </div>
-    <nav class="staggered-menu-panel">
+    <div class="staggered-menu-panel" id="menuPanel">
       <ul class="sm-panel-list">
-        <li><a href="#hero">Ana Sayfa</a></li>
-        <li><a href="#tanitim">Kulüp Hakkında</a></li>
-        <li><a href="#galeri">Galeri</a></li>
-        <li><a href="#iletisim">İletişim</a></li>
+        <li><a href="#tanitim" class="menu-link">Kulüp</a></li>
+        <li><a href="#galeri" class="menu-link">Galeri</a></li>
+        <li><a href="#iletisim" class="menu-link">İletişim</a></li>
       </ul>
-    </nav>
-  </header>
-
-  <section id="hero">
-    <div class="hero-content-left intro-fade-up">
-      <h1 class="hero-title"><span class="gradient-text">Tunay Kitap Kulübü</span></h1>
-      <span class="hero-badge">Fevzi Çakmak Anadolu Lisesi</span>
-      <p class="hero-sub">Kitapların büyülü dünyasında kaybolmak, yeni fikirler keşfetmek ve edebiyatın derinliklerine birlikte dalmak için en doğru yerdesiniz.</p>
-      <div class="hero-buttons">
-        <a href="#tanitim" class="btn-primary">Keşfet</a>
-        <a href="#galeri" class="btn-secondary">Galeri</a>
+      <div class="sm-socials">
+        <h3>Socials</h3>
+        <a href="https://instagram.com/tunaykitapkulubu" target="_blank">📸 Instagram</a>
+        <a href="mailto:tunaykitapkulubu@gmail.com">✉️ Mail</a>
       </div>
     </div>
+  </nav>
 
-    <div id="tilted-card" class="intro-fade-up">
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-logo" id="tilted-card">
       <div class="tilted-card-inner">
-        <img src="Tunay_Logo-removebg-preview.png" alt="Tunay Logo" class="tilted-card-img">
+        <img src="Tunay_Logo-removebg-preview.png" alt="Tunay Logo" class="tilted-card-img" />
+        <div class="tilted-card-caption">Tunay Kitap Kulübü</div>
       </div>
+    </div>
+    <div class="hero-badge">📖 Fevzi Çakmak Anadolu Lisesi</div>
+    <h1 class="hero-title gradient-text">Tunay Kitap Kulübü</h1>
+    <p class="hero-sub">Her ay bir kitap, yeni ufuklar. Hayatın yoğunluğunda kitaplar içinde kaybolun.</p>
+    <div class="hero-buttons">
+      <a href="#tanitim" class="btn-primary">Keşfet →</a>
+      <a href="#galeri" class="btn-secondary">Galeri</a>
     </div>
   </section>
 
+  <!-- TANITIM -->
   <section id="tanitim">
     <div class="tanitim-header">
-      <h2>Kulübümüz Hakkında</h2>
-      <p>Edebiyatla harmanlanmış modern bir topluluk hikayesi.</p>
+      <h2 class="gradient-text">Kulüp Hakkında</h2>
+      <p>Okuma yolculuğumuza birlikte çıkıyoruz.</p>
     </div>
     <div class="scroll-stack-container">
       <div class="scroll-stack-card">
-        <h3>Biz Kimiz?</h3>
-        <p>Fevzi Çakmak Anadolu Lisesi bünyesinde, <span class="highlight">Tunay</span> çatısı altında bir araya gelen kitap ve edebiyat tutkunlarıyız.</p>
+        <h3>📖 Felsefemiz</h3>
+        <p>Fevzi Çakmak Anadolu Lisesi'nin değerli öğrencileri, kitap kulübümüz yakında açılıyor. Her ay bir kitap okuyup, beraber tahlil edeceğiz. Okuyacağımız kitaba, her ay sizinle karar vereceğiz.</p>
       </div>
       <div class="scroll-stack-card">
-        <h3>Amacımız Ne?</h3>
-        <p>Sadece kitap okumak değil; sayfaların ötesine geçerek analizler yapmak, eleştirel düşünceyi geliştirmek ve kültürel bağlar kurmak.</p>
+        <h3>🌙 "TUNAY" Ne Demek?</h3>
+        <p>"TUNAY" eski Türkçe'de <span class="highlight">ay gibi parlak ve aydınlık</span> anlamına gelir. "Tun" gece demektir. Geceyi aydınlatan ay... Kulübümüzün isminin öz Türkçe olmasını, böylece Türklüğü temsil etmesini istedik.</p>
       </div>
       <div class="scroll-stack-card">
-        <h3>Haftalık Buluşmalar</h3>
-        <p>Belirlediğimiz ortak kitaplar üzerine her hafta derin fikir alışverişleri yapıyor, kahve eşliğinde sinematik ve edebi tartışmalar yürütüyoruz.</p>
+        <h3>🚀 Amaç & Hedef</h3>
+        <p>Kulübümüz, size dünyaya dair yeni ufuklar ve bilgiler kazandırmayı amaçlıyor. Hayatın yoğunluğunda kendinizi kaybetmeyin, kitaplar içinde kaybolun. Kulübümüze dinleyici olarak da katılabilirsiniz.</p>
       </div>
       <div class="scroll-stack-card">
-        <h3>Yazar Söyleşileri & Paneller</h3>
-        <p>Dönem boyunca davet ettiğimiz konuk yazarlarla atölyeler düzenliyor, ufkumuzu genişletecek panellere ev sahipliği yapıyoruz.</p>
+        <h3>👩‍🏫 Kurucu: Zeynep Beril Köse</h3>
+        <p>Kulübümüzün kurucusu ve yürütücüsü <span class="highlight">Zeynep Beril Köse</span>, okuma tutkusunu paylaşmak ve arkadaşlarıyla birlikte öğrenmeyi büyütmek için bu yola çıktı.</p>
       </div>
       <div class="scroll-stack-card">
-        <h3>Kritik ve Analiz Atölyesi</h3>
-        <p>Klasiklerden modern edebiyata, distopyalardan felsefi metinlere kadar geniş bir yelpazede alt metin okumaları gerçekleştiriyoruz.</p>
-      </div>
-      <div class="scroll-stack-card">
-        <h3>Kütüphane ve Sosyal Sorumluluk</h3>
-        <p>Okulumuzda ve çevre okullarda kitap toplama kampanyaları düzenliyor, herkesin edebiyata erişebilmesi için köprüler kuruyoruz.</p>
+        <h3>🤝 Katılın, Birlikte Okuyalım</h3>
+        <p>Kitaplar, uygarlığa yol gösteren ışıklardır. – Francis Bacon</p>
+        <p style="margin-top:0.5rem;">Kulübümüze öğretmenlerimiz de teşrif edecektir. Sizleri de aramızda görmekten mutluluk duyarız.</p>
       </div>
     </div>
   </section>
 
+  <!-- GALERİ -->
   <section id="galeri">
     <div class="galeri-header">
-      <h2>Kulüp Galerisi</h2>
-      <p>Etkinliklerimizden ve buluşmalarımızdan akılda kalan kareler.</p>
+      <h2 class="gradient-text">📸 Anılar & Buluşmalar</h2>
+      <p>Kitaplık, kütüphane ve okuma köşelerinden kareler.</p>
     </div>
-    <div class="circular-gallery-wrap">
+    <div class="circular-gallery">
       <div class="circular-track">
-        <div class="circular-item"><img src="Tunay_Kitap_BG.jpeg" alt="Tunay Kitap Arka Planı"></div>
-        <div class="circular-item"><img src="Tunay_Buluşma.jpeg" alt="Tunay Buluşma Günü"></div>
-        <div class="circular-item"><img src="Tunay_Logo-removebg-preview.png" alt="Kulüp Teması 1"></div>
-        <div class="circular-item"><img src="Tunay_Kitap_BG.jpeg" alt="Tunay Kitap Arka Planı Tekrar"></div>
-        <div class="circular-item"><img src="Tunay_Buluşma.jpeg" alt="Tunay Buluşma Günü Tekrar"></div>
-        <div class="circular-item"><img src="Tunay_Logo-removebg-preview.png" alt="Kulüp Teması 2"></div>
+        <div class="circular-item"><img src="Tunay_Kitap_BG.jpeg" alt="Kitap" /></div>
+        <div class="circular-item"><img src="Tunay_Buluşma.jpeg" alt="Buluşma" /></div>
+        <div class="circular-item"><img src="https://picsum.photos/seed/bookstore1/600/400" alt="Kitaplık" /></div>
+        <div class="circular-item"><img src="https://picsum.photos/seed/library7/600/500" alt="Kütüphane" /></div>
+        <div class="circular-item"><img src="https://picsum.photos/seed/reading1/600/350" alt="Okuma" /></div>
+        <div class="circular-item"><img src="https://picsum.photos/seed/shelf1/600/450" alt="Raf" /></div>
+        <div class="circular-item"><img src="https://picsum.photos/seed/bookpile/600/380" alt="Kitap Yığını" /></div>
+        <div class="circular-item"><img src="https://picsum.photos/seed/library8/600/420" alt="Kütüphane" /></div>
+        <div class="circular-item"><img src="https://picsum.photos/seed/bookshelf2/600/480" alt="Kitaplık" /></div>
+        <div class="circular-item"><img src="Tunay_Kitap_BG.jpeg" alt="Kitap" /></div>
+        <div class="circular-item"><img src="Tunay_Buluşma.jpeg" alt="Buluşma" /></div>
+        <div class="circular-item"><img src="https://picsum.photos/seed/bookstore1/600/400" alt="Kitaplık" /></div>
+        <div class="circular-item"><img src="https://picsum.photos/seed/library7/600/500" alt="Kütüphane" /></div>
       </div>
     </div>
   </section>
 
-  <section id="iletisim-container">
-    <div id="iletisim" class="spotlight-card">
-      <h2>Bize Katılın</h2>
-      <p>Siz de bu entelektüel yolculuğun bir parçası olmak ister misiniz? Kapımız tüm edebiyatseverlere açık.</p>
-      
-      <div class="iletisim-buttons">
-        <a href="mailto:iletisim@tunay.com" class="btn-primary">E-posta Gönder</a>
-        <a href="https://instagram.com/tunaykitapkulubu" target="_blank" class="btn-secondary btn-instagram">Instagram</a>
-      </div>
-      
-      <div class="kurucu">
-        <p>Kulüp Kurucusu: <strong>Zeynep Beril KÖSE</strong></p>
-      </div>
+  <!-- İLETİŞİM -->
+  <section id="iletisim">
+    <h2 class="gradient-text">Bize Katılın</h2>
+    <p>Her ay yeni bir kitap, yeni tartışmalar. Dinleyici olarak da katılabilirsiniz.</p>
+    <div class="iletisim-buttons">
+      <a href="mailto:tunaykitapkulubu@gmail.com" class="btn-primary">📧 Mail Gönder</a>
+      <a href="https://instagram.com/tunaykitapkulubu" target="_blank" class="btn-secondary">📸 Instagram</a>
     </div>
+    <p class="kurucu">Kurucu: <strong>Zeynep Beril Köse</strong></p>
   </section>
 
+  <!-- FOOTER -->
   <footer>
-    <p>&copy; 2026 Tunay Kitap Kulübü. Tüm Hakları Saklıdır.</p>
+    <div>© 2025 Tunay Kitap Kulübü · Fevzi Çakmak Anadolu Lisesi</div>
     <div class="footer-social">
-      <a href="#" style="color: #94a3b8;">Instagram</a>
-      <a href="#" style="color: #94a3b8;">Twitter</a>
+      <a href="https://instagram.com/tunaykitapkulubu" target="_blank">📸</a>
+      <a href="mailto:tunaykitapkulubu@gmail.com">✉️</a>
     </div>
   </footer>
 
+  <!-- ─── SCRIPTS ─── -->
   <script>
-    const card = document.querySelector('.spotlight-card');
-    if(card) {
-      card.addEventListener('mousemove', e => {
-        const rect = card.getBoundingClientRect();
+    // ─── TEMA TOGGLE ───
+    const themeToggle = document.getElementById('toggle');
+    const body = document.body;
+
+    // Tema durumunu kontrol et
+    if (localStorage.getItem('theme') === 'light') {
+      body.classList.add('light-mode');
+      themeToggle.checked = true;
+    }
+
+    themeToggle.addEventListener('change', function() {
+      if (this.checked) {
+        body.classList.add('light-mode');
+        localStorage.setItem('theme', 'light');
+      } else {
+        body.classList.remove('light-mode');
+        localStorage.setItem('theme', 'dark');
+      }
+    });
+
+    // ─── MENÜ ───
+    const menuToggle = document.getElementById('menuToggle');
+    const menuPanel = document.getElementById('menuPanel');
+    const menuIcon = document.querySelector('.sm-toggle-icon');
+    const menuClose = document.querySelector('.sm-toggle-close');
+    let isOpen = false;
+
+    menuToggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+      isOpen = !isOpen;
+      menuPanel.classList.toggle('open', isOpen);
+      menuIcon.style.display = isOpen ? 'none' : 'block';
+      menuClose.style.display = isOpen ? 'block' : 'none';
+    });
+
+    document.addEventListener('click', function(e) {
+      if (isOpen && !menuPanel.contains(e.target) && !menuToggle.contains(e.target)) {
+        isOpen = false;
+        menuPanel.classList.remove('open');
+        menuIcon.style.display = 'block';
+        menuClose.style.display = 'none';
+      }
+    });
+
+    document.querySelectorAll('.menu-link').forEach(link => {
+      link.addEventListener('click', function() {
+        isOpen = false;
+        menuPanel.classList.remove('open');
+        menuIcon.style.display = 'block';
+        menuClose.style.display = 'none';
+      });
+    });
+
+    // ─── TILTED CARD ───
+    (function() {
+      const container = document.getElementById('tilted-card');
+      if (!container) return;
+
+      const inner = container.querySelector('.tilted-card-inner');
+      const caption = container.querySelector('.tilted-card-caption');
+      let isHovering = false;
+      let timeoutId;
+
+      function handleMouseMove(e) {
+        if (!isHovering) return;
+        const rect = container.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
-        card.style.setProperty('--mouse-x', `${x}px`);
-        card.style.setProperty('--mouse-y', `${y}px`);
-      });
-    }
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = ((y - centerY) / centerY) * -12;
+        const rotateY = ((x - centerX) / centerX) * 12;
+        
+        inner.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+        
+        if (caption) {
+          caption.style.opacity = '1';
+          caption.style.left = x + 'px';
+          caption.style.top = y + 'px';
+        }
+        
+        clearTimeout(timeoutId);
+      }
+
+      function handleMouseEnter() {
+        isHovering = true;
+        if (caption) {
+          caption.style.opacity = '0';
+          caption.style.transition = 'opacity 0.2s';
+        }
+      }
+
+      function handleMouseLeave() {
+        isHovering = false;
+        inner.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
+        if (caption) {
+          caption.style.opacity = '0';
+        }
+        clearTimeout(timeoutId);
+      }
+
+      container.addEventListener('mousemove', handleMouseMove);
+      container.addEventListener('mouseenter', handleMouseEnter);
+      container.addEventListener('mouseleave', handleMouseLeave);
+    })();
   </script>
+
 </body>
 </html>
