@@ -1,10 +1,9 @@
 /**
- * TUNAY KİTAP KULÜBÜ - PREMIUM MULTI-LANGUAGE GLASSMORPHISM ENGINE
+ * TUNAY KİTAP KULÜBÜ - ULTIMATE GLASSMORPHISM & ANIMATION ENGINE
  */
 
 document.addEventListener('DOMContentLoaded', () => {
     
-    // Core Elements
     const introScreen = document.getElementById('master-intro');
     const siteWrapper = document.querySelector('.cosmic-wrapper');
     const dynamicNav = document.getElementById('dynamic-nav');
@@ -13,9 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const langSelect = document.getElementById('lang-select');
     const heroInner = document.getElementById('hero-interactive-content');
 
-    // ==========================================================================
-    // MULTI-LANGUAGE TRANSLATION MATRIX DROPDOWN COMPONENT DICTIONARY
-    // ==========================================================================
+    // MULTI-LANGUAGE DICTIONARY MATRIX
     const translations = {
         tr: {
             "loader-cap": "AURA VE ENTELEKT",
@@ -26,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "cult-title": "Entelektüel Doku", "cult-sub": "Sadece saf bilgi, entelektüel derinlik ve estetik.",
             "c1-h": "Biz Kimiz?", "c1-p": "Edebiyatı sıradan bir eylem değil, derin bir analiz aracı olarak gören sorgulayıcı zihinlerin ortak sığınağıyız.",
             "c2-h": "Modern Analiz", "c2-p": "Klasik felsefeden distopyalara uzanan bir çizgide, popüler metinlerin gizli sembolizmlerini parçalıyoruz.",
-            "c3-h": "Haftalık Oturumlar", "c3-p": "Her hafta mum ışığı, kahve kokusu ve ambient müzikler eşliğinde dünün ve bugünün sınırlarını zorluyoruz.",
+            "c3-h": "Haftalık Oturumlar", "c3-p": "Her hafta mum ışığı, kahve kokusu og ambient müzikler eşliğinde dünün ve bugünün sınırlarını zorluyoruz.",
             "c4-h": "Yazar Söyleşileri", "c4-p": "Dönemlik olarak edebiyat dünyasından isimleri ve akademisyenleri kulübümüzde misafir ediyoruz.",
             "c5-h": "Kritik Atölyeleri", "c5-p": "Bir eserin sadece olay örgüsüne değil; yazarın psikolojisine ve dönemin sosyolojisine odaklanıyoruz.",
             "c6-h": "Sosyal Köprüler", "c6-p": "Kütüphane geliştirme ve kitap ulaştırma projeleriyle bilginin gücünü lise dışına yayıyoruz.",
@@ -128,31 +125,40 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // ==========================================================================
-    // METİN ANİMASYON PARÇALAYICI ENGINE
+    // KUSURSUZ STAGGER (SIRAYLA GELME) ENJEKTÖRÜ
     // ==========================================================================
     function parseAndAnimateText() {
+        // Kelime Kelime Bölme Motoru (Başlık İçin)
         const titleEl = document.getElementById('stagger-title');
-        if(titleEl) {
+        if (titleEl) {
             const words = titleEl.innerText.split(' ');
-            titleEl.innerHTML = words.map(word => `<span class="word-span">${word}</span>`).join(' ');
+            titleEl.innerHTML = words.map((word, wIdx) => {
+                // Her kelimeye sırayla artan milisaniyelik CSS delay veriyoruz
+                return `<span class="word-span" style="transition-delay: ${wIdx * 140}ms">${word}</span>`;
+            }).join(' ');
         }
 
+        // Harf Harf Bölme Motoru (Alt Paragraf Satırları İçin)
         const line1 = document.querySelector('.lead-line.line-1');
         const line2 = document.querySelector('.lead-line.line-2');
-        if(line1 && line2) {
-            const splitLine = (el) => {
-                const chars = el.innerText.split('');
-                el.innerHTML = chars.map(char => {
-                    if(char === ' ') return `<span class="char-span space"></span>`;
-                    return `<span class="char-span">${char}</span>`;
-                }).join('');
-            };
-            splitLine(line1);
-            splitLine(line2);
-        }
+        let globalCharIndex = 0; // İki satır arası akış kopmasın diye ortak sayaç
+
+        const splitLine = (el) => {
+            if (!el) return;
+            const chars = el.innerText.split('');
+            el.innerHTML = chars.map(char => {
+                globalCharIndex++;
+                const delay = globalCharIndex * 12; // Her harf 12ms arayla gelecek
+                if (char === ' ') return `<span class="char-span space"></span>`;
+                return `<span class="char-span" style="transition-delay: ${delay}ms">${char}</span>`;
+            }).join('');
+        };
+
+        splitLine(line1);
+        splitLine(line2);
     }
 
-    // Dil Değişim Yönetimi
+    // Dil Değiştiğinde Animasyonları Yeniden Kur
     function changeLanguage(lang) {
         document.querySelectorAll('[data-i18n]').forEach(element => {
             const key = element.getAttribute('data-i18n');
@@ -165,48 +171,47 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Ünvan imzasını dile göre bas
         const sigTarget = document.getElementById('signature-target');
-        if(sigTarget && translations[lang]['signature']) {
+        if (sigTarget && translations[lang]['signature']) {
             sigTarget.innerHTML = translations[lang]['signature'];
         }
 
+        // Metni yeniden parçala ve delay sürelerini hesapla
         parseAndAnimateText();
 
+        // Eğer site zaten açıldıysa animasyon sınıflarını anında ekle
         if (siteWrapper.classList.contains('site-ready')) {
-            document.querySelectorAll('.word-span').forEach(w => w.classList.add('animate'));
-            document.querySelectorAll('.char-span').forEach(c => c.classList.add('animate'));
+            requestAnimationFrame(() => {
+                document.querySelectorAll('.word-span').forEach(w => w.classList.add('animate'));
+                document.querySelectorAll('.char-span').forEach(c => c.classList.add('animate'));
+            });
         }
     }
 
     if (langSelect) {
-        langSelect.addEventListener('change', (e) => {
-            changeLanguage(e.target.value);
-        });
+        langSelect.addEventListener('change', (e) => changeLanguage(e.target.value));
     }
 
+    // İlk sayfa yüklenişi için metinleri hazırlıyoruz
     parseAndAnimateText();
 
-    // Tema Kontrolü (Light / Dark)
+    // Tema Kontrolü
     if (themeCheckbox) {
         themeCheckbox.addEventListener('change', function() {
-            if (!this.checked) {
-                document.body.classList.add('light-theme');
-            } else {
-                document.body.classList.remove('light-theme');
-            }
+            if (!this.checked) document.body.classList.add('light-theme');
+            else document.body.classList.remove('light-theme');
         });
     }
 
     // ==========================================================================
-    // CINEMATIC LOADING TIMELINE
+    // CINEMATIC TIMELINE TRIGGER
     // ==========================================================================
-    setTimeout(() => { introScreen.classList.add('step-line-reveal'); }, 600);
+    setTimeout(() => { introScreen.classList.add('step-line-reveal'); }, 500);
 
     setTimeout(() => {
         introScreen.classList.remove('step-line-reveal');
         introScreen.classList.add('step-logo-fadein');
-    }, 1300);
+    }, 1200);
 
     setTimeout(() => {
         introScreen.classList.remove('step-logo-fadein');
@@ -217,62 +222,64 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setTimeout(() => { introScreen.style.display = 'none'; }, 3300);
 
-    // Giriş Animasyonu Tetikleyicileri
+    // Ana Ekran Yazılarının Teker Teker Patlama Zamanlaması
     setTimeout(() => {
-        document.querySelectorAll('.word-span').forEach((word, index) => {
-            setTimeout(() => { word.classList.add('animate'); }, index * 180);
-        });
+        // Badge belirsin
         const badge = document.querySelector('.sub-badge');
-        if(badge) badge.classList.add('active');
-    }, 3300);
+        if (badge) badge.classList.add('active');
+
+        // Kelimeler sırayla gelsin
+        document.querySelectorAll('.word-span').forEach(word => word.classList.add('animate'));
+    }, 3200);
 
     setTimeout(() => {
-        document.querySelectorAll('.char-span').forEach((char, index) => {
-            setTimeout(() => { char.classList.add('animate'); }, index * 15);
-        });
-    }, 4100);
+        // Harfler sırayla aksın
+        document.querySelectorAll('.char-span').forEach(char => char.classList.add('animate'));
+    }, 3800);
 
     setTimeout(() => {
+        // CTA Butonu en son alt kısımdan pürüzsüzce tırmansın
         const cta = document.querySelector('.premium-cta-btn');
-        if(cta) cta.classList.add('active');
-    }, 4800);
+        if (cta) cta.classList.add('active');
+    }, 4600);
 
     // ==========================================================================
-    // INTERACTIVE SCROLL & PARALLAX ENGINE
+    // INTERACTIVE PARALLAX & CARD REVEAL
     // ==========================================================================
     window.addEventListener('scroll', () => {
         const scrolled = window.scrollY;
         
-        if (scrolled > 10) {
-            if(heroInner) {
-                heroInner.style.transform = `scale(0.95)`;
+        if (scrolled > 5) {
+            if (heroInner) {
+                heroInner.style.transform = `scale(0.96) translateY(${scrolled * 0.1}px)`;
                 heroInner.style.opacity = `${1 - scrolled / 500}`;
             }
         } else {
-            if(heroInner) { heroInner.style.transform = `scale(1)`; heroInner.style.opacity = `1`; }
+            if (heroInner) { heroInner.style.transform = `scale(1) translateY(0px)`; heroInner.style.opacity = `1`; }
         }
 
+        // Kültür kartlarının sırayla yukarı fırlayarak belirmesi
         const cardsGrid = document.getElementById('stagger-card-grid');
-        if(cardsGrid) {
+        if (cardsGrid) {
             const rect = cardsGrid.getBoundingClientRect();
-            if(rect.top < window.innerHeight * 0.9) {
+            if (rect.top < window.innerHeight * 0.88) {
                 cardsGrid.querySelectorAll('.sleek-card').forEach((card, index) => {
-                    setTimeout(() => { card.classList.add('revealed'); }, index * 100);
+                    setTimeout(() => { card.classList.add('revealed'); }, index * 90);
                 });
             }
         }
     });
 
-    // Bize Katıl Kartı Parallaxe Uyumu
+    // Bize Katıl Kartı Parallax Efekti
     if (nexus && window.innerWidth > 768) {
         nexus.addEventListener('mousemove', (e) => {
             const rect = nexus.getBoundingClientRect();
             const centerX = rect.left + rect.width / 2;
             const centerY = rect.top + rect.height / 2;
-            const moveX = (e.clientX - centerX) * 0.03;
-            const moveY = (e.clientY - centerY) * 0.03;
+            const moveX = (e.clientX - centerX) * 0.025;
+            const moveY = (e.clientY - centerY) * 0.025;
 
-            nexus.style.transform = `translate3d(${moveX}px, ${moveY}px, 0) rotateX(${-moveY * 0.05}deg) rotateY(${moveX * 0.05}deg)`;
+            nexus.style.transform = `translate3d(${moveX}px, ${moveY}px, 0) rotateX(${-moveY * 0.04}deg) rotateY(${moveX * 0.04}deg)`;
         });
 
         nexus.addEventListener('mouseleave', () => {
