@@ -9,46 +9,36 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="cosmic-dark-fixed">
+<body class="premium-cinematic-flow">
 
-  <div class="purple-universe">
+  <div class="grain-overlay"></div>
+  <div class="purple-universe" id="cosmic-bg">
     <div class="liquid-orb orb-purple"></div>
     <div class="liquid-orb orb-indigo"></div>
     <div class="liquid-orb orb-pink"></div>
     <div class="cosmic-mesh"></div>
   </div>
 
-  <div class="cosmic-intro" id="intro-screen">
-    <div class="intro-layer layer-bg">
-      <div class="parallax-glow"></div>
-    </div>
-    
-    <div class="intro-layer layer-mid">
-      <div class="parallax-circle"></div>
-    </div>
-    
-    <div class="intro-layer layer-fg">
-      <div class="intro-wrapper">
-        <h1 class="intro-brand">
-          <span class="char">T</span>
-          <span class="char">U</span>
-          <span class="char">N</span>
-          <span class="char">A</span>
-          <span class="char">Y</span>
-        </h1>
-        <p class="intro-tagline">KİTAP KULÜBÜ</p>
-        <div class="intro-glow-bar"></div>
+  <div class="premium-intro" id="master-intro">
+    <div class="intro-center-zone">
+      <div class="timeline-loader">
+        <div class="loader-line-track">
+          <div class="loader-line-fill"></div>
+        </div>
+        <p class="loader-caption">AURA & INTELLECT</p>
+      </div>
+
+      <div class="intro-logo-wrapper">
+        <img src="Tunay_Logo-removebg-preview.png" onerror="this.src='https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=120&auto=format&fit=crop&q=80'" alt="Tunay Logo" class="intro-dynamic-logo">
       </div>
     </div>
   </div>
 
-  <nav class="micro-nav">
+  <nav class="micro-nav" id="dynamic-nav">
     <div class="nav-blur-holder"></div>
     <div class="nav-content">
-      <a href="#hero" class="nav-logo-zone">
-        <img src="Tunay_Logo-removebg-preview.png" onerror="this.src='https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=80&auto=format&fit=crop&q=80'" alt="Tunay Logo" class="pure-logo">
-      </a>
-      
+      <div class="nav-logo-zone" id="nav-logo-target">
+        </div>
       <div class="nav-links">
         <a href="#hero" class="link-item active">Giriş</a>
         <a href="#culture" class="link-item">Kültür</a>
@@ -62,18 +52,17 @@
   <main class="cosmic-wrapper">
 
     <section id="hero" class="magnetic-hero">
-      <div class="hero-inner scroll-reveal">
+      <div class="hero-inner" id="hero-interactive-content">
         <span class="sub-badge">Fevzi Çakmak Anadolu Lisesi</span>
-        <h1 class="fluid-title">Tunay Kitap Kulübü</h1>
-        <p class="fluid-lead">Kelimelerin ötesine geçmek, edebi kaosun içinde kendi felsefi rotanı çizmek ve derin bağlar kurmak için buradasın.</p>
+        
+        <h1 class="fluid-title" id="stagger-title">Tunay Kitap Kulübü</h1>
+        
+        <p class="fluid-lead" id="stagger-lead">Kelimelerin ötesine geçmek, edebi kaosun içinde kendi felsefi rotanı çizmek ve derin bağlar kurmak için buradasın.</p>
         
         <div class="action-trigger-zone">
-          <a href="#culture" class="button">
-            <div class="button-outer">
-              <div class="button-inner">
-                <span>Evreni Keşfet</span>
-              </div>
-            </div>
+          <a href="https://www.youtube.com/watch?v=atGCQWspKTE" target="_blank" class="premium-cta-btn">
+            <span class="btn-glow-layer"></span>
+            <span class="btn-text">Evreni Keşfet</span>
           </a>
         </div>
       </div>
@@ -85,43 +74,38 @@
         <p class="sub-meta">Büyük kaba kutular yok. Sadece saf bilgi ve derin estetik.</p>
       </div>
 
-      <div class="fine-line-grid">
-        <div class="sleek-card scroll-reveal">
+      <div class="fine-line-grid" id="stagger-card-grid">
+        <div class="sleek-card">
           <div class="card-mesh-pattern"></div>
           <span class="card-idx">// 01</span>
           <h3>Biz Kimiz?</h3>
           <p>Edebiyatı sıradan bir eylem değil, derin bir analiz aracı olarak gören sorgulayıcı zihinlerin ortak sığınağıyız.</p>
         </div>
-
-        <div class="sleek-card scroll-reveal">
+        <div class="sleek-card">
           <div class="card-mesh-pattern"></div>
           <span class="card-idx">// 02</span>
           <h3>Modern Analiz</h3>
           <p>Klasik felsefeden distopyalara uzanan bir çizgide, popüler metinlerin gizli sembolizmlerini parçalıyoruz.</p>
         </div>
-
-        <div class="sleek-card scroll-reveal">
+        <div class="sleek-card">
           <div class="card-mesh-pattern"></div>
           <span class="card-idx">// 03</span>
           <h3>Haftalık Oturumlar</h3>
           <p>Her hafta mum ışığı, kahve kokusu ve ambient müzikler eşliğinde düşünsel sınırları zorluyoruz.</p>
         </div>
-
-        <div class="sleek-card scroll-reveal">
+        <div class="sleek-card">
           <div class="card-mesh-pattern"></div>
           <span class="card-idx">// 04</span>
           <h3>Yazar Söyleşileri</h3>
           <p>Dönemlik olarak edebiyat dünyasından isimleri ve akademisyenleri kulübümüzde misafir ediyoruz.</p>
         </div>
-
-        <div class="sleek-card scroll-reveal">
+        <div class="sleek-card">
           <div class="card-mesh-pattern"></div>
           <span class="card-idx">// 05</span>
           <h3>Kritik Atölyeleri</h3>
           <p>Bir eserin sadece olay örgüsüne değil; yazarın psikolojisine ve dönemin sosyolojisine odaklanıyoruz.</p>
         </div>
-
-        <div class="sleek-card scroll-reveal">
+        <div class="sleek-card">
           <div class="card-mesh-pattern"></div>
           <span class="card-idx">// 06</span>
           <h3>Sosyal Köprüler</h3>
@@ -130,56 +114,7 @@
       </div>
     </section>
 
-    <section id="gallery" class="cinema-gallery-section">
-      <div class="section-meta scroll-reveal">
-        <h2 class="ghost-heading">Anların Estetiği</h2>
-      </div>
-
-      <div class="liquid-gallery-container scroll-reveal">
-        <div class="gallery-glass-frame">
-          <div class="frame-track">
-            <div class="cinema-cell"><img src="Tunay_Kitap_BG.jpeg" onerror="this.src='https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=600&auto=format&fit=crop&q=80'" alt="1"></div>
-            <div class="cinema-cell"><img src="Tunay_Buluşma.jpeg" onerror="this.src='https://images.unsplash.com/photo-1513001900722-370f803f498d?w=600&auto=format&fit=crop&q=80'" alt="2"></div>
-            <div class="cinema-cell"><img src="Tunay_Kitap_BG.jpeg" onerror="this.src='https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=600&auto=format&fit=crop&q=80'" alt="3"></div>
-            <div class="cinema-cell"><img src="Tunay_Buluşma.jpeg" onerror="this.src='https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&auto=format&fit=crop&q=80'" alt="4"></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="nexus" class="nexus-glow-section">
-      <div class="nexus-wrapper scroll-reveal" id="magnetic-nexus">
-        <div class="nexus-shadow-glow"></div>
-        <span class="nexus-tag">// ENTER THE COMMUNITY</span>
-        <h2 class="nexus-main-title">Hikayemize <br>Dahil Ol</h2>
-        <p class="nexus-text">Bu kapıdan girdiğinde sıradan fikirler dışarıda kalır. Bizimle yürümek ister misin?</p>
-        
-        <div class="nexus-btn-row">
-          <a href="https://www.youtube.com/watch?v=atGCQWspKTE" target="_blank" class="button">
-            <div class="button-outer">
-              <div class="button-inner">
-                <span>Bize Yaz</span>
-              </div>
-            </div>
-          </a>
-          <a href="https://instagram.com/tunaykitapkulubu" target="_blank" class="button">
-            <div class="button-outer">
-              <div class="button-inner">
-                <span>Instagram'da Gör</span>
-              </div>
-            </div>
-          </a>
-        </div>
-        
-        <div class="curator-signature">Kurucu & Yönetici: <span>Zeynep Beril KÖSE</span></div>
-      </div>
-    </section>
-
-  </main>
-
-  <footer class="minimal-footer">
-    <p>&copy; 2026 Tunay Kitap Kulübü. Aura & Intellect.</p>
-  </footer>
+    </main>
 
   <script src="script.js"></script>
 </body>
