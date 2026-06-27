@@ -1,12 +1,12 @@
 /* ==========================================================================
-   1. SOLID COSMIC PURPLE DESIGN SYSTEM
+   1. PERMANENT DEEP PURPLE DESIGN SYSTEM
    ========================================================================== */
 :root {
   --font-base: 'Plus Jakarta Sans', sans-serif;
   --font-display: 'Syne', sans-serif;
   --cubic-luxury: cubic-bezier(0.16, 1, 0.3, 1);
   
-  /* Kalıcı Koyu Mor Değişkenleri */
+  /* Koyu Mor Atmosfer Değişkenleri */
   --bg-deep: #06040a;
   --text-pure: #f3f1f7;
   --text-soft: #8e8a9f;
@@ -14,7 +14,6 @@
   --card-border: rgba(157, 78, 221, 0.1);
   --card-hover-border: rgba(157, 78, 221, 0.4);
   --nav-bg: rgba(6, 4, 10, 0.5);
-  --glow-primary: rgba(124, 58, 237, 0.15);
 }
 
 * {
@@ -30,7 +29,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Sıvı Hareketli Mor Işık Katmanı */
+/* Hareketli Sıvı Mor Evren Katmanı */
 .purple-universe {
   position: fixed;
   inset: 0;
@@ -53,7 +52,135 @@ body {
 .orb-pink { width: 400px; height: 400px; background: #db2777; top: 40%; left: 30%; opacity: 0.1; }
 
 /* ==========================================================================
-   2. SİNEMATİK INTRO
+   2. UIVERSE BY FCOLOMBATI COMPONENT INTEGRATION
+   ========================================================================== */
+.button {
+  all: unset;
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  position: relative;
+  border-radius: 100em;
+  background-color: rgba(0, 0, 0, 0.75);
+  box-shadow:
+    -0.15em -0.15em 0.15em -0.075em rgba(5, 5, 5, 0.25),
+    0.0375em 0.0375em 0.0675em 0 rgba(5, 5, 5, 0.1);
+  display: inline-block; /* Link uyumu için eklendi */
+  text-decoration: none;
+  font-size: 15px; /* Standart okunabilirlik ölçeği */
+}
+
+.button::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  width: calc(100% + 0.3em);
+  height: calc(100% + 0.3em);
+  top: -0.15em;
+  left: -0.15em;
+  border-radius: inherit;
+  background: linear-gradient(
+    -135deg,
+    rgba(5, 5, 5, 0.5),
+    transparent 20%,
+    transparent 100%
+  );
+  filter: blur(0.0125em);
+  opacity: 0.25;
+  mix-blend-mode: multiply;
+}
+
+.button .button-outer {
+  position: relative;
+  z-index: 1;
+  border-radius: inherit;
+  transition: box-shadow 300ms ease;
+  will-change: box-shadow;
+  box-shadow:
+    0 0.05em 0.05em -0.01em rgba(5, 5, 5, 1),
+    0 0.01em 0.01em -0.01em rgba(5, 5, 5, 0.5),
+    0.15em 0.3em 0.1em -0.01em rgba(5, 5, 5, 0.25);
+}
+
+.button:hover .button-outer {
+  box-shadow:
+    0 0 0 0 rgba(5, 5, 5, 1),
+    0 0 0 0 rgba(5, 5, 5, 0.5),
+    0 0 0 0 rgba(5, 5, 5, 0.25);
+}
+
+.button-inner {
+  --inset: 0.035em;
+  position: relative;
+  z-index: 1;
+  border-radius: inherit;
+  padding: 1em 2.2em; /* Genişlik estetiği artırıldı */
+  background-image: linear-gradient(
+    135deg,
+    rgba(230, 230, 230, 1),
+    rgba(180, 180, 180, 1)
+  );
+  transition:
+    box-shadow 300ms ease,
+    clip-path 250ms ease,
+    background-image 250ms ease,
+    transform 250ms ease;
+  will-change: box-shadow, clip-path, background-image, transform;
+  overflow: clip;
+  clip-path: inset(0 0 0 0 round 100em);
+  box-shadow:
+    0 0 0 0 inset rgba(5, 5, 5, 0.1),
+    -0.05em -0.05em 0.05em 0 inset rgba(5, 5, 5, 0.25),
+    0 0 0 0 inset rgba(5, 5, 5, 0.1),
+    0 0 0.05em 0.2em inset rgba(255, 255, 255, 0.25),
+    0.025em 0.05em 0.1em 0 inset rgba(255, 255, 255, 1),
+    0.12em 0.12em 0.12em inset rgba(255, 255, 255, 0.25),
+    -0.075em -0.25em 0.25em 0.1em inset rgba(5, 5, 5, 0.25);
+}
+
+.button:hover .button-inner {
+  clip-path: inset(
+    clamp(1px, 0.0625em, 2px) clamp(1px, 0.0625em, 2px)
+    clamp(1px, 0.0625em, 2px) clamp(1px, 0.0625em, 2px) round 100em
+  );
+  box-shadow:
+    0.1em 0.15em 0.05em 0 inset rgba(5, 5, 5, 0.75),
+    -0.025em -0.03em 0.05em 0.025em inset rgba(5, 5, 5, 0.5),
+    0.25em 0.25em 0.2em 0 inset rgba(5, 5, 5, 0.5),
+    0 0 0.05em 0.5em inset rgba(255, 255, 255, 0.15),
+    0 0 0 0 inset rgba(255, 255, 255, 1),
+    0.12em 0.12em 0.12em inset rgba(255, 255, 255, 0.25),
+    -0.075em -0.12em 0.2em 0.1em inset rgba(5, 5, 5, 0.25);
+}
+
+.button .button-inner span {
+  position: relative;
+  z-index: 4;
+  font-family: var(--font-base);
+  letter-spacing: -0.03em;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0);
+  background-image: linear-gradient(
+    135deg,
+    rgba(25, 25, 25, 1),
+    rgba(75, 75, 75, 1)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  transition: transform 250ms ease;
+  display: block;
+  will-change: transform;
+  text-shadow: rgba(0, 0, 0, 0.1) 0 0 0.1em;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.button:hover .button-inner span { transform: scale(0.975); }
+.button:active .button-inner { transform: scale(0.975); }
+
+/* ==========================================================================
+   3. SİNEMATİK INTRO & NAVBAR
    ========================================================================== */
 .cosmic-intro {
   position: fixed;
@@ -66,318 +193,67 @@ body {
   transition: opacity 1s var(--cubic-luxury), transform 1.2s cubic-bezier(0.85, 0, 0.15, 1);
 }
 
-.cosmic-intro.vanish {
-  opacity: 0;
-  transform: scale(1.05);
-  pointer-events: none;
-}
-
+.cosmic-intro.vanish { opacity: 0; transform: scale(1.05); pointer-events: none; }
 .intro-wrapper { text-align: center; }
+.intro-brand { font-family: var(--font-display); font-size: 5rem; font-weight: 800; color: #ffffff !important; letter-spacing: 18px; line-height: 1; }
+.intro-tagline { font-size: 0.95rem; letter-spacing: 7px; color: #9d4edd; margin-top: 15px; font-weight: 500; }
+.intro-glow-bar { width: 120px; height: 1px; background: linear-gradient(90deg, transparent, #9d4edd, transparent); margin: 25px auto 0; }
 
-.intro-brand {
-  font-family: var(--font-display);
-  font-size: 5rem;
-  font-weight: 800;
-  color: #ffffff !important;
-  letter-spacing: 18px;
-  line-height: 1;
-}
-
-.intro-tagline {
-  font-size: 0.95rem;
-  letter-spacing: 7px;
-  color: #9d4edd;
-  margin-top: 15px;
-  font-weight: 500;
-}
-
-.intro-glow-bar {
-  width: 120px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, #9d4edd, transparent);
-  margin: 25px auto 0;
-}
-
-/* ==========================================================================
-   3. MİKRO NAVBAR & LOGO KORUMASI
-   ========================================================================== */
-.micro-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 65px;
-  z-index: 10000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.nav-blur-holder {
-  position: absolute;
-  inset: 0;
-  background: var(--nav-bg);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  border-bottom: 1px solid var(--card-border);
-}
-
-.nav-content {
-  position: relative;
-  width: 100%;
-  max-width: 1300px;
-  padding: 0 4%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.nav-logo-zone {
-  display: flex;
-  align-items: center;
-}
-
-.pure-logo {
-  height: 38px; /* Logonun belirgin durması için boyutu optimize edildi */
-  width: auto;
-  object-fit: contain;
-  transition: transform 0.4s var(--cubic-luxury);
-}
-
+.micro-nav { position: fixed; top: 0; left: 0; width: 100%; height: 65px; z-index: 10000; display: flex; align-items: center; justify-content: center; }
+.nav-blur-holder { position: absolute; inset: 0; background: var(--nav-bg); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border-bottom: 1px solid var(--card-border); }
+.nav-content { position: relative; width: 100%; max-width: 1300px; padding: 0 4%; display: flex; align-items: center; justify-content: space-between; }
+.pure-logo { height: 38px; width: auto; object-fit: contain; transition: transform 0.4s var(--cubic-luxury); }
 .pure-logo:hover { transform: scale(1.08); }
-
 .nav-links { display: flex; gap: 30px; }
-
-.link-item {
-  color: var(--text-pure);
-  text-decoration: none;
-  font-size: 0.88rem;
-  font-weight: 500;
-  opacity: 0.5;
-  transition: 0.3s;
-}
-
-.link-item:hover, .link-item.active {
-  opacity: 1;
-  color: #9d4edd;
-}
-
-.nav-right-space { width: 40px; } /* Simetri dengesi için */
+.link-item { color: var(--text-pure); text-decoration: none; font-size: 0.88rem; font-weight: 500; opacity: 0.5; transition: 0.3s; }
+.link-item:hover, .link-item.active { opacity: 1; color: #9d4edd; }
+.nav-right-space { width: 40px; }
 
 /* ==========================================================================
-   4. HERO ALANI
+   4. LAYOUT DESIGN (HERO, CARDS, GALLERY)
    ========================================================================== */
-.cosmic-wrapper {
-  max-width: 1300px;
-  margin: 0 auto;
-  padding: 0 4%;
-}
+.cosmic-wrapper { max-width: 1300px; margin: 0 auto; padding: 0 4%; }
+.magnetic-hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding-top: 65px; }
+.sub-badge { font-size: 0.8rem; letter-spacing: 4px; text-transform: uppercase; color: #9d4edd; display: block; margin-bottom: 20px; }
+.fluid-title { font-family: var(--font-display); font-size: 5rem; font-weight: 700; line-height: 1.1; letter-spacing: -2px; margin-bottom: 25px; background: linear-gradient(135deg, var(--text-pure) 30%, #9d4edd 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.fluid-lead { font-size: 1.15rem; color: var(--text-soft); max-width: 580px; margin: 0 auto 40px; line-height: 1.7; }
 
-.magnetic-hero {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding-top: 65px;
-}
-
-.sub-badge {
-  font-size: 0.8rem;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: #9d4edd;
-  display: block;
-  margin-bottom: 20px;
-}
-
-.fluid-title {
-  font-family: var(--font-display);
-  font-size: 5rem;
-  font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -2px;
-  margin-bottom: 25px;
-  background: linear-gradient(135deg, var(--text-pure) 30%, #9d4edd 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.fluid-lead {
-  font-size: 1.15rem;
-  color: var(--text-soft);
-  max-width: 580px;
-  margin: 0 auto 40px;
-  line-height: 1.7;
-}
-
-.cosmic-btn {
-  position: relative;
-  display: inline-flex;
-  padding: 14px 38px;
-  border-radius: 100px;
-  color: #fff;
-  background: #7c3aed;
-  text-decoration: none;
-  font-size: 0.95rem;
-  font-weight: 600;
-  overflow: hidden;
-  transition: 0.4s var(--cubic-luxury);
-  box-shadow: 0 10px 30px rgba(124, 58, 237, 0.3);
-}
-
-.cosmic-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 15px 40px rgba(124, 58, 237, 0.5);
-}
-
-/* ==========================================================================
-   5. CARDS GRID
-   ========================================================================== */
 .culture-section { padding: 100px 0; }
 .section-meta { margin-bottom: 60px; text-align: center; }
-
-.ghost-heading {
-  font-family: var(--font-display);
-  font-size: 3rem;
-  font-weight: 700;
-  margin-bottom: 15px;
-}
-
+.ghost-heading { font-family: var(--font-display); font-size: 3rem; font-weight: 700; margin-bottom: 15px; }
 .sub-meta { color: var(--text-soft); font-size: 1rem; }
 
-.fine-line-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 25px;
-}
+.fine-line-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
+.sleek-card { background: var(--card-bg); border: 1px solid var(--card-border); padding: 35px; border-radius: 20px; position: relative; overflow: hidden; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); transition: all 0.5s var(--cubic-luxury); }
+.card-idx { font-size: 0.75rem; color: #9d4edd; font-weight: 700; display: block; margin-bottom: 20px; }
+.sleek-card h3 { font-size: 1.25rem; font-weight: 600; margin-bottom: 12px; }
+.sleek-card p { color: var(--text-soft); font-size: 0.92rem; line-height: 1.6; }
+.sleek-card:hover { border-color: var(--card-hover-border); transform: translateY(-4px); background: rgba(15, 11, 25, 0.6); box-shadow: 0 20px 40px rgba(124, 58, 237, 0.05); }
 
-.sleek-card {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  padding: 35px;
-  border-radius: 20px;
-  position: relative;
-  overflow: hidden;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  transition: all 0.5s var(--cubic-luxury);
-}
-
-.card-idx {
-  font-size: 0.75rem;
-  color: #9d4edd;
-  font-weight: 700;
-  display: block;
-  margin-bottom: 20px;
-}
-
-.sleek-card h3 {
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: 12px;
-}
-
-.sleek-card p {
-  color: var(--text-soft);
-  font-size: 0.92rem;
-  line-height: 1.6;
-}
-
-.sleek-card:hover {
-  border-color: var(--card-hover-border);
-  transform: translateY(-4px);
-  background: rgba(15, 11, 25, 0.6);
-  box-shadow: 0 20px 40px rgba(124, 58, 237, 0.05);
-}
-
-/* ==========================================================================
-   6. SİNEMATİK GALERİ
-   ========================================================================== */
 .cinema-gallery-section { padding: 80px 0; }
 .liquid-gallery-container { width: 100%; overflow: hidden; }
-
-.gallery-glass-frame {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid var(--card-border);
-  padding: 20px;
-  border-radius: 30px;
-}
-
+.gallery-glass-frame { background: rgba(255, 255, 255, 0.02); border: 1px solid var(--card-border); padding: 20px; border-radius: 30px; }
 .frame-track { display: flex; gap: 20px; }
-
-.cinema-cell {
-  flex: 1;
-  height: 380px;
-  border-radius: 18px;
-  overflow: hidden;
-  transition: flex 0.7s var(--cubic-luxury);
-}
-
-.cinema-cell img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: saturate(0.8) brightness(0.9);
-  transition: 0.7s;
-}
-
+.cinema-cell { flex: 1; height: 380px; border-radius: 18px; overflow: hidden; transition: flex 0.7s var(--cubic-luxury); }
+.cinema-cell img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.8) brightness(0.9); transition: 0.7s; }
 .cinema-cell:hover { flex: 2.2; }
 .cinema-cell:hover img { filter: saturate(1.1) brightness(1); transform: scale(1.02); }
 
-/* ==========================================================================
-   7. NEXUS CARD
-   ========================================================================== */
 .nexus-glow-section { padding: 100px 0 140px; }
-
-.nexus-wrapper {
-  background: radial-gradient(circle at top right, rgba(124, 58, 237, 0.1), transparent), var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 40px;
-  padding: 80px 40px;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.nexus-main-title {
-  font-family: var(--font-display);
-  font-size: 3.5rem;
-  font-weight: 700;
-  line-height: 1.1;
-  margin-bottom: 20px;
-}
-
+.nexus-wrapper { background: radial-gradient(circle at top right, rgba(124, 58, 237, 0.1), transparent), var(--card-bg); border: 1px solid var(--card-border); border-radius: 40px; padding: 80px 40px; text-align: center; position: relative; overflow: hidden; transition: transform 0.2s ease; }
+.nexus-main-title { font-family: var(--font-display); font-size: 3.5rem; font-weight: 700; line-height: 1.1; margin-bottom: 20px; }
 .nexus-text { color: var(--text-soft); max-width: 500px; margin: 0 auto 40px; font-size: 1.1rem; }
 .nexus-btn-row { display: flex; justify-content: center; gap: 20px; }
-
-.static-btn { background: #7c3aed; }
-.outline-btn { background: transparent; border: 1px solid var(--text-pure); color: var(--text-pure); box-shadow: none; }
-.outline-btn:hover { background: var(--text-pure); color: var(--bg-deep); }
-
 .curator-signature { margin-top: 50px; font-size: 0.9rem; color: var(--text-soft); }
 .curator-signature span { color: var(--text-pure); font-weight: 600; }
 
-/* ==========================================================================
-   8. SCROLL DRIVER & RESPONSIVE
-   ========================================================================== */
-.scroll-reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 1s var(--cubic-luxury), transform 1s var(--cubic-luxury);
-}
-
+.scroll-reveal { opacity: 0; transform: translateY(30px); transition: opacity 1s var(--cubic-luxury), transform 1s var(--cubic-luxury); }
 .scroll-reveal.active { opacity: 1; transform: translateY(0); }
+.minimal-footer { text-align: center; padding: 40px 0; color: var(--text-soft); font-size: 0.85rem; border-top: 1px solid var(--card-border); }
 
-.minimal-footer {
-  text-align: center;
-  padding: 40px 0;
-  color: var(--text-soft);
-  font-size: 0.85rem;
-  border-top: 1px solid var(--card-border);
-}
-
+/* ==========================================================================
+   5. RESPONSIVE OPTIMIZATION
+   ========================================================================== */
 @media (max-width: 1024px) {
   .fine-line-grid { grid-template-columns: repeat(2, 1fr); }
   .fluid-title { font-size: 3.8rem; }
@@ -391,5 +267,5 @@ body {
   .nav-links { display: none; }
   .fluid-title { font-size: 2.8rem; }
   .nexus-main-title { font-size: 2.4rem; }
-  .nexus-btn-row { flex-direction: column; }
+  .nexus-btn-row { flex-direction: column; align-items: center; }
 }
