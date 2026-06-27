@@ -21,7 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     initIntro();
 
-
     // 2. MOUSE-TRACKING FLUID ORBS
     const initFluidUniverse = () => {
         const orbs = document.querySelectorAll('.liquid-orb');
@@ -38,7 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
     initFluidUniverse();
-
 
     // 3. MAGNETIC NEXUS INTERACTION
     const initMagneticNexus = () => {
@@ -61,7 +59,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
     initMagneticNexus();
-
 
     // 4. INTELLIGENT SCROLL REVEAL & ROUTE ACTIVE
     const initScrollSystem = () => {
