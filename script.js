@@ -1,5 +1,5 @@
 /**
- * TUNAY KİTAP KULÜBÜ - MASTER CINEMATIC TIMELINE ENGINE 2026
+ * TUNAY KİTAP KULÜBÜ - MASTER CINEMATIC ENGINE WITH THEME TOGGLE 2026
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -13,8 +13,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const leadEl = document.getElementById('stagger-lead');
     const ctaBtn = document.querySelector('.premium-cta-btn');
     const heroInner = document.getElementById('hero-interactive-content');
+    const themeCheckbox = document.getElementById('theme-toggle-checkbox');
+    const nexus = document.getElementById('magnetic-nexus');
 
-    // Metin Ayrıştırma Hazırlıkları
+    // Metin Parçalama Algoritmaları
     if(titleEl) {
         const words = titleEl.innerText.split(' ');
         titleEl.innerHTML = words.map(word => `<span class="word-span">${word}</span>`).join(' ');
@@ -28,24 +30,33 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================================================
-    // MULTI-STAGE SİNEMATİK TIMELINE ENGINE
+    // THEME SWITCH ENGINE (LIGHT / DARK SYSTEM)
     // ==========================================================================
+    if (themeCheckbox) {
+        themeCheckbox.addEventListener('change', function() {
+            if (!this.checked) {
+                // Checkbox unchecked ise -> Aydınlık Moda Geç
+                document.body.classList.add('light-theme');
+            } else {
+                // Checkbox checked ise -> Karanlık Moda Geri Dön
+                document.body.classList.remove('light-theme');
+            }
+        });
+    }
 
-    // STAGE 1 [0.00s - 0.80s]: Tamamen siyah ekran, grain aktif.
-    // Bekleme durumu...
+    // ==========================================================================
+    // SİNEMATİK INTRO TIMELINE ENGINE
+    // ==========================================================================
+    // 0.80s: İnce Çizgi Belirir
+    setTimeout(() => { introScreen.classList.add('step-line-reveal'); }, 800);
 
-    // STAGE 2 [0.80s - 1.50s]: İnce beyaz çizgi soldan sağa doluyor.
-    setTimeout(() => {
-        introScreen.classList.add('step-line-reveal');
-    }, 800);
-
-    // STAGE 3 [1.50s - 2.50s]: Çizgi biter, logo blur kırarak belirir, %105 mikro büyüme yapar.
+    // 1.50s: Çizgi Tamamlanır, Logo %105 Pop-Up ile Gelir
     setTimeout(() => {
         introScreen.classList.remove('step-line-reveal');
         introScreen.classList.add('step-logo-fadein');
     }, 1500);
 
-    // STAGE 4 [2.50s - 3.20s]: Logo yukarı küçülerek akar, arka plan netleşmeye başlar.
+    // 2.50s: Logo Yukarı Akar, Arka Plan Canlanır
     setTimeout(() => {
         introScreen.classList.remove('step-logo-fadein');
         introScreen.classList.add('step-logo-exit');
@@ -54,48 +65,34 @@ document.addEventListener('DOMContentLoaded', () => {
         dynamicNav.classList.add('visible');
     }, 2500);
 
-    // Giriş perdesini DOM'dan tamamen temizleme (Performans ve tıklama engeli kaldırma)
-    setTimeout(() => {
-        introScreen.style.display = 'none';
-    }, 3200);
+    // Intro Temizliği
+    setTimeout(() => { introScreen.style.display = 'none'; }, 3200);
 
-    // STAGE 5 [3.20s - 4.00s]: Başlık kelimeleri 0.2s ara ile aşağıdan yukarı akar.
+    // 3.20s: Başlık Kelimeleri (0.2s Stagger)
     setTimeout(() => {
-        const wordSpans = document.querySelectorAll('.word-span');
-        wordSpans.forEach((word, index) => {
-            setTimeout(() => {
-                word.classList.add('animate');
-            }, index * 200); // Tam 0.2 saniye aralık (stagger)
+        document.querySelectorAll('.word-span').forEach((word, index) => {
+            setTimeout(() => { word.classList.add('animate'); }, index * 200);
         });
-        
-        // FCOLOMBATI Rozeti de başlıkla gelsin
         const badge = document.querySelector('.sub-badge');
         if(badge) badge.classList.add('active');
     }, 3200);
 
-    // STAGE 6 [4.00s - 4.80s]: Alt açıklama yazısı harf harf blur efektiyle belirir.
+    // 4.00s: Alt Açıklama Harf Harf Blur-In
     setTimeout(() => {
-        const charSpans = document.querySelectorAll('.char-span');
-        charSpans.forEach((char, index) => {
-            setTimeout(() => {
-                char.classList.add('animate');
-            }, index * 25); // Toplam süreye yayılmış akıcı harf gelişi
+        document.querySelectorAll('.char-span').forEach((char, index) => {
+            setTimeout(() => { char.classList.add('animate'); }, index * 22);
         });
     }, 4000);
 
-    // STAGE 7 [4.80s - 5.30s]: CTA Butonu alttan yumuşakça yükselir.
-    setTimeout(() => {
-        if(ctaBtn) ctaBtn.classList.add('active');
-    }, 4800);
+    // 4.80s: CTA Butonu Yükselişi
+    setTimeout(() => { if(ctaBtn) ctaBtn.classList.add('active'); }, 4800);
 
-    // STAGE 8 [5.30s+]: Fare duyarlı mikro ambiyans hareketi (Maksimum 8px)
+    // 5.30s+: Mouse Duyarlı Mikro Esneme (Maksimum 10px)
     setTimeout(() => {
         if (window.innerWidth > 768) {
             window.addEventListener('mousemove', (e) => {
-                const x = (e.clientX / window.innerWidth - 0.5) * 12; // 5-10px arası tepki
+                const x = (e.clientX / window.innerWidth - 0.5) * 12;
                 const y = (e.clientY / window.innerHeight - 0.5) * 12;
-                
-                // Arka plan orb'ları ve ana kahraman alanı hafifçe esner
                 cosmicBg.style.transform = `translate3d(${x}px, ${y}px, 0)`;
                 if(heroInner) heroInner.style.transform = `translate3d(${x * 0.5}px, ${y * 0.5}px, 0)`;
             });
@@ -103,45 +100,48 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 5300);
 
     // ==========================================================================
-    // PREMIUM SCROLL DYNAMICS (İLK SCROLL REAKSİYONU)
+    // PREMIUM SCROLL DYNAMICS & MAGNETIC NEXUS
     // ==========================================================================
     window.addEventListener('scroll', () => {
         const scrolled = window.scrollY;
         
         if (scrolled > 10) {
-            // İlk scroll yapıldığı an:
-            // 1. Hero alanı küçülerek uzaklaşır
             if(heroInner) {
-                heroInner.style.transform = `scale(0.92)`;
-                heroInner.style.opacity = `${1 - scrolled / 400}`;
+                heroInner.style.transform = `scale(0.93)`;
+                heroInner.style.opacity = `${1 - scrolled / 450}`;
             }
-            // 2. Arka plan hafif zoom out (genişleme) hissi verir
-            if(cosmicBg) {
-                cosmicBg.style.transform = `scale(0.96) translateZ(-50px)`;
-            }
+            if(cosmicBg) cosmicBg.style.transform = `scale(0.97) translateZ(-40px)`;
         } else {
-            // Başa dönüldüğünde eski haline gelir
-            if(heroInner) {
-                heroInner.style.transform = `scale(1)`;
-                heroInner.style.opacity = `1`;
-            }
-            if(cosmicBg) {
-                cosmicBg.style.transform = `scale(1)`;
-            }
+            if(heroInner) { heroInner.style.transform = `scale(1)`; heroInner.style.opacity = `1`; }
+            if(cosmicBg) cosmicBg.style.transform = `scale(1)`;
         }
 
-        // İkinci Section Kartlarının Sırayla (Stagger) Gelmesi
+        // Kültür Kartları Sıralı Reveal Kümesi
         const cardsGrid = document.getElementById('stagger-card-grid');
         if(cardsGrid) {
             const rect = cardsGrid.getBoundingClientRect();
-            if(rect.top < window.innerHeight * 0.85) {
-                const cards = cardsGrid.querySelectorAll('.sleek-card');
-                cards.forEach((card, index) => {
-                    setTimeout(() => {
-                        card.classList.add('revealed');
-                    }, index * 150); // Kartlar sırayla fırlar
+            if(rect.top < window.innerHeight * 0.88) {
+                cardsGrid.querySelectorAll('.sleek-card').forEach((card, index) => {
+                    setTimeout(() => { card.classList.add('revealed'); }, index * 120);
                 });
             }
         }
     });
+
+    // Bize Katıl (Nexus) 3D Esnetme Motoru
+    if (nexus && window.innerWidth > 768) {
+        nexus.addEventListener('mousemove', (e) => {
+            const rect = nexus.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            const moveX = (e.clientX - centerX) * 0.05;
+            const moveY = (e.clientY - centerY) * 0.05;
+
+            nexus.style.transform = `translate3d(${moveX}px, ${moveY}px, 0) rotateX(${-moveY * 0.08}deg) rotateY(${moveX * 0.08}deg)`;
+        });
+
+        nexus.addEventListener('mouseleave', () => {
+            nexus.style.transform = 'translate3d(0px, 0px, 0) rotateX(0deg) rotateY(0deg)';
+        });
+    }
 });
