@@ -3,7 +3,7 @@
   --font-display: 'Syne', sans-serif;
   --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
   
-  /* SADELİK VE LÜKS ODAKLI KOYU MOR CAM EFEKTİ SİSTEMİ */
+  /* SADE VE LÜKS KOYU MOR CAM SİSTEMİ */
   --bg-deep: #090314;
   --text-pure: #f3f1f7;
   --text-soft: #a29db3;
@@ -31,7 +31,7 @@ body { background-color: var(--bg-deep); color: var(--text-pure); font-family: v
 /* FILM GRAIN */
 .grain-overlay { position: fixed; inset: 0; z-index: 9999999; pointer-events: none; opacity: 0.025; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"); }
 
-/* SADE KOYU MOR AMBİYANS GRADYAN ARKA PLANI */
+/* GRADYANLI KOYU MOR ARKA PLAN */
 .purple-ambient-glow {
   position: fixed;
   inset: 0;
@@ -42,7 +42,7 @@ body.light-theme .purple-ambient-glow {
   background: radial-gradient(circle at 50% -20%, #eadaff 0%, #f4f0fa 70%);
 }
 
-/* TIMELINE INTRO SCREEN */
+/* INTRO SCREEN & LOADER */
 .premium-intro { position: fixed; inset: 0; background-color: #06020d; z-index: 99999; display: flex; align-items: center; justify-content: center; pointer-events: none; transition: opacity 1.2s var(--ease-premium); }
 .intro-center-zone { position: relative; display: flex; align-items: center; justify-content: center; width: 100%; }
 .timeline-loader { position: absolute; width: 200px; text-align: center; opacity: 0; transition: opacity 0.4s var(--ease-premium); }
@@ -50,17 +50,17 @@ body.light-theme .purple-ambient-glow {
 .loader-line-fill { width: 0%; height: 100%; background: var(--glow-purple); }
 .loader-caption { font-size: 0.65rem; letter-spacing: 6px; color: rgba(255,255,255,0.3); text-transform: uppercase; }
 
-/* REQ: GİRİŞTEKİ LOGO BÜYÜTÜLDÜ (Çok daha büyük ve ihtişamlı: 320px) */
+/* BÜYÜTÜLMÜŞ İHTİŞAMLI LOGO ANIMASYONU */
 .intro-logo-wrapper { position: absolute; perspective: 1200px; }
-.intro-dynamic-logo { width: 320px; height: auto; opacity: 0; filter: blur(30px); transform: scale(0.8); will-change: opacity, filter, transform; }
+.intro-dynamic-logo { width: 340px; height: auto; opacity: 0; filter: blur(30px); transform: scale(0.7) rotateY(-15deg); will-change: opacity, filter, transform; }
 
 .step-line-reveal .timeline-loader { opacity: 1; }
 .step-line-reveal .loader-line-fill { width: 100%; transition: width 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
 .step-logo-fadein .timeline-loader { opacity: 0; transform: translateY(-10px); transition: all 0.5s var(--ease-premium); }
-.step-logo-fadein .intro-dynamic-logo { opacity: 1; filter: blur(0px); transform: scale(1); transition: opacity 0.9s var(--ease-premium), filter 0.9s var(--ease-premium), transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
-.step-logo-exit .intro-dynamic-logo { opacity: 0; transform: translateY(-120px) scale(0.4); filter: blur(15px); transition: all 0.8s var(--ease-premium); }
+.step-logo-fadein .intro-dynamic-logo { opacity: 1; filter: blur(0px); transform: scale(1) rotateY(0deg); transition: opacity 0.9s var(--ease-premium), filter 0.9s var(--ease-premium), transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.step-logo-exit .intro-dynamic-logo { opacity: 0; transform: translateY(-100px) scale(0.5); filter: blur(20px); transition: all 0.8s var(--ease-premium); }
 
-/* NAVBAR & GLASSMORPHISM CONTROLS */
+/* MICRO NAV & GLASSMORPHISM */
 .micro-nav { position: fixed; top: 0; left: 0; width: 100%; height: 70px; z-index: 1000; display: flex; align-items: center; justify-content: center; opacity: 0; transform: translateY(-15px); transition: all 1s var(--ease-premium); }
 .micro-nav.visible { opacity: 1; transform: translateY(0); }
 .nav-blur-holder { position: absolute; inset: 0; background: var(--nav-bg); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border-bottom: 1px solid var(--glass-border); }
@@ -71,8 +71,7 @@ body.light-theme .purple-ambient-glow {
 .link-item.active, .link-item:hover { opacity: 1; color: var(--glow-purple); }
 .nav-controls { display: flex; align-items: center; gap: 20px; margin-left: auto; }
 
-/* REQ: SİTENİN COPMONENT TASARIMINA UYUMLU PREMIUM GLASSMORPHISM DİL SEÇİCİ */
-.lang-select-wrapper { position: relative; }
+/* CAM SEÇİCİ COMPONENT */
 .premium-lang-select {
   all: unset;
   background: rgba(255, 255, 255, 0.03);
@@ -88,37 +87,64 @@ body.light-theme .purple-ambient-glow {
   transition: all 0.3s var(--ease-premium);
   text-align: center;
 }
-.premium-lang-select:hover { border-color: var(--glow-purple); background: rgba(255, 255, 255, 0.08); box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
+.premium-lang-select:hover { border-color: var(--glow-purple); background: rgba(255, 255, 255, 0.08); }
 .premium-lang-select option { background-color: #0f081d; color: #ffffff; padding: 10px; }
 body.light-theme .premium-lang-select option { background-color: #ffffff; color: #120924; }
 
-/* TOGGLE THEME SWITCH */
-.theme-switch-zone { display: flex; align-items: center; transform: scale(0.9); }
-.switch { font-size: 12px; position: relative; display: inline-block; width: 3.5em; height: 2em; transform-style: preserve-3d; perspective: 500px; }
+/* SWITCH TOGGLE */
+.switch { position: relative; display: inline-block; width: 3.5em; height: 2em; }
 .switch input { opacity: 0; width: 0; height: 0; }
 .slider { position: absolute; cursor: pointer; inset: 0; background-color: rgba(255,255,255,0.08); border: 1px solid var(--glass-border); transition: .4s; border-radius: 30px; }
 .slider:before { position: absolute; content: ""; height: 1.3em; width: 1.3em; left: 0.3em; bottom: 0.25em; transition: .4s; border-radius: 50%; background-color: var(--glow-purple); }
-.input__check:checked + .slider { background-color: rgba(0,0,0,0.3); }
 .input__check:checked + .slider:before { transform: translateX(1.5em); }
 
-/* HERO DESIGN */
+/* MAIN CONTAINER */
 .cosmic-wrapper { max-width: 1300px; margin: 0 auto; padding: 0 4%; opacity: 0; transition: opacity 1s var(--ease-premium); }
 .cosmic-wrapper.site-ready { opacity: 1; }
-.magnetic-hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; }
+.magnetic-hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; perspective: 1000px; }
 .sub-badge { font-size: 0.8rem; letter-spacing: 5px; text-transform: uppercase; color: var(--glow-purple); display: block; margin-bottom: 25px; opacity: 0; transform: translateY(20px); }
 .sub-badge.active { opacity: 1; transform: translateY(0); transition: all 0.8s var(--ease-premium); }
 
+/* ==========================================================================
+   RETURNING: TEKER TEKER GELEN PREMIUM PARÇALANMA ANIMASYONU (STAGGER)
+   ========================================================================== */
 .fluid-title { font-family: var(--font-display); font-size: 5rem; font-weight: 700; line-height: 1.15; margin-bottom: 35px; display: flex; justify-content: center; flex-wrap: wrap; gap: 0 16px; }
-.word-span { display: inline-block; opacity: 0; transform: translateY(40px); }
-.word-span.animate { opacity: 1; transform: translateY(0); transition: opacity 0.8s var(--ease-premium), transform 0.8s var(--ease-premium); }
 
-/* REQ: ALT SATIRA GEÇİŞİ VE MEKANİĞİ KUSURSUZ KORUNAN LEAD METNİ */
+/* Kelime bazlı akış canlandırması */
+.word-span { 
+  display: inline-block; 
+  opacity: 0; 
+  transform: translateY(45px) scale(0.9) rotateX(-20deg); 
+  filter: blur(12px);
+  will-change: transform, opacity, filter;
+  transition: transform 0.9s var(--ease-premium), opacity 0.9s var(--ease-premium), filter 0.9s var(--ease-premium);
+}
+.word-span.animate { 
+  opacity: 1; 
+  transform: translateY(0) scale(1) rotateX(0deg); 
+  filter: blur(0px); 
+}
+
 .fluid-lead { font-size: 1.15rem; color: var(--text-soft); max-width: 800px; margin: 0 auto 45px; line-height: 1.95; }
 .lead-line { display: block; overflow: hidden; white-space: pre-wrap; }
-.char-span { display: inline-block; opacity: 0; filter: blur(6px); will-change: opacity, filter; transition: opacity 0.6s var(--ease-premium), filter 0.6s var(--ease-premium); }
-.char-span.animate { opacity: 1; filter: blur(0px); }
+
+/* Harf bazlı akış canlandırması */
+.char-span { 
+  display: inline-block; 
+  opacity: 0; 
+  transform: translateY(20px) rotate(8deg);
+  filter: blur(6px); 
+  will-change: opacity, filter, transform; 
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.5s var(--ease-premium), filter 0.5s var(--ease-premium); 
+}
+.char-span.animate { 
+  opacity: 1; 
+  transform: translateY(0) rotate(0deg);
+  filter: blur(0px); 
+}
 .char-span.space { width: 0.28em; }
 
+/* CTA BUTTONS */
 .premium-cta-btn { all: unset; display: inline-flex; align-items: center; justify-content: center; position: relative; padding: 18px 42px; border-radius: 100px; background: rgba(255,255,255,0.02); border: 1px solid var(--glass-border); color: var(--text-pure); font-weight: 600; font-size: 0.95rem; cursor: pointer; opacity: 0; transform: translateY(30px); transition: all 0.8s var(--ease-premium); backdrop-filter: blur(10px); }
 .premium-cta-btn.active { opacity: 1; transform: translateY(0); }
 .btn-glow-layer { position: absolute; inset: -1px; border-radius: inherit; background: linear-gradient(135deg, var(--glow-purple), #6366f1); opacity: 0; transition: opacity 0.5s; z-index: -1; filter: blur(15px); }
@@ -126,7 +152,7 @@ body.light-theme .premium-lang-select option { background-color: #ffffff; color:
 .premium-cta-btn:hover { border-color: var(--glow-purple); transform: scale(1.04) translateY(-2px) !important; background: rgba(255,255,255,0.06); }
 .premium-cta-btn:hover .btn-glow-layer { opacity: 0.4; }
 
-/* REQ: TERTEMİZ GLASSMORPHISM KÜLTÜR KARTLARI */
+/* GLASSMORPHISM CULTURE KARTLARI */
 .culture-section { padding: 120px 0; }
 .section-meta { margin-bottom: 60px; text-align: center; }
 .ghost-heading { font-family: var(--font-display); font-size: 3.2rem; font-weight: 700; margin-bottom: 15px; }
@@ -148,4 +174,4 @@ body.light-theme .premium-lang-select option { background-color: #ffffff; color:
 
 .minimal-footer { text-align: center; padding: 40px 0; color: var(--text-soft); font-size: 0.85rem; border-top: 1px solid var(--glass-border); }
 
-@media (max-width: 968px) { .fine-line-grid { grid-template-columns: 1fr; } .fluid-title { font-size: 3rem; } .nexus-btn-row { flex-direction: column; align-items: center; } .nav-links { display: none; } .intro-dynamic-logo { width: 220px; } }
+@media (max-width: 968px) { .fine-line-grid { grid-template-columns: 1fr; } .fluid-title { font-size: 3rem; } .nexus-btn-row { flex-direction: column; align-items: center; } .nav-links { display: none; } .intro-dynamic-logo { width: 240px; } }
