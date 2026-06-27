@@ -1,30 +1,52 @@
 /**
- * TUNAY KİTAP KULÜBÜ - PERMANENT PURPLE DESIGN ENGINE 2026
+ * TUNAY KİTAP KULÜBÜ - PARALLAX INTRO DESIGN ENGINE 2026
  */
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // 1. TIMED MOTION INTRO ENGINE
+    // 1. TIMED PARALLAX INTRO CLOSING
     const initIntro = () => {
         const intro = document.getElementById('intro-screen');
         if (!intro) return;
 
-        // Sayfa tamamen yüklendiğinde, hareket grafiğinin bitmesini bekleyip yumuşakça kapatır
         window.addEventListener('load', () => {
             setTimeout(() => {
                 intro.classList.add('vanish');
-            }, 2300); // Sinematik harf animasyonunun tamamlanma süresi optimize edildi
+            }, 2600); // Harflerin jenerik akışı bittikten hemen sonra yumuşak kapanış
         });
 
-        // Garanti Fallback (Yükleme uzarsa kullanıcıyı bekletmemek için)
+        // Fallback (Yükleme uzarsa kullanıcıyı kitlemesin)
         setTimeout(() => {
             intro.classList.add('vanish');
-        }, 3800);
+        }, 3900);
     };
     initIntro();
 
 
-    // 2. MOUSE-TRACKING AURORA ORBS
+    // 2. MOUSE-INTERACTIVE INTRO & BACKGROUND PARALLAX
+    // Kullanıcı henüz intro ekranındayken fareyi oynatırsa katmanlar mikro tepkiler verir
+    const initIntroParallaxMouse = () => {
+        const intro = document.getElementById('intro-screen');
+        if (!intro || window.innerWidth < 768) return;
+
+        const bgLayer = intro.querySelector('.layer-bg');
+        const midLayer = intro.querySelector('.layer-mid');
+        const fgLayer = intro.querySelector('.layer-fg');
+
+        intro.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth - 0.5) * 2;
+            const y = (e.clientY / window.innerHeight - 0.5) * 2;
+
+            // Her katman farklı derinlikte (hızda) hareket eder
+            if (bgLayer) bgLayer.style.transform = `translate3d(${x * 15}px, ${y * 15}px, -200px) scale(0.95)`;
+            if (midLayer) midLayer.style.transform = `translate3d(${x * 30}px, ${y * 30}px, 50px) rotate(15deg) scale(1.05)`;
+            if (fgLayer) fgLayer.style.transform = `translate3d(${x * 45}px, ${y * 45}px, 100px)`;
+        });
+    };
+    initIntroParallaxMouse();
+
+
+    // 3. MAIN SITE AURORA ORBS MOTOR
     const initFluidUniverse = () => {
         const orbs = document.querySelectorAll('.liquid-orb');
         if (window.innerWidth < 768) return;
@@ -35,7 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             orbs.forEach((orb, index) => {
                 const factor = (index + 1) * 0.6;
-                // Mevcut css animasyonunu bozmadan ek traslation katmanı ekler
                 orb.style.marginLeft = `${x * factor}px`;
                 orb.style.marginTop = `${y * factor}px`;
             });
@@ -44,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initFluidUniverse();
 
 
-    // 3. MAGNETIC NEXUS GRAPHIC INTERACTION
+    // 4. MAGNETIC NEXUS 3D MATRIX EFFECT
     const initMagneticNexus = () => {
         const nexus = document.getElementById('magnetic-nexus');
         if (!nexus || window.innerWidth < 768) return;
@@ -67,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initMagneticNexus();
 
 
-    // 4. SCROLL REVEAL & ROUTE ACTIVE SYSTEM
+    // 5. INTELLIGENT INTERSECTION OBSERVER SYSTEM
     const initScrollSystem = () => {
         const reveals = document.querySelectorAll('.scroll-reveal');
         const links = document.querySelectorAll('.link-item');
