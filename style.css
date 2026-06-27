@@ -3,7 +3,7 @@
   --font-display: 'Syne', sans-serif;
   --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
   
-  /* SADE VE LÜKS KOYU MOR CAM SİSTEMİ */
+  /* KOYU MOR CAM TASARIM SİSTEMİ */
   --bg-deep: #090314;
   --text-pure: #f3f1f7;
   --text-soft: #a29db3;
@@ -50,7 +50,7 @@ body.light-theme .purple-ambient-glow {
 .loader-line-fill { width: 0%; height: 100%; background: var(--glow-purple); }
 .loader-caption { font-size: 0.65rem; letter-spacing: 6px; color: rgba(255,255,255,0.3); text-transform: uppercase; }
 
-/* BÜYÜTÜLMÜŞ İHTİŞAMLI LOGO ANIMASYONU */
+/* DEVASA LOGO ANIMASYONU */
 .intro-logo-wrapper { position: absolute; perspective: 1200px; }
 .intro-dynamic-logo { width: 340px; height: auto; opacity: 0; filter: blur(30px); transform: scale(0.7) rotateY(-15deg); will-change: opacity, filter, transform; }
 
@@ -71,32 +71,12 @@ body.light-theme .purple-ambient-glow {
 .link-item.active, .link-item:hover { opacity: 1; color: var(--glow-purple); }
 .nav-controls { display: flex; align-items: center; gap: 20px; margin-left: auto; }
 
-/* CAM SEÇİCİ COMPONENT */
-.premium-lang-select {
-  all: unset;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid var(--glass-border);
-  padding: 8px 16px;
-  border-radius: 50px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--text-pure);
-  cursor: pointer;
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  transition: all 0.3s var(--ease-premium);
-  text-align: center;
-}
-.premium-lang-select:hover { border-color: var(--glow-purple); background: rgba(255, 255, 255, 0.08); }
-.premium-lang-select option { background-color: #0f081d; color: #ffffff; padding: 10px; }
-body.light-theme .premium-lang-select option { background-color: #ffffff; color: #120924; }
-
-/* SWITCH TOGGLE */
-.switch { position: relative; display: inline-block; width: 3.5em; height: 2em; }
+/* REQ: GERİ GETİRİLEN KUSURSUZ INTERAKTIF TEMA SWITCH DUĞMESİ */
+.switch { position: relative; display: inline-block; width: 3.5em; height: 2em; transform-style: preserve-3d; perspective: 500px; }
 .switch input { opacity: 0; width: 0; height: 0; }
 .slider { position: absolute; cursor: pointer; inset: 0; background-color: rgba(255,255,255,0.08); border: 1px solid var(--glass-border); transition: .4s; border-radius: 30px; }
-.slider:before { position: absolute; content: ""; height: 1.3em; width: 1.3em; left: 0.3em; bottom: 0.25em; transition: .4s; border-radius: 50%; background-color: var(--glow-purple); }
-.input__check:checked + .slider:before { transform: translateX(1.5em); }
+.slider:before { position: absolute; content: ""; height: 1.3em; width: 1.3em; left: 0.3em; bottom: 0.25em; transition: .4s; border-radius: 50%; background-color: var(--glow-purple); box-shadow: 0 0 10px var(--glow-purple); }
+.input__check:checked + .slider:before { transform: translateX(1.5em); background-color: #7c3aed; }
 
 /* MAIN CONTAINER */
 .cosmic-wrapper { max-width: 1300px; margin: 0 auto; padding: 0 4%; opacity: 0; transition: opacity 1s var(--ease-premium); }
@@ -105,12 +85,9 @@ body.light-theme .premium-lang-select option { background-color: #ffffff; color:
 .sub-badge { font-size: 0.8rem; letter-spacing: 5px; text-transform: uppercase; color: var(--glow-purple); display: block; margin-bottom: 25px; opacity: 0; transform: translateY(20px); }
 .sub-badge.active { opacity: 1; transform: translateY(0); transition: all 0.8s var(--ease-premium); }
 
-/* ==========================================================================
-   RETURNING: TEKER TEKER GELEN PREMIUM PARÇALANMA ANIMASYONU (STAGGER)
-   ========================================================================== */
+/* AKAN PREMIUM PARÇALANMA ANIMASYONU (STAGGER ENGINE) */
 .fluid-title { font-family: var(--font-display); font-size: 5rem; font-weight: 700; line-height: 1.15; margin-bottom: 35px; display: flex; justify-content: center; flex-wrap: wrap; gap: 0 16px; }
 
-/* Kelime bazlı akış canlandırması */
 .word-span { 
   display: inline-block; 
   opacity: 0; 
@@ -128,7 +105,6 @@ body.light-theme .premium-lang-select option { background-color: #ffffff; color:
 .fluid-lead { font-size: 1.15rem; color: var(--text-soft); max-width: 800px; margin: 0 auto 45px; line-height: 1.95; }
 .lead-line { display: block; overflow: hidden; white-space: pre-wrap; }
 
-/* Harf bazlı akış canlandırması */
 .char-span { 
   display: inline-block; 
   opacity: 0; 
@@ -144,12 +120,12 @@ body.light-theme .premium-lang-select option { background-color: #ffffff; color:
 }
 .char-span.space { width: 0.28em; }
 
-/* CTA BUTTONS */
-.premium-cta-btn { all: unset; display: inline-flex; align-items: center; justify-content: center; position: relative; padding: 18px 42px; border-radius: 100px; background: rgba(255,255,255,0.02); border: 1px solid var(--glass-border); color: var(--text-pure); font-weight: 600; font-size: 0.95rem; cursor: pointer; opacity: 0; transform: translateY(30px); transition: all 0.8s var(--ease-premium); backdrop-filter: blur(10px); }
+/* REQ: AKTİF KORUNAN VE GELİŞTİRİLEN AKSİYON BUTONLARI */
+.premium-cta-btn { all: unset; display: inline-flex; align-items: center; justify-content: center; position: relative; padding: 18px 42px; border-radius: 100px; background: rgba(255,255,255,0.02); border: 1px solid var(--glass-border); color: var(--text-pure); font-weight: 600; font-size: 0.95rem; cursor: pointer; opacity: 0; transform: translateY(30px); transition: all 0.8s var(--ease-premium); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
 .premium-cta-btn.active { opacity: 1; transform: translateY(0); }
 .btn-glow-layer { position: absolute; inset: -1px; border-radius: inherit; background: linear-gradient(135deg, var(--glow-purple), #6366f1); opacity: 0; transition: opacity 0.5s; z-index: -1; filter: blur(15px); }
 .btn-text { z-index: 2; }
-.premium-cta-btn:hover { border-color: var(--glow-purple); transform: scale(1.04) translateY(-2px) !important; background: rgba(255,255,255,0.06); }
+.premium-cta-btn:hover { border-color: var(--glow-purple); transform: scale(1.04) translateY(-2px) !important; background: rgba(255,255,255,0.06); box-shadow: 0 10px 30px rgba(179, 136, 255, 0.2); }
 .premium-cta-btn:hover .btn-glow-layer { opacity: 0.4; }
 
 /* GLASSMORPHISM CULTURE KARTLARI */
@@ -174,4 +150,4 @@ body.light-theme .premium-lang-select option { background-color: #ffffff; color:
 
 .minimal-footer { text-align: center; padding: 40px 0; color: var(--text-soft); font-size: 0.85rem; border-top: 1px solid var(--glass-border); }
 
-@media (max-width: 968px) { .fine-line-grid { grid-template-columns: 1fr; } .fluid-title { font-size: 3rem; } .nexus-btn-row { flex-direction: column; align-items: center; } .nav-links { display: none; } .intro-dynamic-logo { width: 240px; } }
+@media (max-width: 968px) { .fine-line-grid { grid-template-columns: 1fr; } .fluid-title { font-size: 3rem; } .nexus-btn-row { flex-direction: column; align-items: center; gap: 15px; } .nav-links { display: none; } .intro-dynamic-logo { width: 240px; } }
